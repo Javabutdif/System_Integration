@@ -84,7 +84,7 @@ $course = $_POST['course'];
 $address = $_POST['address'];
 
 // database insert SQL code
-if($idNum != 0){
+
 $sql = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `role`)
  VALUES ('$idNum', '$last_Name', '$first_Name', '$middle_Name', '$course_Level', '$passWord', '$course', '$email', '$address', 'student')";
 
@@ -92,8 +92,24 @@ $sql = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleNam
 if (mysqli_query($con, $sql)) {
 	echo '<script>alert("Registration Complete")</script>'; 
 }
+else{
+	
+	echo '<script>alert("Error! Duplicate Id Number")</script>'; 
+	
 }
+
 }
+
+$idNum = "";
+$last_Name = "";
+$first_Name = "";
+$middle_Name = "";
+$course_Level = "";
+$passWord  = "";
+$email = "";
+$course = "";
+$address  = "";
+
 // Close connection
 mysqli_close($con);
 ?>
