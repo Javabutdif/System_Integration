@@ -90,7 +90,7 @@ $sql = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleNam
 
 // insert in database 
 if (mysqli_query($con, $sql)) {
-	echo '<script>alert("Welcome to Geeks for Geeks")</script>'; 
+	echo '<script>alert("Registration Complete")</script>'; 
 }
 }
 }
