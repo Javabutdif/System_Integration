@@ -26,7 +26,7 @@
 			</br>
 			<div>
 
-			<input class="border-0 shadow w-50 " placeholder="Email" type="email" name="email" required/>
+			<input class="border-0 shadow w-50 " placeholder="Id Number" type="text" name="idNum" required/>
 			
 			</div>
 			</br>
@@ -55,19 +55,20 @@
 
 <?php
 
+
 	
 
 	if(isset($_GET["submit"])){
-		$email = $_GET["email"];
+		$idNum = $_GET["idNum"];
 		$password = $_GET["password"];
 
 		$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-		$sql = "SELECT * FROM students WHERE email = '$email' AND password = '$password'";
+		$sql = "SELECT * FROM students WHERE id_number = '$idNum' AND password = '$password'";
 		$result = mysqli_query($con, $sql);
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-
-		header("Location: Homepage.php/" . $user["id_number"]);	
+		
+		header("Location: Homepage.php/".$user["firstName"]);	
 
 		
 

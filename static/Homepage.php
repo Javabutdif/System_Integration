@@ -10,10 +10,9 @@
 </body>
 </html>
 <?php
-    if(isset($_GET["id_number"])){
-        $id_number = $_GET['id_number'];
-    
-    // Now you can use $id_number in your code as needed
-        echo "ID Number: " . $id_number;
-    }
+    $firstName = $_GET['firstName'];
+    echo "Welcome, $firstName";
 ?>
+<script>
+    alert('Successfully Login!');
+    </script>

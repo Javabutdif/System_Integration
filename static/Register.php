@@ -91,7 +91,7 @@ $sql = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleNam
 // insert in database 
 if (mysqli_query($con, $sql)) {
 	echo '<script>alert("Registration Complete")</script>'; 
-	
+	header('Location: Login.php');
 }
 else{
 	
@@ -101,15 +101,7 @@ else{
 
 }
 
-$idNum = "";
-$last_Name = "";
-$first_Name = "";
-$middle_Name = "";
-$course_Level = "";
-$passWord  = "";
-$email = "";
-$course = "";
-$address  = "";
+
 
 // Close connection
 mysqli_close($con);
