@@ -90,7 +90,8 @@ $sql = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleNam
 
 // insert in database 
 if (mysqli_query($con, $sql)) {
-	echo '<script>alert("Registration Complete")</script>'; 
+	echo '<script>window.alert("Register Successful")</script>'; 
+	
 	header('Location: Login.php');
 }
 else{

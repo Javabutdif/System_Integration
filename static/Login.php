@@ -54,7 +54,7 @@
 </html>
 
 <?php
-
+	
 
 	
 
@@ -68,8 +68,13 @@
 		$result = mysqli_query($con, $sql);
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		
-		header("Location: Homepage.php/".$user["firstName"]);	
-
+		if($user["role"] != null){
+			header("Location: Homepage.php/".$user["firstName"]);	
+		}
+		else
+		{
+			echo '<script>alert("Error! Password Invalid")</script>'; 
+		}
 		
 
 	}
