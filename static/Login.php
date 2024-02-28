@@ -5,7 +5,7 @@
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
 <link rel="stylesheet" href="/css/style.css">
-	
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 	</head>
 	
 	<body>
@@ -14,14 +14,12 @@
 	<h1 style="color: black; text-align:center"> 
 		College of Computer Studies
 	</h1>
-	<h1 style="color: black; text-align:center"> 
-		Sit-In Monitoring System
-	</h1>
+	
 	<div class="text-center" >
 		
 		<form action="Login.php" method="GET" class="form-group container d-block" style="padding-bottom: 30%; padding-top:10%">
-			<img src="/images/uc-logo.jpg" class="rounded-circle col-3">
-			<img src="/images/ccs logo.jpg" class="rounded-circle col-3">
+			<img src="/jems/images/uc-logo.jpg" class="rounded-circle col-2">
+			<img src="/jems/images/ccs logo.jpg" class="rounded-circle col-2">
 			<h1>Login</h1>
 			</br>
 			<div>
@@ -53,6 +51,10 @@
 	
 </html>
 
+
+
+
+
 <?php
 	
 
@@ -69,6 +71,8 @@
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		
 		if($user["role"] != null){
+			
+
 			header("Location: Homepage.php/".$user["firstName"]);	
 		}
 		else
