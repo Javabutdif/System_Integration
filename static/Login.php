@@ -56,7 +56,7 @@
 
 
 <?php
-	
+	session_start();
 
 	
 
@@ -72,8 +72,9 @@
 		
 		if($user["role"] != null){
 			
+			$_SESSION['id_number'] = $user["id_number"];
 
-			header("Location: Homepage.php/".$user["firstName"]);	
+			header("Location: Homepage.php");	
 		}
 		else
 		{
