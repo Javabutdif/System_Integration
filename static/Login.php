@@ -56,7 +56,9 @@
 
 
 <?php
+	
 	session_start();
+	
 
 	
 
@@ -73,19 +75,23 @@
 		if($user["role"] != null){
 			
 			$_SESSION['id_number'] = $user["id_number"];
-			$_SESSION['firstName'] = $user["firstName"];
-			$_SESSION['lastName'] = $user["lastName"];
-			$_SESSION['middleName'] = $user["middleName"];
+			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
 			$_SESSION['yearLevel'] = $user["yearLevel"];
 			$_SESSION['course'] = $user["course"];
 			$_SESSION['email'] = $user["email"];
 			$_SESSION['address'] = $user["address"];
+			
 
 			header("Location: Homepage.php");	
 		}
 		else
 		{
-			echo '<script>alert("Error! Password Invalid")</script>'; 
+			echo '<script>Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Incorret ID Number and Password!",
+				
+			  });</script>'; 
 		}
 		
 
