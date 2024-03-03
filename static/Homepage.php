@@ -10,9 +10,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body>
-    <?php
-     echo $_SESSION["id_number"];
-    ?>
+  
 </body>
 </html>
 <?php
@@ -21,7 +19,7 @@
 <script>
     Swal.fire({
   title: "Successful Login!",
-  text: "Welcome",
+  text: "Welcome <?php echo $_SESSION["firstName"]; ?>",
   icon: "success"
 });
     </script>
