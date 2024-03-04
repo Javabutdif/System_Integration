@@ -2,6 +2,7 @@
  
   session_start();
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,14 +52,14 @@
 </html>
 
 <script>
-
-
-
- 
+  var count = true;
+  if(<?php echo $_SESSION["id"]; ?> === 1){
     Swal.fire({
   title: "Successful Login!",
   text: "Welcome! <?php echo $_SESSION["name"]; ?>",
   icon: "success"
 });
+    <?php $_SESSION["id"] = 0;?>
+  }
   
     </script>

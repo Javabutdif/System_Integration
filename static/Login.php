@@ -80,6 +80,7 @@
 			$_SESSION['course'] = $user["course"];
 			$_SESSION['email'] = $user["email"];
 			$_SESSION['address'] = $user["address"];
+			$_SESSION["id"] = 1;
 		
 			header("Location: Homepage.php");	
 		}
