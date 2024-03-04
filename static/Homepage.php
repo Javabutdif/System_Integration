@@ -1,7 +1,10 @@
 <?php
  
   session_start();
-
+  if($_SESSION["id_number"] == null){
+    header("Location: Login.php");
+  
+		}
 ?>
 
 <!DOCTYPE html>
