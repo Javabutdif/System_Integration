@@ -1,6 +1,7 @@
 <?php
  
   session_start();
+
 ?>
 
 <!DOCTYPE html>
@@ -26,7 +27,7 @@
         <a class="nav-link" href="Homepage.php" >Home</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="Profile.php">Profile</a>
+        <a class="nav-link" href="Profile.php">Edit Profile</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Sit in</a>
@@ -41,7 +42,7 @@
   </div>
 </nav>
 
-<h1> Homepage
+<h1>
 <?php
  echo $_SESSION["name"];
 ?>
@@ -52,7 +53,7 @@
 </html>
 
 <script>
-  var count = true;
+  
   if(<?php echo $_SESSION["id"]; ?> === 1){
     Swal.fire({
   title: "Successful Login!",
@@ -61,5 +62,7 @@
 });
     <?php $_SESSION["id"] = 0;?>
   }
-  
+ 
+
+
     </script>

@@ -1,4 +1,7 @@
-
+<?php
+	session_start();
+	
+?>
 <!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<head>
@@ -56,8 +59,10 @@
 
 
 <?php
-	
-	session_start();
+	if($_SESSION["id_number"] != null){
+		session_destroy();
+		}
+
 	
 
 	
@@ -76,6 +81,9 @@
 			
 			$_SESSION['id_number'] = $user["id_number"];
 			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
+			$_SESSION['fname'] = $user["firstName"];
+			$_SESSION['lname'] = $user["lastName"];
+			$_SESSION['mname'] = $user["middleName"];
 			$_SESSION['yearLevel'] = $user["yearLevel"];
 			$_SESSION['course'] = $user["course"];
 			$_SESSION['email'] = $user["email"];
