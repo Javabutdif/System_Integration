@@ -80,8 +80,7 @@
 			$_SESSION['course'] = $user["course"];
 			$_SESSION['email'] = $user["email"];
 			$_SESSION['address'] = $user["address"];
-			
-
+		
 			header("Location: Homepage.php");	
 		}
 		else

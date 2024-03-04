@@ -22,7 +22,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" >Home</a>
+        <a class="nav-link" href="Homepage.php" >Home</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="Profile.php">Profile</a>
@@ -34,13 +34,13 @@
         <a class="nav-link " href="#">View Sessions</a>
       </li>
       <li class="nav-item">
-        <a class="btn nav-link" <?php session_destroy(); ?> style="color:red" href="Login.php">Log out</a>
+        <a class="btn nav-link"  style="color:red" href="Login.php">Log out</a>
       </li>
     </ul>
   </div>
 </nav>
 
-<h1> Welcome
+<h1> Homepage
 <?php
  echo $_SESSION["name"];
 ?>

@@ -32,12 +32,12 @@
         <a class="nav-link " href="#">View Sessions</a>
       </li>
       <li class="nav-item">
-        <a class="btn nav-link" <?php session_destroy(); ?> style="color:red" href="Login.php">Log out</a>
+        <a class="btn nav-link"  style="color:red" href="Login.php">Log out</a>
       </li>
     </ul>
   </div>
 </nav>
 
-    <h1>Welcome <?php echo $_SESSION["name"]; ?> </h1>
+    <h1>Profile <?php echo $_SESSION["name"]; ?> </h1>
 </body>
 </html>
