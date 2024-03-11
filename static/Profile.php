@@ -17,30 +17,12 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a class="navbar-brand" href="#">College of Computer Studies</a>
+<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #144c94">
+  <a class="navbar-brand text-white" href="Homepage.php">College of Computer Studies</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse" id="navbarNav">
-    <ul class="navbar-nav">
-      <li class="nav-item active">
-        <a class="nav-link"  href="Homepage.php">Home</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="Profile.php">Edit Profile</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link" href="#">Sit in</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link " href="#">View Sessions</a>
-      </li>
-      <li class="nav-item">
-        <a class="btn nav-link"  style="color:red" href="Login.php">Log out</a>
-      </li>
-    </ul>
-  </div>
+ 
 </nav>
 
 	
