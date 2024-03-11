@@ -35,9 +35,9 @@ height: 100%;
 	<section class="vh-100" >
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-md-9 col-lg-6 col-xl-5">
-        <img src="/jems/images/uc-logo.jpg"
-          class="img-fluid" alt="CCS Logo">
+      <div class="col-md-9 col-lg-6 col-xl-5 ">
+        <img src="/jems/images/ccsLogo.png"
+          class="img-fluid h-75 w-100" alt="CCS Logo" >
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
@@ -112,8 +112,9 @@ height: 100%;
 
 
 <?php
-	if($_SESSION["id_number"] != null){
-		session_destroy();
+	//Session check
+	if($_SESSION["id_number"] != 0){
+		$_SESSION["id_number"] = 0;
 		}
 
 	
