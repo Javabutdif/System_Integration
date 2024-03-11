@@ -36,7 +36,7 @@
 <div class="container container-fluid p-5 m-2 col-6 rounded  "  >
     <h2 class="text-black">Welcome! <?php echo $_SESSION["name"] ?></h2>
 </div>
-<div class="d-flex flex-fill ">
+<div class="d-block container container-fluid">
   <div class="container container-fluid p-5 m-5 col-3 rounded " style="background-color:#144c94;" >
 
     <h5 class="text-white">   <img src="/jems/images/time.jpg" class="rounded-circle" style="height:40px; width:40px"/>Session Remaining: 30</h5>
@@ -45,6 +45,12 @@
   <a href="Profile.php" style="width: 100%;" >
   <div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
     <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>Edit Profile</h5>
+
+  </div>
+  </a>
+  <a href="#" style="width: 100%;" >
+  <div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
+    <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>View Sessions</h5>
 
   </div>
   </a>
