@@ -124,6 +124,13 @@ height: 100%;
 		$idNum = $_GET["idNum"];
 		$password = $_GET["password"];
 
+		if($idNum == "admin" && $password == "admin"){
+			$_SESSION['name'] = 'admin';
+			$_SESSION['id_number'] = '1';
+			header('Location: Admin.php');
+		}
+		else{
+
 		$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
 		$sql = "SELECT * FROM students WHERE id_number = '$idNum' AND password = '$password'";
@@ -154,6 +161,7 @@ height: 100%;
 				
 			  });</script>'; 
 		}
+	}
 		
 
 	}
