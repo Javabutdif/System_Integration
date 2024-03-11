@@ -33,24 +33,31 @@
   </button>
   
 </nav>
-
 <div class="container container-fluid p-5 m-2 col-6 rounded  "  >
     <h2 class="text-black">Welcome! <?php echo $_SESSION["name"] ?></h2>
 </div>
-<div class="container container-fluid d-inline-flex w-100">
+
+
+<table class="table table-responsive d-table-row ">
+  <tbody>
+    <tr>
+      <td>
+
   <div class="container container-fluid p-5 m-5 col-3 rounded " style="background-color:#144c94;" >
 
     <h5 class="text-white">   <img src="/jems/images/time.jpg" class="rounded-circle" style="height:40px; width:40px"/>Session Remaining: 30</h5>
 
   </div>
-
+    </td>
+    <td>
 
       <div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
       <a href="Profile.php" style="width: 100%;" >
       <h5 class="text-white" type="submit"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>Edit Profile</h5>
     </a>
      </div>
-      
+    </td>
+    <td>
 
   
   <div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
@@ -58,8 +65,25 @@
     <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>View Sessions</h5>
   </a>
   </div>
+    </td>
+
+    </tr>
   
+
+<div class="container container-fluid d-inline-flex w-100">
+<div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
+  <a href="#" style="width: 100%;" >
+    <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>History</h5>
+  </a>
+  </div>
+  <div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
+  <a href="Login.php" style="width: 100%;" >
+    <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle text-danger" style="height:50px; width:50px"/>Log out</h5>
+  </a>
+  </div>
 </div>
+</tbody>
+<table>
 </body>
 </html>
 
