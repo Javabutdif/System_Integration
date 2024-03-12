@@ -83,7 +83,7 @@
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Student Information</h5>
+        <h5 class="modal-title" id="exampleModalLongTitle">Sit In Form</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -126,12 +126,18 @@
             </select>
         </div>
     </div>
+    <div class="form-group row">
+        <label for="name" class="col-sm-4 col-form-label">Remaining Session: </label>
+        <div class="col-sm-8">
+            <input id="name" type="text" value="<?php echo $_SESSION['remainSession'] ?>" readonly class="form-control"/>
+        </div>
+    </div>
 </div>
 
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary">Sit In</button>
       </div>
     </div>
   </div>
@@ -157,53 +163,56 @@
 
 <?php
 
+
+if (isset($_GET["search"])) {
+    $search = $_GET["searchBar"];
+
+    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+
+    // Prepare and bind the SQL statement
+    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("sss", $search, $search, $search);
+    $stmt->execute();
+    $result = $stmt->get_result();
     
-
-	if(isset($_GET["search"])){
-		$search = $_GET["searchBar"];
-
-
-		$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-
-		$sql = "SELECT * FROM students WHERE id_number = '$search' OR lastName = '$search' OR firstName = '$search'  ";
-		$result = mysqli_query($con, $sql);
-        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-		
-		if($user["id_number"] != null){
+    if ($result->num_rows > 0) {
+        // Fetch the user data
+        $user = $result->fetch_assoc();
         
-      $_SESSION['id_number'] = $user["id_number"];
-			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
-			$_SESSION['fname'] = $user["firstName"];
-			$_SESSION['lname'] = $user["lastName"];
-			$_SESSION['mname'] = $user["middleName"];
-			$_SESSION['yearLevel'] = $user["yearLevel"];
-			$_SESSION['course'] = $user["course"];
-			$_SESSION['email'] = $user["email"];
-			$_SESSION['address'] = $user["address"];
+        // Fetch the session data
+        $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
+        $stmt1 = $con->prepare($sql1);
+        $stmt1->bind_param("s", $user["id_number"]);
+        $stmt1->execute();
+        $result1 = $stmt1->get_result();
+        $record = $result1->fetch_assoc();
+        
+        // Store user and session data in session variables
+        $_SESSION['id_number'] = $user["id_number"];
+        $_SESSION['name'] = $user["firstName"] . " " . $user["middleName"] . " " . $user["lastName"];
+        $_SESSION['fname'] = $user["firstName"];
+        $_SESSION['lname'] = $user["lastName"];
+        $_SESSION['mname'] = $user["middleName"];
+        $_SESSION['yearLevel'] = $user["yearLevel"];
+        $_SESSION['course'] = $user["course"];
+        $_SESSION['email'] = $user["email"];
+        $_SESSION['address'] = $user["address"];
+        $_SESSION['remainSession'] = $record["session"];
 
         $displayModal = true;
-      
-		
-
-		}
-		else
-		{
-			echo '<script>Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "No Student Data Found!",
-				
-			  });</script>'; 
-
-        
-		}
-	}
-		
-
-	
-
+    } else {
+        // No record found
+        echo '<script>Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "No Student Data Found!"
+        });</script>';
+    }
+}
 
 ?>
+
 
 <script>
         // Check if PHP variable $displayModal is true, then show the modal

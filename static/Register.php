@@ -166,11 +166,13 @@ $address = $_POST['address'];
 
 // database insert SQL code
 
-$sql = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `role`)
- VALUES ('$idNum', '$last_Name', '$first_Name', '$middle_Name', '$course_Level', '$passWord', '$course', '$email', '$address', 'student')";
+$sql1 = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`)
+ VALUES ('$idNum', '$last_Name', '$first_Name', '$middle_Name', '$course_Level', '$passWord', '$course', '$email', '$address')";
+$sql2 = "INSERT INTO `student_session` (`id_number` , `session`) VALUES ('$idNum', 30)";
+ 
 
 // insert in database 
-if (mysqli_query($con, $sql)) {
+if (mysqli_query($con, $sql1) && mysqli_query($con, $sql2) ) {
 	echo '<script>window.alert("Register Successful")</script>'; 
 	
 	header('Location: Login.php');
