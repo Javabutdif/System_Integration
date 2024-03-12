@@ -49,6 +49,7 @@
 </nav>
 <h1>This is Admin</h1>
 
+<form action="Admin.php" method="GET">
 <!-- Modal -->
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -64,7 +65,33 @@
       </div>
       <div class="modal-footer">
         
-        <button type="button" name="search" class="btn btn-primary">Search</button>
+        <button type="submit" name="search" class="btn btn-primary">Search</button>
+      </div>
+    </div>
+  </div>
+</div>
+</form>
+
+
+<!-- Vertical Modal-->
+
+
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Student Information</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <input type="text" value="<?php echo $_SESSION['id_number'] ?> " readonly/>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
       </div>
     </div>
   </div>
@@ -90,5 +117,57 @@
 
 <?php
 
+    
+
+	if(isset($_GET["search"])){
+		$search = $_GET["searchBar"];
+
+
+		$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+
+		$sql = "SELECT * FROM students WHERE id_number = '$search' OR firstName = '$search' OR lastName = '$search' ";
+		$result = mysqli_query($con, $sql);
+        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		
+		if($user["role"] != null){
+			
+			$_SESSION['id_number'] = $user["id_number"];
+			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
+			$_SESSION['fname'] = $user["firstName"];
+			$_SESSION['lname'] = $user["lastName"];
+			$_SESSION['mname'] = $user["middleName"];
+			$_SESSION['yearLevel'] = $user["yearLevel"];
+			$_SESSION['course'] = $user["course"];
+			$_SESSION['email'] = $user["email"];
+			$_SESSION['address'] = $user["address"];
+			$_SESSION["id"] = 1;
+
+      $displayModal = true;
+		
+
+		}
+		else
+		{
+			echo '<script>Swal.fire({
+				icon: "error",
+				title: "Oops...",
+				text: "Incorret ID Number and Password!",
+				
+			  });</script>'; 
+		}
+	}
+		
+
+	
+
 
 ?>
+
+<script>
+        // Check if PHP variable $displayModal is true, then show the modal
+        <?php if ($displayModal): ?>
+            $(document).ready(function(){
+                $('#exampleModalCenter').modal('show');
+            });
+        <?php endif; ?>
+    </script>
