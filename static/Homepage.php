@@ -38,20 +38,20 @@
 </div>
 
 
-<table class="table table-responsive d-table-row ">
+<table class="table">
   <tbody>
-    <tr>
+    <tr class="w-100">
       <td>
 
-  <div class="container container-fluid p-5 m-5 col-3 rounded " style="background-color:#144c94;" >
+  <div class="container container-fluid p-5 m-5 w-75 rounded " style="background-color:#144c94; height:110%" >
 
-    <h5 class="text-white">   <img src="/jems/images/time.jpg" class="rounded-circle" style="height:40px; width:40px"/>Session Remaining: 30</h5>
+    <h5 class="text-white"><img src="/jems/images/time.jpg" class="rounded-circle" style="height:50px; width:50px"/>Session Remaining: 30</h5>
 
   </div>
     </td>
     <td>
 
-      <div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
+      <div id="box" class="container container-fluid p-5 m-5 w-75  rounded" style="background-color:#144c94;" >
       <a href="Profile.php" style="width: 100%;" >
       <h5 class="text-white" type="submit"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>Edit Profile</h5>
     </a>
@@ -60,7 +60,7 @@
     <td>
 
   
-  <div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
+  <div id="box" class="container container-fluid p-5 m-5 w-75   rounded" style="background-color:#144c94;" >
   <a href="#" style="width: 100%;" >
     <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>View Sessions</h5>
   </a>
