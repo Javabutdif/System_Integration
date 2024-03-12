@@ -6,6 +6,8 @@
 	}
 ?>
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -86,20 +88,47 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-center d-inline-block  w-50 ">
-        <input type="text" value="<?php echo $user['id_number']?> " readonly/>
-</br>
-</br>
-        <label for="purpose">Purpose:</label>
+      <div class="modal-body text-center container container-fluid">
+    <div class="form-group row">
+        <label for="id" class="col-sm-4 col-form-label">ID Number:</label>
+        <div class="col-sm-8">
+            <input id="id" type="text" value="<?php echo $_SESSION['id_number'] ?>" readonly class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="name" class="col-sm-4 col-form-label">Student Name:</label>
+        <div class="col-sm-8">
+            <input id="name" type="text" value="<?php echo $_SESSION['name'] ?>" readonly class="form-control"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="purposes" class="col-sm-4 col-form-label">Purpose:</label>
+        <div class="col-sm-8">
+            <select name="purpose" id="purposes" class="form-control">
+                <option value="C Programming">C Programming</option>
+                <option value="Java Programming">Java Programming</option>
+                <option value="C# Programming">C# Programming</option>
+                <option value="Php Programming">Php Programming</option>
+                <option value="ASP.Net Programming">ASP.Net Programming</option>
+            </select>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="lab" class="col-sm-4 col-form-label">Lab:</label>
+        <div class="col-sm-8">
+            <select name="lab" id="lab" class="form-control">
+                <option value="524">524</option>
+                <option value="526">526</option>
+                <option value="528">528</option>
+                <option value="530">530</option>
+                <option value="542">542</option>
+                <option value="Mac">Mac Laboratory</option>
+            </select>
+        </div>
+    </div>
+</div>
 
-        <select name="purpose" id="purposes">
-          <option value="C Programming">C Programming</option>
-          <option value="Java Programming">Java Programming</option>
-          <option value="C# Programming">C# Programming</option>
-          <option value="Php Programming">Php Programming</option>
-          <option value="ASP.Net Programming">ASP.Net Programming</option>
-        </select>
-      </div>
+
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
         <button type="button" class="btn btn-primary">Save changes</button>
@@ -141,8 +170,16 @@
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		
 		if($user["id_number"] != null){
-			
-		
+        
+      $_SESSION['id_number'] = $user["id_number"];
+			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
+			$_SESSION['fname'] = $user["firstName"];
+			$_SESSION['lname'] = $user["lastName"];
+			$_SESSION['mname'] = $user["middleName"];
+			$_SESSION['yearLevel'] = $user["yearLevel"];
+			$_SESSION['course'] = $user["course"];
+			$_SESSION['email'] = $user["email"];
+			$_SESSION['address'] = $user["address"];
 
         $displayModal = true;
       
