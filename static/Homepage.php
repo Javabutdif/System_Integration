@@ -68,20 +68,26 @@
     </td>
 
     </tr>
+    <tr>
+    <td>
   
 
 <div class="container container-fluid d-inline-flex w-100">
-<div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
+<div id="box" class="container container-fluid p-5 m-5 w-75  rounded" style="background-color:#144c94;" >
   <a href="#" style="width: 100%;" >
     <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>History</h5>
   </a>
   </div>
-  <div id="box" class="container container-fluid p-5 m-5 col-4  rounded" style="background-color:#144c94;" >
+    </td>
+    <td>
+  <div id="box" class="container container-fluid p-5 m-5 w-75 rounded" style="background-color:#144c94;" >
   <a href="Login.php" style="width: 100%;" >
     <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle text-danger" style="height:50px; width:50px"/>Log out</h5>
   </a>
   </div>
 </div>
+    </td>
+    </tr>
 </tbody>
 <table>
 </body>
