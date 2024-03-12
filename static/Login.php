@@ -113,8 +113,9 @@ height: 100%;
 
 <?php
 	//Session check
-	if($_SESSION["id_number"] != 0){
+	if($_SESSION["id_number"] != 0 || $_SESSION["admin_id_number"] != 0){
 		$_SESSION["id_number"] = 0;
+		$_SESSION['admin_id_number'] = 0;
 		}
 
 	
@@ -126,9 +127,9 @@ height: 100%;
 		$password = $_GET["password"];
 
 		if($idNum == "admin" && $password == "admin"){
-			$_SESSION['name'] = 'admin';
-			$_SESSION['id_number'] = '1';
-			$_SESSION["id"] = 1;
+			$_SESSION['admin_name'] = 'admin';
+			$_SESSION['admin_id_number'] = '1';
+			$_SESSION["admin_id"] = 1;
 			header('Location: Admin.php');
 		}
 		else{

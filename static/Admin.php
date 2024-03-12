@@ -1,6 +1,6 @@
 <?php
   session_start();
-  if($_SESSION["id_number"] == 0 || $_SESSION["id_number"] != 1 ){
+  if($_SESSION["admin_id_number"] == 0  ){
     header("Location: Login.php");
 		exit();
 	}
@@ -86,8 +86,19 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body">
-        <input type="text" value="<?php echo $_SESSION['id_number'] ?> " readonly/>
+      <div class="modal-body text-center d-inline-block  w-50 ">
+        <input type="text" value="<?php echo $user['id_number']?> " readonly/>
+</br>
+</br>
+        <label for="purpose">Purpose:</label>
+
+        <select name="purpose" id="purposes">
+          <option value="C Programming">C Programming</option>
+          <option value="Java Programming">Java Programming</option>
+          <option value="C# Programming">C# Programming</option>
+          <option value="Php Programming">Php Programming</option>
+          <option value="ASP.Net Programming">ASP.Net Programming</option>
+        </select>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -102,13 +113,13 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script>
   <?php
-    if($_SESSION["id"] === 1){
+    if($_SESSION["admin_id"] === 1){
       echo "Swal.fire({
               title: 'Successful Login',
-              text: 'Welcome, {$_SESSION["name"]}!',
+              text: 'Welcome, {$_SESSION["admin_name"]}!',
               icon: 'success'
             });";
-      $_SESSION["id"] = 0;
+      $_SESSION["admin_id"] = 0;
     }
   ?>
 </script>
@@ -125,24 +136,16 @@
 
 		$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-		$sql = "SELECT * FROM students WHERE id_number = '$search' OR firstName = '$search' OR lastName = '$search' ";
+		$sql = "SELECT * FROM students WHERE id_number = '$search' OR lastName = '$search' OR firstName = '$search'  ";
 		$result = mysqli_query($con, $sql);
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		
-		if($user["role"] != null){
+		if($user["id_number"] != null){
 			
-			$_SESSION['id_number'] = $user["id_number"];
-			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
-			$_SESSION['fname'] = $user["firstName"];
-			$_SESSION['lname'] = $user["lastName"];
-			$_SESSION['mname'] = $user["middleName"];
-			$_SESSION['yearLevel'] = $user["yearLevel"];
-			$_SESSION['course'] = $user["course"];
-			$_SESSION['email'] = $user["email"];
-			$_SESSION['address'] = $user["address"];
-			$_SESSION["id"] = 1;
+		
 
-      $displayModal = true;
+        $displayModal = true;
+      
 		
 
 		}
@@ -151,9 +154,11 @@
 			echo '<script>Swal.fire({
 				icon: "error",
 				title: "Oops...",
-				text: "Incorret ID Number and Password!",
+				text: "No Student Data Found!",
 				
 			  });</script>'; 
+
+        
 		}
 	}
 		
