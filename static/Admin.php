@@ -5,7 +5,7 @@
 		exit();
 	}
  
- 
+  $displayModal = false;
 ?>
 
 
@@ -137,7 +137,7 @@
       </div>
       <div class="modal-footer">
         
-        <button type="submit" name="search" class="btn btn-primary">Search</button>
+        <button type="submit" name="search"  class="btn btn-primary">Search</button>
       </div>
     </div>
   </div>
@@ -162,7 +162,7 @@
     <div class="form-group row">
         <label for="id" class="col-sm-4 col-form-label">ID Number:</label>
         <div class="col-sm-8">
-            <input id="id" type="text" value="<?php echo $_SESSION['id_number']?>" readonly class="form-control"/>
+            <input id="id" type="text" value="<?php echo $_SESSION["id_number"]?>" readonly class="form-control"/>
         </div>
     </div>
     <div class="form-group row">
@@ -217,8 +217,9 @@
 <?php
   
 
-if (isset($_GET["search"])) {
-  $search = $_GET["searchBar"];
+
+  if (isset($_GET["search"])) {
+    $search = $_GET["searchBar"];
 
  
 
@@ -246,7 +247,7 @@ if (isset($_GET["search"])) {
       $record = $result1->fetch_assoc();
       
 
-			$_SESSION['id_number'] = $user["id_number"];
+		   $_SESSION['id_number'] = $user["id_number"];
 			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
 			$_SESSION['fname'] = $user["firstName"];
 			$_SESSION['lname'] = $user["lastName"];
@@ -260,6 +261,7 @@ if (isset($_GET["search"])) {
 
       $displayModal = true;
   } else {
+    $displayModal = false;
       // No record found
       echo '<script>Swal.fire({
           icon: "error",
