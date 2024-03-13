@@ -8,6 +8,8 @@
 
 
 
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -51,8 +53,69 @@
 </nav>
 <h1>This is Admin</h1>
 
+<!-- Table -->
+
 <form action="Admin.php" method="GET">
+  <?php 
+    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+
+		$sqlTable = "SELECT * FROM students";
+		$result = mysqli_query($con, $sqlTable);
+    if(mysqli_num_rows($result) > 0)
+        {
+          $listPerson = [];   
+          while($row = mysqli_fetch_array($result)) {
+              $listPerson[] = $row;
+          }
+        }
+        else
+        {
+            return null;
+
+        }
+
+  ?>
+<table id="example" class="table table-dark display compact" style="width:100%">
+    <thead>
+        <tr>
+            <th>ID Number</th>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <?php foreach ($listPerson as $person): ?>
+            <tr>
+                <td><?php echo $person['id_number']; ?></td>
+                <td><?php echo $person['firstName']; ?></td>
+                <td><?php echo $person['email']; ?></td>
+                <td><?php echo $person['address']; ?></td>
+                <td class="d-inline-flex p-3 gap-2">
+              
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+
+</form>
+
+
+
+
+
+
+
+
+
+
+
 <!-- Modal -->
+<form action="Admin.php" method="GET">
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -164,9 +227,16 @@
 <?php
 
 
+
+
+
+  
+
+
 if (isset($_GET["search"])) {
     $search = $_GET["searchBar"];
 
+  
     $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
     // Prepare and bind the SQL statement
