@@ -4,7 +4,10 @@
     header("Location: Login.php");
 		exit();
 	}
+ 
+ 
 ?>
+
 
 
 
@@ -51,11 +54,11 @@
     </ul>
   </div>
 </nav>
-<h1>This is Admin</h1>
+<h1 class="text-center">Students Information</h1>
 
 <!-- Table -->
 
-<form action="Admin.php" method="GET">
+<form action="Admin.php" method="GET" class="p-5">
   <?php 
     $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
@@ -81,6 +84,8 @@
             <th>ID Number</th>
             <th>Name</th>
             <th>Email</th>
+            <th>Course</th>
+            <th>Year Level</th>
             <th>Address</th>
             <th>Actions</th>
         </tr>
@@ -90,8 +95,10 @@
         <?php foreach ($listPerson as $person): ?>
             <tr>
                 <td><?php echo $person['id_number']; ?></td>
-                <td><?php echo $person['firstName']; ?></td>
+                <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName']; ?></td>
                 <td><?php echo $person['email']; ?></td>
+                <td><?php echo $person['course']; ?></td>
+                <td><?php echo $person['yearLevel']; ?></td>
                 <td><?php echo $person['address']; ?></td>
                 <td class="d-inline-flex p-3 gap-2">
               
@@ -140,8 +147,8 @@
 
 <!-- Vertical Modal-->
 
-
 <!-- Modal -->
+<form action="Admin.php" method="GET">
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -155,13 +162,13 @@
     <div class="form-group row">
         <label for="id" class="col-sm-4 col-form-label">ID Number:</label>
         <div class="col-sm-8">
-            <input id="id" type="text" value="<?php echo $_SESSION['id_number'] ?>" readonly class="form-control"/>
+            <input id="id" type="text" value="<?php echo $_SESSION['id_number']?>" readonly class="form-control"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="name" class="col-sm-4 col-form-label">Student Name:</label>
         <div class="col-sm-8">
-            <input id="name" type="text" value="<?php echo $_SESSION['name'] ?>" readonly class="form-control"/>
+            <input id="name" type="text" value="<?php echo  $_SESSION['name']?>" readonly class="form-control"/>
         </div>
     </div>
     <div class="form-group row">
@@ -192,7 +199,7 @@
     <div class="form-group row">
         <label for="name" class="col-sm-4 col-form-label">Remaining Session: </label>
         <div class="col-sm-8">
-            <input id="name" type="text" value="<?php echo $_SESSION['remainSession'] ?>" readonly class="form-control"/>
+            <input id="name" type="text" value="<?php echo  $_SESSION['remainSession']?>" readonly class="form-control"/>
         </div>
     </div>
 </div>
@@ -205,6 +212,65 @@
     </div>
   </div>
 </div>
+</form>
+
+<?php
+  
+
+if (isset($_GET["search"])) {
+  $search = $_GET["searchBar"];
+
+ 
+
+
+
+  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+
+  // Prepare and bind the SQL statement
+  $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
+  $stmt = $con->prepare($sql);
+  $stmt->bind_param("sss", $search, $search, $search);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  
+  if ($result->num_rows > 0 ) {
+      // Fetch the user data
+      $user = $result->fetch_assoc();
+     
+      // Fetch the session data
+      $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
+      $stmt1 = $con->prepare($sql1);
+      $stmt1->bind_param("s", $user["id_number"]);
+      $stmt1->execute();
+      $result1 = $stmt1->get_result();
+      $record = $result1->fetch_assoc();
+      
+
+			$_SESSION['id_number'] = $user["id_number"];
+			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
+			$_SESSION['fname'] = $user["firstName"];
+			$_SESSION['lname'] = $user["lastName"];
+			$_SESSION['mname'] = $user["middleName"];
+			$_SESSION['yearLevel'] = $user["yearLevel"];
+			$_SESSION['course'] = $user["course"];
+			$_SESSION['email'] = $user["email"];
+			$_SESSION['address'] = $user["address"];
+      $_SESSION['remainSession'] = $record["session"];
+      
+
+      $displayModal = true;
+  } else {
+      // No record found
+      echo '<script>Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "No Student Data Found!"
+      });</script>';
+  }
+}
+
+?>
+
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
@@ -224,64 +290,7 @@
 </body>
 </html>
 
-<?php
 
-
-
-
-
-  
-
-
-if (isset($_GET["search"])) {
-    $search = $_GET["searchBar"];
-
-  
-    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-
-    // Prepare and bind the SQL statement
-    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("sss", $search, $search, $search);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0) {
-        // Fetch the user data
-        $user = $result->fetch_assoc();
-        
-        // Fetch the session data
-        $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
-        $stmt1 = $con->prepare($sql1);
-        $stmt1->bind_param("s", $user["id_number"]);
-        $stmt1->execute();
-        $result1 = $stmt1->get_result();
-        $record = $result1->fetch_assoc();
-        
-        // Store user and session data in session variables
-        $_SESSION['id_number'] = $user["id_number"];
-        $_SESSION['name'] = $user["firstName"] . " " . $user["middleName"] . " " . $user["lastName"];
-        $_SESSION['fname'] = $user["firstName"];
-        $_SESSION['lname'] = $user["lastName"];
-        $_SESSION['mname'] = $user["middleName"];
-        $_SESSION['yearLevel'] = $user["yearLevel"];
-        $_SESSION['course'] = $user["course"];
-        $_SESSION['email'] = $user["email"];
-        $_SESSION['address'] = $user["address"];
-        $_SESSION['remainSession'] = $record["session"];
-
-        $displayModal = true;
-    } else {
-        // No record found
-        echo '<script>Swal.fire({
-            icon: "error",
-            title: "Oops...",
-            text: "No Student Data Found!"
-        });</script>';
-    }
-}
-
-?>
 
 
 <script>
@@ -290,5 +299,10 @@ if (isset($_GET["search"])) {
             $(document).ready(function(){
                 $('#exampleModalCenter').modal('show');
             });
-        <?php endif; ?>
+        <?php
+          
+      endif; ?>
+
+
+      
     </script>
