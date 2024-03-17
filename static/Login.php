@@ -114,8 +114,7 @@ height: 100%;
 <?php
 	//Session check
 	if($_SESSION["id_number"] != 0 || $_SESSION["admin_id_number"] != 0){
-		$_SESSION["id_number"] = 0;
-		$_SESSION['admin_id_number'] = 0;
+		session_destroy();
 		}
 
 	
@@ -140,7 +139,7 @@ height: 100%;
 		$result = mysqli_query($con, $sql);
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		
-		if($user["role"] != null){
+		if($user["id_number"] != null){
 			
 			$_SESSION['id_number'] = $user["id_number"];
 			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
