@@ -5,71 +5,71 @@
     header("Location: Login.php");
 		exit();
 	} 
- 
 
-  if (isset($_GET["search"])) {
-    $search = $_GET["searchBar"];
-
- 
-
-
-
-  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-
-  // Prepare and bind the SQL statement
-  $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
-  $stmt = $con->prepare($sql);
-  $stmt->bind_param("sss", $search, $search, $search);
-  $stmt->execute();
-  $result = $stmt->get_result();
   
-  if ($result->num_rows > 0 ) {
-      // Fetch the user data
-      $user = $result->fetch_assoc();
-     
-      // Fetch the session data
-      $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
-      $stmt1 = $con->prepare($sql1);
-      $stmt1->bind_param("s", $user["id_number"]);
-      $stmt1->execute();
-      $result1 = $stmt1->get_result();
-      $record = $result1->fetch_assoc();
-      
+  class Student {
+    // Properties (attributes)
+    public  $id;
+    public  $name;
+    public  $records;
 
-
-
-      class Student {
-        // Properties (attributes)
-        public  $id;
-        public  $name;
-        public  $records;
-    
-        // Constructor method
-        public function __construct($id, $name, $records) {
-            $this->id = $id;
-            $this->name = $name;
-            $this->records = $records;
-        }
-    
+    // Constructor method
+  
+    public function __construct($id, $name, $records) {
+        $this->id = $id;
+        $this->name = $name;
+        $this->records = $records;
     }
     
-
-      $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
-      
-
-      $displayModal = true;
-  } else {
-    
-   
-      // No record found
-      echo '<script>Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "No Student Data Found!"
-      });</script>';
-     
   }
-}
+
+    if(isset($_GET["search"])) {
+      $search = $_GET["searchBar"];
+  
+   
+  
+    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+  
+    // Prepare and bind the SQL statement
+    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("sss", $search, $search, $search);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    
+    if ($result->num_rows > 0 ) {
+        // Fetch the user data
+        $user = $result->fetch_assoc();
+       
+        // Fetch the session data
+        $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
+        $stmt1 = $con->prepare($sql1);
+        $stmt1->bind_param("s", $user["id_number"]);
+        $stmt1->execute();
+        $result1 = $stmt1->get_result();
+        $record = $result1->fetch_assoc();
+        
+  
+        $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
+        
+  
+        $displayModal = true;
+    } else {
+      
+      echo '  <script>
+     alert("No Student found!");
+        </script>';
+      
+      
+       
+    }
+  }
+
+
+
+
+
+ 
 
 ?>
 
@@ -305,7 +305,13 @@
   ?>
   new DataTable('#example');
 
+  
+  
+  
+
 </script>
+
+
 </body>
 </html>
 
