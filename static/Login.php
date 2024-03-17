@@ -128,7 +128,7 @@ height: 100%;
 
 		if($idNum == "admin" && $password == "admin"){
 			$_SESSION['admin_name'] = 'admin';
-			$_SESSION['admin_id_number'] = '1';
+			$_SESSION['admin_id_number'] = 1;
 			$_SESSION["admin_id"] = 1;
 			header('Location: Admin.php');
 		}

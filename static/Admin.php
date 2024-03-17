@@ -5,7 +5,80 @@
 		exit();
 	}
  
-  $displayModal = false;
+
+  if (isset($_GET["search"])) {
+    $search = $_GET["searchBar"];
+
+ 
+
+
+
+  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+
+  // Prepare and bind the SQL statement
+  $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
+  $stmt = $con->prepare($sql);
+  $stmt->bind_param("sss", $search, $search, $search);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  
+  if ($result->num_rows > 0 ) {
+      // Fetch the user data
+      $user = $result->fetch_assoc();
+     
+      // Fetch the session data
+      $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
+      $stmt1 = $con->prepare($sql1);
+      $stmt1->bind_param("s", $user["id_number"]);
+      $stmt1->execute();
+      $result1 = $stmt1->get_result();
+      $record = $result1->fetch_assoc();
+      
+
+		  $_SESSION['id_number'] = $user["id_number"];
+			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
+			$_SESSION['fname'] = $user["firstName"];
+			$_SESSION['lname'] = $user["lastName"];
+			$_SESSION['mname'] = $user["middleName"];
+			$_SESSION['yearLevel'] = $user["yearLevel"];
+			$_SESSION['course'] = $user["course"];
+			$_SESSION['email'] = $user["email"];
+			$_SESSION['address'] = $user["address"];
+      $_SESSION['remainSession'] = $record["session"];
+
+      class Student {
+        // Properties (attributes)
+        public  $id;
+        public  $name;
+        public  $records;
+    
+        // Constructor method
+        public function __construct($id, $name, $records) {
+            $this->id = $id;
+            $this->name = $name;
+            $this->records = $records;
+        }
+    
+    }
+    
+
+      $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
+      
+
+      $displayModal = true;
+  } else {
+    
+ 
+      // No record found
+      echo '<script>Swal.fire({
+          icon: "error",
+          title: "Oops...",
+          text: "No Student Data Found!"
+      });</script>';
+     
+  }
+}
+
 ?>
 
 
@@ -162,13 +235,13 @@
     <div class="form-group row">
         <label for="id" class="col-sm-4 col-form-label">ID Number:</label>
         <div class="col-sm-8">
-            <input id="id" type="text" value="<?php echo $_SESSION["id_number"]?>" readonly class="form-control"/>
+            <input id="id" type="text" value="<?php echo $student->id?>" readonly class="form-control"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="name" class="col-sm-4 col-form-label">Student Name:</label>
         <div class="col-sm-8">
-            <input id="name" type="text" value="<?php echo  $_SESSION['name']?>" readonly class="form-control"/>
+            <input id="name" type="text" value="<?php echo  $student->name?>" readonly class="form-control"/>
         </div>
     </div>
     <div class="form-group row">
@@ -199,7 +272,7 @@
     <div class="form-group row">
         <label for="name" class="col-sm-4 col-form-label">Remaining Session: </label>
         <div class="col-sm-8">
-            <input id="name" type="text" value="<?php echo  $_SESSION['remainSession']?>" readonly class="form-control"/>
+            <input id="name" type="text" value="<?php echo  $student->records?>" readonly class="form-control"/>
         </div>
     </div>
 </div>
@@ -214,64 +287,6 @@
 </div>
 </form>
 
-<?php
-  
-
-
-  if (isset($_GET["search"])) {
-    $search = $_GET["searchBar"];
-
- 
-
-
-
-  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-
-  // Prepare and bind the SQL statement
-  $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
-  $stmt = $con->prepare($sql);
-  $stmt->bind_param("sss", $search, $search, $search);
-  $stmt->execute();
-  $result = $stmt->get_result();
-  
-  if ($result->num_rows > 0 ) {
-      // Fetch the user data
-      $user = $result->fetch_assoc();
-     
-      // Fetch the session data
-      $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
-      $stmt1 = $con->prepare($sql1);
-      $stmt1->bind_param("s", $user["id_number"]);
-      $stmt1->execute();
-      $result1 = $stmt1->get_result();
-      $record = $result1->fetch_assoc();
-      
-
-		   $_SESSION['id_number'] = $user["id_number"];
-			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
-			$_SESSION['fname'] = $user["firstName"];
-			$_SESSION['lname'] = $user["lastName"];
-			$_SESSION['mname'] = $user["middleName"];
-			$_SESSION['yearLevel'] = $user["yearLevel"];
-			$_SESSION['course'] = $user["course"];
-			$_SESSION['email'] = $user["email"];
-			$_SESSION['address'] = $user["address"];
-      $_SESSION['remainSession'] = $record["session"];
-      
-
-      $displayModal = true;
-  } else {
-    $displayModal = false;
-      // No record found
-      echo '<script>Swal.fire({
-          icon: "error",
-          title: "Oops...",
-          text: "No Student Data Found!"
-      });</script>';
-  }
-}
-
-?>
 
 
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -308,3 +323,5 @@
 
       
     </script>
+
+
