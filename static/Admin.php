@@ -1,6 +1,7 @@
 
 <?php
   session_start();
+  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
   if($_SESSION["admin_id_number"] == 0  ){
     header("Location: Login.php");
 		exit();
@@ -20,7 +21,7 @@
         $this->name = $name;
         $this->records = $records;
     }
-    
+   
   }
 
     if(isset($_GET["search"])) {
@@ -28,7 +29,7 @@
   
    
   
-    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+
   
     // Prepare and bind the SQL statement
     $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
@@ -63,6 +64,34 @@
       
        
     }
+  }
+  
+// get the post records
+if(isset($_POST["sitIn"])){
+
+  $sit_id = rand(1,1000);
+  $idNum = $_POST['studentID'];
+  $purpose = $_POST['purpose'];
+  $lab = $_POST['lab'];
+  $login = date('Y-m-d');
+  
+  
+  // database insert SQL code
+  
+  $sql = "INSERT INTO `student_sit_in` (`sit_id`,`id_number`, `sit_purpose`, `sit_lab`, `sit_login`)
+   VALUES ('$sit_id','$idNum', '$purpose', '$lab', '$login')";
+  
+  // insert in database 
+  if (mysqli_query($con, $sql)) {
+    echo '<script>window.alert("Student Sit-In Successful")</script>'; 
+    
+
+  }
+  else{
+
+    
+  }
+  
   }
 
 
@@ -215,7 +244,7 @@
 <!-- Vertical Modal-->
 
 <!-- Modal -->
-<form action="Admin.php" method="GET">
+<form action="Admin.php" method="POST">
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -229,13 +258,13 @@
     <div class="form-group row">
         <label for="id" class="col-sm-4 col-form-label">ID Number:</label>
         <div class="col-sm-8">
-            <input id="id" type="text" value="<?php echo $student->id?>" readonly class="form-control"/>
+            <input id="id" name="studentID" type="text" value="<?php echo $student->id?>" readonly class="form-control"/>
         </div>
     </div>
     <div class="form-group row">
         <label for="name" class="col-sm-4 col-form-label">Student Name:</label>
         <div class="col-sm-8">
-            <input id="name" type="text" value="<?php echo  $student->name?>" readonly class="form-control"/>
+            <input id="name" name="studentName" type="text" value="<?php echo  $student->name?>" readonly class="form-control"/>
         </div>
     </div>
     <div class="form-group row">
@@ -274,12 +303,15 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Sit In</button>
+        <button type="submit" name="sitIn" class="btn btn-primary" >Sit In</button>
       </div>
     </div>
   </div>
 </div>
 </form>
+
+
+
 
 
 
