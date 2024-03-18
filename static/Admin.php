@@ -78,8 +78,8 @@ if(isset($_POST["sitIn"])){
   
   // database insert SQL code
   
-  $sql = "INSERT INTO `student_sit_in` (`sit_id`,`id_number`, `sit_purpose`, `sit_lab`, `sit_login`)
-   VALUES ('$sit_id','$idNum', '$purpose', '$lab', '$login')";
+  $sql = "INSERT INTO `student_sit_in` (`sit_id`,`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
+   VALUES ('$sit_id','$idNum', '$purpose', '$lab', '$login' , 'Active')";
   
   // insert in database 
   if (mysqli_query($con, $sql)) {

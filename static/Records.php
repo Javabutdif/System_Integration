@@ -6,6 +6,32 @@
 		exit();
 	} 
 
+    if(isset($_GET["logout"])){
+        $id = $_GET["idNumber"];
+        $sql = "UPDATE `student_sit_in` SET `status` = 'Finished' WHERE `id_number` = '$id' ";
+ 
+
+// insert in database 
+if (mysqli_query($con, $sql) ) {
+	echo '<script>window.alert-success("Success!")</script>'; 
+	
+
+}
+else{
+	
+	echo '<script>alert("Error! Duplicate Id Number")</script>'; 
+	
+}
+
+
+    }
+
+       
+        
+        
+
+
+
     ?>
 
 <!DOCTYPE html>
@@ -55,14 +81,15 @@
 <h1 class="text-center">Current Sit in</h1>
 
 
-<form action="Admin.php" method="GET" class="p-5">
+<form action="Records.php" method="GET" class="p-5">
   <?php 
     $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
 		$sqlTable = "SELECT students.id_number , students.firstName , students.middleName, students.lastName ,
-         student_sit_in.sit_purpose, student_sit_in.sit_lab , student_session.session
+         student_sit_in.sit_purpose, student_sit_in.sit_lab , student_session.session, student_sit_in.status
           FROM students INNER JOIN student_session ON students.id_number = student_session.id_number
-           INNER JOIN student_sit_in ON student_sit_in.id_number = student_session.id_number;";
+           INNER JOIN student_sit_in ON student_sit_in.id_number = student_session.id_number
+            WHERE student_sit_in.status = 'Active';";
 		$result = mysqli_query($con, $sqlTable);
     if(mysqli_num_rows($result) > 0)
         {
@@ -86,6 +113,7 @@
             <th>Sit Purpose</th>
             <th>Sit Lab</th>
             <th>Session</th>
+            <th>Status</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -98,10 +126,17 @@
                 <td><?php echo $person['sit_purpose']; ?></td>
                 <td><?php echo $person['sit_lab']; ?></td>
                 <td><?php echo $person['session']; ?></td>
+                <td><?php echo $person['status']; ?></td>
 
+                <form action="Records.php" method="POST">
                 <td class="d-inline-flex p-3 gap-2">
-              
+                  
+                <button type="button" name="logout"class="btn btn-danger">Log out</button> 
+                <input type="hidden" name="idNumber" value="<?php echo $person['id_number']; ?>" />
+                
+                 
                 </td>
+                </form>
             </tr>
         <?php endforeach; ?>
     </tbody>
