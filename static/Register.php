@@ -61,8 +61,16 @@
 				  <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" id="courseLevel" class="form-control" name="courseLevel" required />
-                      <label class="form-label" for="courseLevel">Course Level</label>
+                   
+            <select name="level" id="level" class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+           
+            </select>
+            <label class="form-label" for="level">Course Level</label>
+     
                     </div>
                   </div>
 
@@ -93,7 +101,16 @@
 				  <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0"> 
-                      <input type="text" id="course" class="form-control" name="course" required />
+                            
+            <select name="course" id="course" class="form-control">
+                <option value="BSIT">BSIT</option>
+                <option value="BSCS">BSCS</option>
+                <option value="ACT">ACT</option>
+             
+           
+            </select>
+            
+     
                       <label class="form-label" for="course">Course</label>
                     </div>
                   </div>
@@ -158,7 +175,7 @@ $idNum =$_POST['idNumber'];
 $last_Name = $_POST['lName'];
 $first_Name = $_POST['fName'];
 $middle_Name = $_POST['mName'];
-$course_Level = $_POST['courseLevel'];
+$course_Level = $_POST['level'];
 $passWord = $_POST['password'];
 $email = $_POST['email'];
 $course = $_POST['course'];
