@@ -1,4 +1,8 @@
+<?php include 'backend.php';
 
+error_reporting(0);
+
+?>
 <!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<head>
@@ -11,7 +15,7 @@
 	
 	<body style="background-color: #eee;">
 		
-	<form action="Register.php"method="post">
+	<form action="backend.php"method="post">
 	<section class="vh-100" >
 		
   <div class="container h-100">
@@ -128,7 +132,7 @@
               
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button class="btn btn-primary btn-lg"  type="submit" name="submit">Register</button>
+                    <button class="btn btn-primary btn-lg"  type="submit" name="submitRegister">Register</button>
                   </div>
 
                 </form>
@@ -160,50 +164,10 @@
 	</body>
 </html>
 
-
 <?php
-$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-
-
-
-
-
-// get the post records
-if(isset($_POST["submit"])){
-$idNum =$_POST['idNumber'];
-$last_Name = $_POST['lName'];
-$first_Name = $_POST['fName'];
-$middle_Name = $_POST['mName'];
-$course_Level = $_POST['level'];
-$passWord = $_POST['password'];
-$email = $_POST['email'];
-$course = $_POST['course'];
-$address = $_POST['address'];
-
-// database insert SQL code
-
-$sql1 = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`)
- VALUES ('$idNum', '$last_Name', '$first_Name', '$middle_Name', '$course_Level', '$passWord', '$course', '$email', '$address')";
-$sql2 = "INSERT INTO `student_session` (`id_number` , `session`) VALUES ('$idNum', 30)";
- 
-
-// insert in database 
-if (mysqli_query($con, $sql1) && mysqli_query($con, $sql2) ) {
-	echo '<script>window.alert("Register Successful")</script>'; 
-	
-	header('Location: Login.php');
+if($_GET['num']==2){
+  echo '<script>alert("Duplicate ID Number")</script>'; 
 }
-else{
-	
-	echo '<script>alert("Error! Duplicate Id Number")</script>'; 
-	
-}
-
-}
-
-
-
-// Close connection
-mysqli_close($con);
 ?>
+

@@ -198,10 +198,12 @@ if(isset($_POST["sitIn"])){
                 <td><?php echo $person['status']; ?></td>
 
             
-                <td class="d-inline-flex p-3 gap-2">
-                  
-                <button type="submit" name="logout" value=""  onclick="logOut(<?php echo $person['id_number']; ?>,<?php echo $person['session']; ?> );"  class="btn btn-danger">Log out</button> 
-
+                <td class="d-inline-flex p-3 gap-2" >
+                <form action="Records.php" method="POST">
+                <button type="submit" name="logout"  class="btn btn-danger">Log out</button> 
+                <input type="hidden" name="session" value="<?php echo $person['session']; ?>"/>
+                <input type="hidden" name="idNum" value="<?php echo $person['id_number'];?>"/>
+                  </form>
                 </td>
             
             </tr>
@@ -210,6 +212,32 @@ if(isset($_POST["sitIn"])){
 </table>
 
 </form>
+
+<?php
+ if(isset($_POST["logout"])){
+  $id = $_POST['idNum'];
+
+  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+   
+        
+            $ses = $_POST["session"];
+            $newSession = $ses - 1;
+            $sql = "UPDATE `student_sit_in` SET `status` = 'Finished' WHERE `id_number` = '$id' ";
+            $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id' ";
+     
+    
+    // insert in database 
+    if (mysqli_query($con, $sql) && mysqli_query($con, $sql1) ) {
+      echo '<script>';
+      echo 'window.alert("Log Out Successful!");';
+      echo 'window.location.href = "Records.php";';
+      echo '</script>';
+
+      mysqli_close($con);
+    }
+   
+ }
+?>
 
 
 
@@ -336,32 +364,7 @@ if(isset($_POST["sitIn"])){
   ?>
 
 
-  function logOut( id, session){
-    <?php
-      $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-   
-            $id = 
-            $ses = $_GET["session"];
-            $newSession = $ses - 1;
-            $sql = "UPDATE `student_sit_in` SET `status` = 'Finished' WHERE `id_number` = '$id' ";
-            $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id' ";
-     
-    
-    // insert in database 
-    if (mysqli_query($con, $sql) && mysqli_query($con, $sql1) ) {
-        echo '<script>window.alert-success("Success!")</script>'; 
-        
-    
-    }
-    else{
-        
-        echo '<script>alert("Error! Duplicate Id Number")</script>'; 
-        
-    } 
-        ?>
-  
-  
-}
+
 
 
 </script>

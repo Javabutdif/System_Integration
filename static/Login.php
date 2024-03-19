@@ -1,5 +1,6 @@
 <?php
 	session_start();
+	error_reporting(0);
 	
 ?>
 <!doctype html>
@@ -112,6 +113,9 @@ height: 100%;
 
 
 <?php
+	if($_GET['num']==1){
+		echo '<script>alert("Register Successfully")</script>'; 
+	}
 	//Session check
 	if($_SESSION["id_number"] != 0 || $_SESSION["admin_id_number"] != 0){
 		session_destroy();
@@ -170,3 +174,5 @@ height: 100%;
 
 
 ?>
+
+
