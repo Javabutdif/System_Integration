@@ -200,6 +200,7 @@ if(isset($_POST["sitIn"])){
                 <td class="d-inline-flex p-3 gap-2">
                 <form action="Admin.php" method="POST">
                       <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                      <button type="submit" name="edit" class="btn btn-primary ">Edit</button>
                       <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
                   </form>
                 </td>
@@ -231,6 +232,13 @@ if(isset($_POST["delete"])){
       echo "Error: " . $sql . "<br>" . mysqli_error($con);
   }
   mysqli_close($con);
+}
+
+if(isset($_POST["edit"])){
+  $_SESSION["editNum"] = $_POST['idNum'];
+  echo '<script>';
+  echo 'window.location.href = "EditAdmin.php";';
+  echo '</script>';
 }
 ?>
 

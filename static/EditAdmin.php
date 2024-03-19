@@ -1,9 +1,34 @@
 <?php
  
   session_start();
-  if($_SESSION["id_number"] == 0){
+  error_reporting(0);
+  if($_SESSION["admin_id_number"] == 0){
     header("Location: Login.php");
   
+		}
+
+
+
+        $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+        $idNum = $_SESSION["editNum"];
+		$sql = "SELECT * FROM students WHERE id_number = '$idNum'";
+		$result = mysqli_query($con, $sql);
+        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		
+		if($user["id_number"] != null){
+			
+			$_SESSION['id_number'] = $user["id_number"];
+			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
+			$_SESSION['fname'] = $user["firstName"];
+			$_SESSION['lname'] = $user["lastName"];
+			$_SESSION['mname'] = $user["middleName"];
+			$_SESSION['yearLevel'] = $user["yearLevel"];
+			$_SESSION['course'] = $user["course"];
+			$_SESSION['email'] = $user["email"];
+			$_SESSION['address'] = $user["address"];
+	
+		
+		
 		}
 ?>
 <!DOCTYPE html>
@@ -26,7 +51,7 @@
 </nav>
 
 	
-<form action="Profile.php"method="post">
+<form action="EditAdmin.php"method="post">
 	<section class="vh-100" >
 		
   <div class="container h-100">
@@ -36,7 +61,7 @@
           <div class="card-body p-md-5">
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-			  <a class="btn btn-danger" href="Homepage.php">Back</a>
+			  <a class="btn btn-danger" href="Admin.php">Back</a>
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit Profile</p>
 
                 <form class="mx-1 mx-md-4">
@@ -168,20 +193,19 @@ $sql = "UPDATE `students` SET  `lastName` = '$last_Name', `firstName`= '$first_N
 // insert in database 
 if (mysqli_query($con, $sql)) {
 	
-  echo '<script>Swal.fire({
-    icon: "success",
-    title: "Successful",
-    text: "You have change your profile",
-    
-    });</script>'; 
-	    $_SESSION['name'] =  $first_Name." ".$middle_Name." ".$last_Name;
-			$_SESSION['fname'] = $first_Name;
-			$_SESSION['lname'] = $last_Name;
-			$_SESSION['mname'] = $middle_Name;
-			$_SESSION['yearLevel'] = $course_Level;
-			$_SESSION['course'] = $course;
-			$_SESSION['email'] = $email;
-			$_SESSION['address'] = $address;
+  echo '<script>';
+      echo 'alert("Edit Profile Successful!");';
+      echo 'window.location.href = "Admin.php";';
+      echo '</script>';
+
+	    $_SESSION['name'] = "";
+			$_SESSION['fname'] = "";
+			$_SESSION['lname'] = "";
+			$_SESSION['mname'] = "";
+			$_SESSION['yearLevel'] = "";
+			$_SESSION['course'] = "";
+			$_SESSION['email'] = "";
+			$_SESSION['address'] = "";
 }
 else{
 	
