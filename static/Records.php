@@ -95,9 +95,6 @@ if(isset($_POST["sitIn"])){
   }
 
 
-
-
-
  
 
 ?>
@@ -149,94 +146,94 @@ if(isset($_POST["sitIn"])){
 </nav>
 <h1 class="text-center">Current Sit in</h1>
 
+<?php 
 
-<form action="Records.php" method="GET" class="p-5">
-  <?php 
-    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-		$sqlTable = "SELECT students.id_number , students.firstName , students.middleName, students.lastName ,
-         student_sit_in.sit_purpose, student_sit_in.sit_lab , student_session.session, student_sit_in.status
-          FROM students INNER JOIN student_session ON students.id_number = student_session.id_number
-           INNER JOIN student_sit_in ON student_sit_in.id_number = student_session.id_number
-            WHERE student_sit_in.status = 'Active';";
-		$result = mysqli_query($con, $sqlTable);
-    if(mysqli_num_rows($result) > 0)
-        {
-          $listPerson = [];   
-          while($row = mysqli_fetch_array($result)) {
-              $listPerson[] = $row;
-          }
-        }
-        else
-        {
-            return null;
+$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-        }
+$sqlTable = "SELECT students.id_number , students.firstName , students.middleName, students.lastName ,
+     student_sit_in.sit_purpose, student_sit_in.sit_lab , student_session.session, student_sit_in.status
+      FROM students INNER JOIN student_session ON students.id_number = student_session.id_number
+       INNER JOIN student_sit_in ON student_sit_in.id_number = student_session.id_number
+        WHERE student_sit_in.status = 'Active';";
+$result = mysqli_query($con, $sqlTable);
+if(mysqli_num_rows($result) > 0)
+    {
+      $listPerson = [];   
+      while($row = mysqli_fetch_array($result)) {
+          $listPerson[] = $row;
+      }
+    }
+    else
+    {
+        return null;
 
-  ?>
-<table id="example" class="table table-dark display compact" style="width:100%">
-    <thead>
-        <tr>
-            <th>ID Number</th>
-            <th>Name</th>
-            <th>Sit Purpose</th>
-            <th>Sit Lab</th>
-            <th>Session</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
+    }
 
-    <tbody>
-        <?php foreach ($listPerson as $person): ?>
-            <tr>
-                <td><?php echo $person['id_number']; ?></td>
-                <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName']; ?></td>
-                <td><?php echo $person['sit_purpose']; ?></td>
-                <td><?php echo $person['sit_lab']; ?></td>
-                <td><?php echo $person['session']; ?></td>
-                <td><?php echo $person['status']; ?></td>
+?>
 
-            
-                <td class="d-inline-flex p-3 gap-2" >
-                <form action="Records.php" method="POST">
-                <button type="submit" name="logout"  class="btn btn-danger">Log out</button> 
-                <input type="hidden" name="session" value="<?php echo $person['session']; ?>"/>
-                <input type="hidden" name="idNum" value="<?php echo $person['id_number'];?>"/>
+
+  <table id="example" class="table table-dark display compact" style="width:100%">
+  <thead>
+      <tr>
+          <th>ID Number</th>
+          <th>Name</th>
+          <th>Sit Purpose</th>
+          <th>Sit Lab</th>
+          <th>Session</th>
+          <th>Status</th>
+          <th>Actions</th>
+      </tr>
+  </thead>
+
+  <tbody>
+      <?php foreach ($listPerson as $person): ?>
+          <tr>
+              <td><?php echo $person['id_number']; ?></td>
+              <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName']; ?></td>
+              <td><?php echo $person['sit_purpose']; ?></td>
+              <td><?php echo $person['sit_lab']; ?></td>
+              <td><?php echo $person['session']; ?></td>
+              <td><?php echo $person['status']; ?></td>
+
+              <td class="d-inline-flex p-3 gap-2">
+                  <form action="Records.php" method="POST">
+                      <button type="submit" name="logout" class="btn btn-danger">Log out</button>
+                      <input type="hidden" name="session" value="<?php echo $person['session']; ?>"/>
+                      <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
                   </form>
-                </td>
-            
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
+              </td>
+          </tr>
+      <?php endforeach; ?>
+      <?php if(empty($listPerson)): ?>
+          <tr>
+              <td colspan="7">No data available</td>
+          </tr>
+      <?php endif; ?>
+  </tbody>
 </table>
 
-</form>
-
 <?php
- if(isset($_POST["logout"])){
+if(isset($_POST["logout"])){
   $id = $_POST['idNum'];
-
   $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-   
-        
-            $ses = $_POST["session"];
-            $newSession = $ses - 1;
-            $sql = "UPDATE `student_sit_in` SET `status` = 'Finished' WHERE `id_number` = '$id' ";
-            $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id' ";
-     
-    
-    // insert in database 
-    if (mysqli_query($con, $sql) && mysqli_query($con, $sql1) ) {
+  if(!$con) {
+      die("Connection failed: " . mysqli_connect_error());
+  }
+  $ses = $_POST["session"];
+  $newSession = $ses - 1;
+  $sql = "UPDATE `student_sit_in` SET `status` = 'Finished' WHERE `id_number` = '$id'";
+  $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id'";
+  if (mysqli_query($con, $sql) && mysqli_query($con, $sql1)) {
       echo '<script>';
-      echo 'window.alert("Log Out Successful!");';
+      echo 'alert("Log Out Successful!");';
       echo 'window.location.href = "Records.php";';
       echo '</script>';
-
-      mysqli_close($con);
-    }
-   
- }
+  } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($con);
+  }
+  mysqli_close($con);
+}
 ?>
 
 
