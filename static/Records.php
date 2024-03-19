@@ -24,20 +24,16 @@
    
   }
 
-    if(isset($_GET["search"])) {
-      $search = $_GET["searchBar"];
-  
-   
-  
+  if(isset($_GET["search"])) {
+    $search = $_GET["searchBar"];
 
-  
     // Prepare and bind the SQL statement
     $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("sss", $search, $search, $search);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     if ($result->num_rows > 0 ) {
         // Fetch the user data
         $user = $result->fetch_assoc();
@@ -49,22 +45,18 @@
         $stmt1->execute();
         $result1 = $stmt1->get_result();
         $record = $result1->fetch_assoc();
-        
-  
+
         $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
         
-  
         $displayModal = true;
     } else {
-      
-      echo '  <script>
-     alert("No Student found!");
-        </script>';
-      
-      
-       
+        // If no student found, set $displayModal to false
+        $displayModal = false;
+        echo '<script>
+                 alert("No Student found!");
+             </script>';
     }
-  }
+}
   
 // get the post records
 if(isset($_POST["sitIn"])){
@@ -124,7 +116,7 @@ if(isset($_POST["sitIn"])){
         <a class="nav-link text-white"  href="Admin.php">Home</a>
       </li>
       <li class="nav-item">
-        <a type="button" class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Search</a>
+        <a type="submit" class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Search</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="#">Delete</a>
@@ -172,7 +164,7 @@ if(mysqli_num_rows($result) > 0)
 
 ?>
 
-
+<div class="container">
   <table id="example" class="table table-dark display compact" style="width:100%">
   <thead>
       <tr>
@@ -212,6 +204,7 @@ if(mysqli_num_rows($result) > 0)
       <?php endif; ?>
   </tbody>
 </table>
+</div>
 
 <?php
 if(isset($_POST["logout"])){
@@ -336,7 +329,6 @@ if(isset($_POST["logout"])){
 
 
 
-
     
 
 
@@ -348,6 +340,11 @@ if(isset($_POST["logout"])){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+
+
+
+</body>
+</html>
 <script>
   <?php
     if($_SESSION["admin_id"] === 1){
@@ -367,18 +364,15 @@ if(isset($_POST["logout"])){
 </script>
 <script>
       new DataTable('#example');
+    
 </script>
-</body>
-</html>
 
 
 <script>
-  <?php if ($displayModal): ?>
-            $(document).ready(function(){
-                $('#exampleModalCenter').modal('show');
-            });
-        <?php
-          
-      endif; ?>
+    <?php if ($displayModal): ?>
+        $(document).ready(function(){
+            $('#exampleModalCenter').modal('show');
+        });
+    <?php endif; ?>
   </script>
    

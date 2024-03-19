@@ -154,11 +154,11 @@ if(isset($_POST["sitIn"])){
 
 <!-- Table -->
 
-<form action="Admin.php" method="GET" class="p-5">
+
   <?php 
     $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-		$sqlTable = "SELECT * FROM students";
+		$sqlTable = "SELECT * FROM students WHERE `status` = 'TRUE'";
 		$result = mysqli_query($con, $sqlTable);
     if(mysqli_num_rows($result) > 0)
         {
@@ -174,7 +174,8 @@ if(isset($_POST["sitIn"])){
         }
 
   ?>
-<table id="example" class="table table-dark display compact" style="width:100%">
+  <div class="container">
+<table id="example" class="table table-dark display compact " style="width:100%">
     <thead>
         <tr>
             <th>ID Number</th>
@@ -197,15 +198,41 @@ if(isset($_POST["sitIn"])){
                 <td><?php echo $person['yearLevel']; ?></td>
                 <td><?php echo $person['address']; ?></td>
                 <td class="d-inline-flex p-3 gap-2">
-              
+                <form action="Admin.php" method="POST">
+                      <button type="submit" name="delete" class="btn btn-danger">Delete</button>
+                      <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
+                  </form>
                 </td>
             </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
+  </div>
 
-</form>
 
+
+
+<?php
+if(isset($_POST["delete"])){
+  $id = $_POST['idNum'];
+  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+  if(!$con) {
+      die("Connection failed: " . mysqli_connect_error());
+  }
+ 
+  $sql = "UPDATE `students` SET `status` = 'FALSE' WHERE `id_number` = '$id'";
+
+  if (mysqli_query($con, $sql)) {
+      echo '<script>';
+      echo 'alert("Delete Student Successful!");';
+      echo 'window.location.href = "Admin.php";';
+      echo '</script>';
+  } else {
+      echo "Error: " . $sql . "<br>" . mysqli_error($con);
+  }
+  mysqli_close($con);
+}
+?>
 
 
 

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 18, 2024 at 08:33 PM
+-- Generation Time: Mar 19, 2024 at 03:33 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -37,17 +37,22 @@ CREATE TABLE `students` (
   `course` varchar(20) NOT NULL,
   `email` varchar(50) NOT NULL,
   `address` varchar(50) NOT NULL,
-  `role` varchar(20) NOT NULL
+  `status` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `role`) VALUES
-(200, 'Sandalo', 'Jude Jefferson', 'S.', 3, '123', 'BSIT', 'judejefferson@gmail.com', 'Lorega', ''),
-(19835644, 'Genabio', 'Anton James', 'J', 3, '123', 'BSIT', 'jamesgenabio31@gmail.com', 'San Isidro', ''),
-(31313123, 'Nipaya', 'Dione Louis', 'Louis', 3, '123', 'BSCS', 'dionelouis@gmail.com', 'balamban', '');
+INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `status`) VALUES
+(1, 'Genabio', 'Anton James', 'J', 1, '123', 'BSIT', 'jamesgenabio@yahoo.com', 'dadwawd', 'FALSE'),
+(3, 'dad', 'dwad', 'dawd', 1, '123', 'BSIT', 'jamesgenabio@yahoo.com', 'dawd', 'FALSE'),
+(12, 'Genabio', 'Anton James', 'J', 3, '123', 'BSIT', 'jamesgenabio@yahoo.com', 'San Isidro Talisay', 'TRUE'),
+(123, 'Aguilar', 'Jermaine', 'J', 3, '123', 'BSIT', 'jermaine@gmail.com', 'dawdad', 'TRUE'),
+(200, 'Sandalo', 'Jude Jefferson', 'S.', 3, '123', 'BSIT', 'judejefferson@gmail.com', 'Lorega', 'TRUE'),
+(19835644, 'Genabio', 'Anton James', 'J', 3, '123', 'BSIT', 'jamesgenabio31@gmail.com', 'San Isidro', 'TRUE'),
+(31313123, 'Nipaya', 'Dione Louis', 'Louis', 3, '123', 'BSCS', 'dionelouis@gmail.com', 'balamban', 'TRUE'),
+(1983564413, 'Genabio', 'Anton James', 'dawd', 1, '123', 'BSIT', 'jamesgenabio@yahoo.com', 'dawd', 'FALSE');
 
 -- --------------------------------------------------------
 
@@ -65,9 +70,14 @@ CREATE TABLE `student_session` (
 --
 
 INSERT INTO `student_session` (`id_number`, `session`) VALUES
-(200, 30),
-(19835644, 30),
-(31313123, 30);
+(1, 26),
+(3, 30),
+(12, 30),
+(123, 28),
+(200, 28),
+(19835644, 23),
+(31313123, 30),
+(1983564413, 30);
 
 -- --------------------------------------------------------
 
@@ -90,9 +100,21 @@ CREATE TABLE `student_sit_in` (
 --
 
 INSERT INTO `student_sit_in` (`sit_id`, `id_number`, `sit_purpose`, `sit_lab`, `sit_login`, `sit_logout`, `status`) VALUES
-(62, 31313123, 'C# Programming', '524', '2024-03-18', '0000-00-00', 'Active'),
-(355, 19835644, 'C Programming', '524', '2024-03-18', '0000-00-00', 'Active'),
-(393, 19835644, 'C Programming', '524', '2024-03-18', '0000-00-00', 'Active');
+(21, 1, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(149, 1, 'C Programming', '528', '2024-03-19', '0000-00-00', 'Finished'),
+(256, 200, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(300, 200, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(341, 19835644, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(359, 19835644, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(387, 123, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(538, 1, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(550, 123, 'C Programming', 'Mac', '2024-03-19', '0000-00-00', 'Finished'),
+(596, 19835644, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(602, 1, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(675, 19835644, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(722, 123, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(840, 1, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished'),
+(967, 19835644, 'C Programming', '524', '2024-03-19', '0000-00-00', 'Finished');
 
 --
 -- Indexes for dumped tables
