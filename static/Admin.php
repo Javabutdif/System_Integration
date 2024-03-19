@@ -197,13 +197,13 @@ if(isset($_POST["sitIn"])){
                 <td><?php echo $person['course']; ?></td>
                 <td><?php echo $person['yearLevel']; ?></td>
                 <td><?php echo $person['address']; ?></td>
-                <td class="d-inline-flex p-3 gap-2">
-                <form action="Admin.php" method="POST">
-                      <button type="submit" name="delete" class="btn btn-danger">Delete</button>
-                      <button type="submit" name="edit" class="btn btn-primary ">Edit</button>
-                      <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
-                  </form>
-                </td>
+                <td class="align-middle">
+    <form action="Admin.php" method="POST" class="d-flex justify-content-center align-items-center">
+        <button type="submit" name="delete" class="btn btn-danger mr-2">Delete</button>
+        <button type="submit" name="edit" class="btn btn-primary">Edit</button>
+        <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
+    </form>
+</td>
             </tr>
         <?php endforeach; ?>
     </tbody>
