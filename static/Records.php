@@ -119,13 +119,10 @@ if(isset($_POST["sitIn"])){
         <a type="submit" class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="#">Delete</a>
+        <a class="nav-link text-white" href="Records.php">View Current Sit-in </a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white " href="#">Sit-In</a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link text-white" href="Records.php">View Sit-in Records</a>
+        <a class="nav-link text-white" href="ViewRecords.php">View Sit-in Records</a>
       </li>
       <li class="nav-item">
         <a class="nav-link  text-white" href="#">Generate Reports</a>
@@ -213,9 +210,10 @@ if(isset($_POST["logout"])){
   if(!$con) {
       die("Connection failed: " . mysqli_connect_error());
   }
+  $logout = date('Y-m-d');
   $ses = $_POST["session"];
   $newSession = $ses - 1;
-  $sql = "UPDATE `student_sit_in` SET `status` = 'Finished' WHERE `id_number` = '$id'";
+  $sql = "UPDATE `student_sit_in` SET `status` = 'Finished', `sit_logout` = '$logout' WHERE `id_number` = '$id'";
   $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id'";
   if (mysqli_query($con, $sql) && mysqli_query($con, $sql1)) {
       echo '<script>';

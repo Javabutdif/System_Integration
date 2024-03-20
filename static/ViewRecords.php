@@ -24,20 +24,16 @@
    
   }
 
-    if(isset($_GET["search"])) {
-      $search = $_GET["searchBar"];
-  
-   
-  
+  if(isset($_GET["search"])) {
+    $search = $_GET["searchBar"];
 
-  
     // Prepare and bind the SQL statement
     $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("sss", $search, $search, $search);
     $stmt->execute();
     $result = $stmt->get_result();
-    
+
     if ($result->num_rows > 0 ) {
         // Fetch the user data
         $user = $result->fetch_assoc();
@@ -49,22 +45,18 @@
         $stmt1->execute();
         $result1 = $stmt1->get_result();
         $record = $result1->fetch_assoc();
-        
-  
+
         $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
         
-  
         $displayModal = true;
     } else {
-      
-      echo '  <script>
-     alert("No Student found!");
-        </script>';
-      
-      
-       
+        // If no student found, set $displayModal to false
+        $displayModal = false;
+        echo '<script>
+                 alert("No Student found!");
+             </script>';
     }
-  }
+}
   
 // get the post records
 if(isset($_POST["sitIn"])){
@@ -95,30 +87,24 @@ if(isset($_POST["sitIn"])){
   }
 
 
-
-
-
  
 
 ?>
 
 
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    
-    <title>Admin</title>
+    <title>Sit In Records</title>
 </head>
 <body>
+    
 <nav class="navbar navbar-expand-lg navbar-light " style="background-color: #144c94">
   <a class="navbar-brand text-white" href="#">CCS Admin</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -130,10 +116,10 @@ if(isset($_POST["sitIn"])){
         <a class="nav-link text-white"  href="Admin.php">Home</a>
       </li>
       <li class="nav-item">
-        <a type="button" class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Search</a>
+        <a type="submit" class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="Records.php">View Current Sit-in</a>
+        <a class="nav-link text-white" href="Records.php">View Current Sit-in </a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="ViewRecords.php">View Sit-in Records</a>
@@ -147,109 +133,80 @@ if(isset($_POST["sitIn"])){
     </ul>
   </div>
 </nav>
-<h1 class="text-center">Students Information</h1>
+<h1 class="text-center">Current Sit in</h1>
 
-<!-- Table -->
-
-
-  <?php 
-    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-
-		$sqlTable = "SELECT * FROM students WHERE `status` = 'TRUE'";
-		$result = mysqli_query($con, $sqlTable);
-    if(mysqli_num_rows($result) > 0)
-        {
-          $listPerson = [];   
-          while($row = mysqli_fetch_array($result)) {
-              $listPerson[] = $row;
-          }
-        }
-        else
-        {
-            return null;
-
-        }
-
-  ?>
-  <div class="container">
-<table id="example" class="table table-dark display compact " style="width:100%">
-    <thead>
-        <tr>
-            <th>ID Number</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Course</th>
-            <th>Year Level</th>
-            <th>Address</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-
-    <tbody>
-        <?php foreach ($listPerson as $person): ?>
-            <tr>
-                <td><?php echo $person['id_number']; ?></td>
-                <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName']; ?></td>
-                <td><?php echo $person['email']; ?></td>
-                <td><?php echo $person['course']; ?></td>
-                <td><?php echo $person['yearLevel']; ?></td>
-                <td><?php echo $person['address']; ?></td>
-                <td class="align-middle">
-    <form action="Admin.php" method="POST" class="d-flex justify-content-center align-items-center">
-        <button type="submit" name="delete" class="btn btn-danger mr-2">Delete</button>
-        <button type="submit" name="edit" class="btn btn-primary">Edit</button>
-        <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
-    </form>
-</td>
-            </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-  </div>
+<?php 
 
 
+$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
+$sqlTable = " SELECT students.id_number, students.firstName,students.lastName,
+ student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
+  student_sit_in.sit_logout, student_sit_in.status, student_session.session FROM
+   students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
+    INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished';";
+$result = mysqli_query($con, $sqlTable);
+if(mysqli_num_rows($result) > 0)
+    {
+      $listPerson = [];   
+      while($row = mysqli_fetch_array($result)) {
+          $listPerson[] = $row;
+      }
+    }
+    else
+    {
+        return null;
 
-<?php
-if(isset($_POST["delete"])){
-  $id = $_POST['idNum'];
-  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-  if(!$con) {
-      die("Connection failed: " . mysqli_connect_error());
-  }
- 
-  $sql = "UPDATE `students` SET `status` = 'FALSE' WHERE `id_number` = '$id'";
+    }
 
-  if (mysqli_query($con, $sql)) {
-      echo '<script>';
-      echo 'alert("Delete Student Successful!");';
-      echo 'window.location.href = "Admin.php";';
-      echo '</script>';
-  } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($con);
-  }
-  mysqli_close($con);
-}
-
-if(isset($_POST["edit"])){
-  $_SESSION["editNum"] = $_POST['idNum'];
-  echo '<script>';
-  echo 'window.location.href = "EditAdmin.php";';
-  echo '</script>';
-}
 ?>
 
+<div class="container">
+  <table id="example" class="table table-dark display compact" style="width:100%">
+  <thead>
+      <tr>
+          <th>ID Number</th>
+          <th>Name</th>
+          <th>Sit Purpose</th>
+          <th>Sit Lab</th>
+          <th>Sit Login</th>
+          <th>Sit Logout</th>
+          <th>Status</th>
+          <th>Remaining Session</th>
 
+      </tr>
+  </thead>
 
+  <tbody>
+      <?php foreach ($listPerson as $person): ?>
+          <tr>
+              <td><?php echo $person['id_number']; ?></td>
+              <td><?php echo $person['firstName']." ".$person['lastName']; ?></td>
+              <td><?php echo $person['sit_purpose']; ?></td>
+              <td><?php echo $person['sit_lab']; ?></td>
+              <td><?php echo $person['sit_login']; ?></td>
+              <td><?php echo $person['sit_logout']; ?></td>
+              <td><?php echo $person['status']; ?></td>
+              <td><?php echo $person['session']; ?></td>
 
-
+             
+          </tr>
+      <?php endforeach; ?>
+      <?php if(empty($listPerson)): ?>
+          <tr>
+              <td colspan="7">No data available</td>
+          </tr>
+      <?php endif; ?>
+  </tbody>
+</table>
+</div>
 
 
 
 
 
 <!-- Modal -->
-<form action="Admin.php" method="GET">
+<form action="ViewRecords.php" method="GET">
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
@@ -276,7 +233,7 @@ if(isset($_POST["edit"])){
 <!-- Vertical Modal-->
 
 <!-- Modal -->
-<form action="Admin.php" method="POST">
+<form action="ViewRecords.php" method="POST">
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
@@ -345,7 +302,7 @@ if(isset($_POST["edit"])){
 
 
 
-
+    
 
 
 
@@ -356,46 +313,39 @@ if(isset($_POST["edit"])){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+
+
+
+</body>
+</html>
 <script>
   <?php
     if($_SESSION["admin_id"] === 1){
       echo "Swal.fire({
               title: 'Successful Login',
               text: 'Welcome, {$_SESSION["admin_name"]}!',
-              icon: 'success',
-              showConfirmButton: false,
-  timer: 1500
+              icon: 'success'
             });";
       $_SESSION["admin_id"] = 0;
     }
   ?>
 
-  
-  new DataTable('#example');
 
-  
-  
-  
 
+
+
+</script>
+<script>
+      new DataTable('#example');
+    
 </script>
 
 
-</body>
-</html>
-
-
-
-
-
-        <script>
-  <?php if ($displayModal): ?>
-            $(document).ready(function(){
-                $('#exampleModalCenter').modal('show');
-            });
-        <?php
-          
-      endif; ?>
+<script>
+    <?php if ($displayModal): ?>
+        $(document).ready(function(){
+            $('#exampleModalCenter').modal('show');
+        });
+    <?php endif; ?>
   </script>
    
-
-
