@@ -133,7 +133,7 @@ if(isset($_POST["sitIn"])){
     </ul>
   </div>
 </nav>
-<h1 class="text-center">Current Sit in</h1>
+<h1 class="text-center">Sit In Records</h1>
 
 <?php 
 
