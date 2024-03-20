@@ -45,7 +45,7 @@
 
   <div class="container container-fluid p-5 m-5 w-75 rounded " style="background-color:#144c94; height:110%" >
 
-    <h5 class="text-white"><img src="/jems/images/time.jpg" class="rounded-circle" style="height:50px; width:50px"/>Session Remaining: 30</h5>
+    <h5 class="text-white"><img src="/jems/images/time.jpg" class="rounded-circle" style="height:50px; width:50px"/>Session Remaining: <?php echo $_SESSION['remaining']; ?></h5>
 
   </div>
     </td>

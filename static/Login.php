@@ -139,7 +139,10 @@ height: 100%;
 
 		$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-		$sql = "SELECT * FROM students WHERE id_number = '$idNum' AND password = '$password'";
+		$sql = " SELECT students.id_number, students.firstName, students.middleName,
+		students.lastName, student_session.session
+		 from students inner join student_session on students.id_number 
+		 = student_session.id_number WHERE students.id_number = '$idNum' AND students.password = '$password'";
 		$result = mysqli_query($con, $sql);
         $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		
@@ -147,13 +150,8 @@ height: 100%;
 			
 			$_SESSION['id_number'] = $user["id_number"];
 			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
-			$_SESSION['fname'] = $user["firstName"];
-			$_SESSION['lname'] = $user["lastName"];
-			$_SESSION['mname'] = $user["middleName"];
-			$_SESSION['yearLevel'] = $user["yearLevel"];
-			$_SESSION['course'] = $user["course"];
-			$_SESSION['email'] = $user["email"];
-			$_SESSION['address'] = $user["address"];
+	
+			$_SESSION['remaining'] = $user["session"];
 			$_SESSION["id"] = 1;
 		
 			header("Location: Homepage.php");	
