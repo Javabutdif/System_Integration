@@ -181,9 +181,9 @@ if(isset($_POST["sitIn"])){
     $lab = "lab_".$_POST['lab'];
 
 
-		$sqlTable = "SELECT $lab.id_number, $lab.sit_in, student_sit_in.sit_login,
-        student_sit_in.sit_logout FROM `$lab` inner join student_sit_in on
-        $lab.id_number = student_sit_in.id_number where student_sit_in.sit_lab = '$labNum ';";
+		$sqlTable = "SELECT $lab.id_number, $lab.sit_in, students.lastName,
+        students.firstName, students.middleName FROM `$lab` inner join students on
+        $lab.id_number = students.id_number ;";
 		$result = mysqli_query($con, $sqlTable);
     if(mysqli_num_rows($result) > 0)
         {
@@ -203,9 +203,9 @@ if(isset($_POST["sitIn"])){
             <tr>
                 <th>Laboratory</th>
                 <th>ID Number</th>
+                <th>Student Name </th>
                 <th>Number of Sit-in</th>
-                <th>Login</th>
-                <th>Logout</th>
+         
             </tr>
         </thead>
 
@@ -215,9 +215,9 @@ if(isset($_POST["sitIn"])){
                     <tr>
                         <td><?php echo $_POST['lab'] ?></td>
                         <td><?php echo $person['id_number']; ?></td>
+                        <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName'] ?></td>
                         <td><?php echo $person['sit_in'] ?></td>
-                        <td><?php echo $person['sit_login'] ?></td>
-                        <td><?php echo $person['sit_logout'] ?></td>
+                        
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
