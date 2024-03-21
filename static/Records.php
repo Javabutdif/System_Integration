@@ -1,6 +1,7 @@
 
 <?php
   session_start();
+  error_reporting(0);
   $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
   if($_SESSION["admin_id_number"] == 0  ){
     header("Location: Login.php");
@@ -28,7 +29,7 @@
     $search = $_GET["searchBar"];
 
     // Prepare and bind the SQL statement
-    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
+    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ? AND `status` = 'TRUE'";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("sss", $search, $search, $search);
     $stmt->execute();
@@ -155,7 +156,7 @@ if(mysqli_num_rows($result) > 0)
     }
     else
     {
-        return null;
+       
 
     }
 
@@ -244,7 +245,7 @@ if(isset($_POST["logout"])){
     $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 		
 		if($user["id_number"] != null){
-        $up = "UPDATE `$lab` SET `sit_in` = '$numbered'";
+        $up = "UPDATE `$lab` SET `sit_in` = '$numbered' WHERE `id_number` = '$id'";
       
     }
     else{
@@ -397,10 +398,7 @@ if(isset($_POST["logout"])){
 
 
 </script>
-<script>
-      new DataTable('#example');
-    
-</script>
+
 
 
 <script>

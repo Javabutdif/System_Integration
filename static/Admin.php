@@ -1,6 +1,7 @@
 
 <?php
   session_start();
+  error_reporting(0);
   $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
   if($_SESSION["admin_id_number"] == 0  ){
     header("Location: Login.php");
@@ -32,7 +33,7 @@
 
   
     // Prepare and bind the SQL statement
-    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
+    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ? AND `status` = 'TRUE'";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("sss", $search, $search, $search);
     $stmt->execute();

@@ -28,7 +28,7 @@
     $search = $_GET["searchBar"];
 
     // Prepare and bind the SQL statement
-    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ?";
+    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ? AND `status` = 'TRUE'";
     $stmt = $con->prepare($sql);
     $stmt->bind_param("sss", $search, $search, $search);
     $stmt->execute();
