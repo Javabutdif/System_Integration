@@ -125,7 +125,7 @@ if(isset($_POST["sitIn"])){
         <a class="nav-link text-white" href="ViewRecords.php">View Sit-in Records</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link  text-white" href="#">Generate Reports</a>
+        <a class="nav-link  text-white" href="Report.php">Generate Reports</a>
       </li>
       <li class="nav-item">
         <a class="btn nav-link text-warning"  href="Login.php">Log out</a>
