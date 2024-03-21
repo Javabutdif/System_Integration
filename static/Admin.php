@@ -167,12 +167,7 @@ if(isset($_POST["sitIn"])){
               $listPerson[] = $row;
           }
         }
-        else
-        {
-            return null;
-
-        }
-
+       
   ?>
   <div class="container">
 <table id="example" class="table table-dark display compact " style="width:100%">

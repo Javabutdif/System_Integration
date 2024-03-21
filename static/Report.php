@@ -198,6 +198,7 @@ if(isset($_POST["sitIn"])){
     <table id="example" class="table table-dark display compact " style="width:100%">
         <thead>
             <tr>
+                <th>Laboratory</th>
                 <th>ID Number</th>
                 <th>Number of Sit-in</th>
             </tr>
@@ -207,6 +208,7 @@ if(isset($_POST["sitIn"])){
             <?php if (isset($listPerson) && count($listPerson) > 0): ?>
                 <?php foreach ($listPerson as $person): ?>
                     <tr>
+                        <td><?php echo $_POST['lab'] ?></td>
                         <td><?php echo $person['id_number']; ?></td>
                         <td><?php echo $person['sit_in'] ?></td>
                     </tr>
@@ -330,6 +332,14 @@ if(isset($_POST["sitIn"])){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
 <script>
   <?php
     if($_SESSION["admin_id"] === 1){
@@ -351,6 +361,16 @@ if(isset($_POST["sitIn"])){
 </script>
 </body>
 </html>
+<script>
+new DataTable('#example', {
+    layout: {
+        topStart: {
+            buttons: [ 'csv', 'excel', 'pdf']
+        }
+    }
+});
+
+</script>
 
 
 
