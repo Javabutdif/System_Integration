@@ -231,7 +231,7 @@ if(isset($_POST["sitIn"])){
             <?php if (isset($listPerson) && count($listPerson) > 0): ?>
                 <?php foreach ($listPerson as $person): ?>
                     <tr>
-                        <td><?php echo $_POST['lab'] ?></td>
+                        <td><?php if($_POST['lab'] == ""){echo '524';}else $_POST['lab'];  ?></td>
                         <td><?php echo $person['id_number']; ?></td>
                         <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName'] ?></td>
                         <td><?php echo $person['sit_in'] ?></td>
