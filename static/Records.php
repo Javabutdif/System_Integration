@@ -190,6 +190,7 @@ if(mysqli_num_rows($result) > 0)
                       <button type="submit" name="logout" class="btn btn-danger">Log out</button>
                       <input type="hidden" name="session" value="<?php echo $person['session']; ?>"/>
                       <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
+                      <input type="hidden" name="sitLab" value="<?php echo $person['sit_lab']; ?>"/>
                   </form>
               </td>
           </tr>
@@ -206,16 +207,52 @@ if(mysqli_num_rows($result) > 0)
 <?php
 if(isset($_POST["logout"])){
   $id = $_POST['idNum'];
+
+
+  $logout = date('Y-m-d');
+  $ses = $_POST["session"];
+  $sitlab = $_POST["sitLab"];
+  $newSession = $ses - 1;
+ 
+  $lab = "lab_".$sitlab;
+
+
   $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
   if(!$con) {
       die("Connection failed: " . mysqli_connect_error());
   }
-  $logout = date('Y-m-d');
-  $ses = $_POST["session"];
-  $newSession = $ses - 1;
+  //Retrive sit in records
+  $retrieve = " SELECT * FROM `$lab` WHERE id_number = '$id' ";
+		$resultsss = mysqli_query($con, $retrieve);
+    $the = mysqli_fetch_array($resultsss, MYSQLI_ASSOC);
+		
+		if($the["id_number"] != null){
+        $retrieveSession = $the['sit_in'];
+      
+    }
+    
+
+
+    $numbered =  $retrieveSession + 1 ;
+
+  
+  
   $sql = "UPDATE `student_sit_in` SET `status` = 'Finished', `sit_logout` = '$logout' WHERE `id_number` = '$id'";
   $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id'";
-  if (mysqli_query($con, $sql) && mysqli_query($con, $sql1)) {
+  $verify = " SELECT * FROM `$lab` WHERE id_number = '$id' ";
+		$result = mysqli_query($con, $verify);
+    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		
+		if($user["id_number"] != null){
+        $up = "UPDATE `$lab` SET `sit_in` = '$numbered'";
+      
+    }
+    else{
+      $up ="INSERT INTO `$lab` (`id_number`, `sit_in`)
+      VALUES ('$id', '$numbered')";
+    }
+			
+  if (mysqli_query($con, $sql) && mysqli_query($con, $sql1) && mysqli_query($con, $up)) {
       echo '<script>';
       echo 'alert("Log Out Successful!");';
       echo 'window.location.href = "Records.php";';
