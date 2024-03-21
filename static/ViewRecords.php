@@ -61,7 +61,7 @@
 // get the post records
 if(isset($_POST["sitIn"])){
 
-  $sit_id = rand(1,1000);
+  $sit_id = rand(111111,999999);
   $idNum = $_POST['studentID'];
   $purpose = $_POST['purpose'];
   $lab = $_POST['lab'];
@@ -119,7 +119,7 @@ if(isset($_POST["sitIn"])){
         <a type="submit" class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="Records.php">View Current Sit-in </a>
+        <a class="nav-link text-white" href="Records.php"> Sit-in </a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="ViewRecords.php">View Sit-in Records</a>
@@ -140,9 +140,9 @@ if(isset($_POST["sitIn"])){
 
 $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-$sqlTable = " SELECT students.id_number, students.firstName,students.lastName,
+$sqlTable = " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
  student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
-  student_sit_in.sit_logout, student_sit_in.status, student_session.session FROM
+  student_sit_in.sit_logout, student_sit_in.status FROM
    students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
     INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished';";
 $result = mysqli_query($con, $sqlTable);
@@ -165,6 +165,7 @@ if(mysqli_num_rows($result) > 0)
   <table id="example" class="table table-dark display compact" style="width:100%">
   <thead>
       <tr>
+          <th>Sit-in Number</th>
           <th>ID Number</th>
           <th>Name</th>
           <th>Sit Purpose</th>
@@ -172,7 +173,7 @@ if(mysqli_num_rows($result) > 0)
           <th>Sit Login</th>
           <th>Sit Logout</th>
           <th>Status</th>
-          <th>Remaining Session</th>
+   
 
       </tr>
   </thead>
@@ -180,6 +181,7 @@ if(mysqli_num_rows($result) > 0)
   <tbody>
       <?php foreach ($listPerson as $person): ?>
           <tr>
+              <td><?php echo $person['sit_id']; ?></td>
               <td><?php echo $person['id_number']; ?></td>
               <td><?php echo $person['firstName']." ".$person['lastName']; ?></td>
               <td><?php echo $person['sit_purpose']; ?></td>
@@ -187,7 +189,7 @@ if(mysqli_num_rows($result) > 0)
               <td><?php echo $person['sit_login']; ?></td>
               <td><?php echo $person['sit_logout']; ?></td>
               <td><?php echo $person['status']; ?></td>
-              <td><?php echo $person['session']; ?></td>
+           
 
              
           </tr>

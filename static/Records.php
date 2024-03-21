@@ -61,7 +61,7 @@
 // get the post records
 if(isset($_POST["sitIn"])){
 
-  $sit_id = rand(1,1000);
+  $sit_id = rand(111111,999999);
   $idNum = $_POST['studentID'];
   $purpose = $_POST['purpose'];
   $lab = $_POST['lab'];
@@ -119,7 +119,7 @@ if(isset($_POST["sitIn"])){
         <a type="submit" class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="Records.php">View Current Sit-in </a>
+        <a class="nav-link text-white" href="Records.php"> Sit-in </a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="ViewRecords.php">View Sit-in Records</a>

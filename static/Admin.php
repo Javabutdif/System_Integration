@@ -69,7 +69,7 @@
 // get the post records
 if(isset($_POST["sitIn"])){
 
-  $sit_id = rand(1,1000);
+  $sit_id = rand(111111,999999);
   $idNum = $_POST['studentID'];
   $purpose = $_POST['purpose'];
   $lab = $_POST['lab'];
@@ -133,7 +133,7 @@ if(isset($_POST["sitIn"])){
         <a type="button" class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Search</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link text-white" href="Records.php">View Current Sit-in</a>
+        <a class="nav-link text-white" href="Records.php"> Sit-in</a>
       </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="ViewRecords.php">View Sit-in Records</a>
@@ -150,7 +150,9 @@ if(isset($_POST["sitIn"])){
 <h1 class="text-center">Students Information</h1>
 
 <!-- Table -->
-
+<div class="container ">
+  <a class="btn btn-primary " href="Add.php">Add Students</a>
+</div>
 
   <?php 
     $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
