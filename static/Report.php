@@ -177,10 +177,13 @@ if(isset($_POST["sitIn"])){
     $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
     if(isset($_POST["generate"])){
+    $labNum = $_POST['lab'];
     $lab = "lab_".$_POST['lab'];
 
 
-		$sqlTable = "SELECT * FROM `$lab` ";
+		$sqlTable = "SELECT $lab.id_number, $lab.sit_in, student_sit_in.sit_login,
+        student_sit_in.sit_logout FROM `$lab` inner join student_sit_in on
+        $lab.id_number = student_sit_in.id_number where student_sit_in.sit_lab = '$labNum ';";
 		$result = mysqli_query($con, $sqlTable);
     if(mysqli_num_rows($result) > 0)
         {
@@ -201,6 +204,8 @@ if(isset($_POST["sitIn"])){
                 <th>Laboratory</th>
                 <th>ID Number</th>
                 <th>Number of Sit-in</th>
+                <th>Login</th>
+                <th>Logout</th>
             </tr>
         </thead>
 
@@ -211,6 +216,8 @@ if(isset($_POST["sitIn"])){
                         <td><?php echo $_POST['lab'] ?></td>
                         <td><?php echo $person['id_number']; ?></td>
                         <td><?php echo $person['sit_in'] ?></td>
+                        <td><?php echo $person['sit_login'] ?></td>
+                        <td><?php echo $person['sit_logout'] ?></td>
                     </tr>
                 <?php endforeach; ?>
             <?php else: ?>
