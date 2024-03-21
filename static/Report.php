@@ -177,7 +177,7 @@ if(isset($_POST["sitIn"])){
     $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
     if(isset($_POST["generate"])){
-    $labNum = $_POST['lab'];
+ 
     $lab = "lab_".$_POST['lab'];
 
 
@@ -194,6 +194,24 @@ if(isset($_POST["sitIn"])){
         }
       
     }
+    else{
+   
+        $lab = "lab_"."524";
+
+
+		$sqlTable = "SELECT $lab.id_number, $lab.sit_in, students.lastName,
+        students.firstName, students.middleName FROM `$lab` inner join students on
+        $lab.id_number = students.id_number ;";
+		$result = mysqli_query($con, $sqlTable);
+        if(mysqli_num_rows($result) > 0)
+        {
+          $listPerson = [];   
+          while($row = mysqli_fetch_array($result)) {
+              $listPerson[] = $row;
+          }
+        }
+    }
+    
   ?>
   
   <div class="container">
