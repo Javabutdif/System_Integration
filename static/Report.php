@@ -70,7 +70,7 @@
 // get the post records
 if(isset($_POST["sitIn"])){
 
-  $sit_id = rand(111111,999999);
+  
   $idNum = $_POST['studentID'];
   $purpose = $_POST['purpose'];
   $lab = $_POST['lab'];
@@ -79,8 +79,8 @@ if(isset($_POST["sitIn"])){
   
   // database insert SQL code
   
-  $sql = "INSERT INTO `student_sit_in` (`sit_id`,`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
-   VALUES ('$sit_id','$idNum', '$purpose', '$lab', '$login' , 'Active')";
+  $sql = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
+   VALUES ('$idNum', '$purpose', '$lab', '$login' , 'Active')";
   
   // insert in database 
   if (mysqli_query($con, $sql)) {
@@ -147,43 +147,19 @@ if(isset($_POST["sitIn"])){
 </nav>
 
 <h1 class="text-center">Generate Reports</h1>
-<form action="Report.php" method="POST">
-<div class="container col-12">
-    <div class="row">
-        <div class="col-sm-4">
-            <select name="lab" id="lab" class="form-control">
-                <option value="524">524</option>
-                <option value="526">526</option>
-                <option value="528">528</option>
-                <option value="530">530</option>
-                <option value="542">542</option>
-                <option value="Mac">Mac Laboratory</option>
-            </select>
-        </div>
-        <div class="col-sm-2">
-            <button id="retrieveData" name="generate" class="btn btn-primary">Generate</button>
-        </div>
-    </div>
-</div>
-
-
-</form>
-<br/>
-<br/>
 
     
   <?php 
 
     $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-    if(isset($_POST["generate"])){
+  
  
-    $lab = "lab_".$_POST['lab'];
+    $lab =$_POST['lab'];
 
 
-		$sqlTable = "SELECT $lab.id_number, $lab.sit_in, students.lastName,
-        students.firstName, students.middleName FROM `$lab` inner join students on
-        $lab.id_number = students.id_number ;";
+		$sqlTable = "SELECT student_lab.id_number ,students.firstName, students.middleName, students.lastName,
+    student_lab.lab, student_lab.sit_in FROM students INNER JOIN student_lab on student_lab.id_number = students.id_number  ;";
 		$result = mysqli_query($con, $sqlTable);
     if(mysqli_num_rows($result) > 0)
         {
@@ -193,29 +169,13 @@ if(isset($_POST["sitIn"])){
           }
         }
       
-    }
-    else{
-   
-        $lab = "lab_"."524";
+    
 
-
-		$sqlTable = "SELECT $lab.id_number, $lab.sit_in, students.lastName,
-        students.firstName, students.middleName FROM `$lab` inner join students on
-        $lab.id_number = students.id_number ;";
-		$result = mysqli_query($con, $sqlTable);
-        if(mysqli_num_rows($result) > 0)
-        {
-          $listPerson = [];   
-          while($row = mysqli_fetch_array($result)) {
-              $listPerson[] = $row;
-          }
-        }
-    }
     
   ?>
   
   <div class="container">
-  <h2>Lab <?php echo $_POST['lab'] ?></h2>
+
     <table id="example" class="table table-dark display compact " style="width:100%">
         <thead>
             <tr>
@@ -231,7 +191,7 @@ if(isset($_POST["sitIn"])){
             <?php if (isset($listPerson) && count($listPerson) > 0): ?>
                 <?php foreach ($listPerson as $person): ?>
                     <tr>
-                        <td><?php if($_POST['lab'] == ""){echo '524';}else $_POST['lab'];  ?></td>
+                        <td><?php echo  $person['lab'];  ?></td>
                         <td><?php echo $person['id_number']; ?></td>
                         <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName'] ?></td>
                         <td><?php echo $person['sit_in'] ?></td>

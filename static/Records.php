@@ -62,7 +62,7 @@
 // get the post records
 if(isset($_POST["sitIn"])){
 
-  $sit_id = rand(111111,999999);
+
   $idNum = $_POST['studentID'];
   $purpose = $_POST['purpose'];
   $lab = $_POST['lab'];
@@ -71,8 +71,8 @@ if(isset($_POST["sitIn"])){
   
   // database insert SQL code
   
-  $sql = "INSERT INTO `student_sit_in` (`sit_id`,`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
-   VALUES ('$sit_id','$idNum', '$purpose', '$lab', '$login' , 'Active')";
+  $sql = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
+   VALUES ('$idNum', '$purpose', '$lab', '$login' , 'Active')";
   
   // insert in database 
   if (mysqli_query($con, $sql)) {
@@ -215,7 +215,7 @@ if(isset($_POST["logout"])){
   $sitlab = $_POST["sitLab"];
   $newSession = $ses - 1;
  
-  $lab = "lab_".$sitlab;
+ 
 
 
   $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
@@ -223,34 +223,24 @@ if(isset($_POST["logout"])){
       die("Connection failed: " . mysqli_connect_error());
   }
   //Retrive sit in records
-  $retrieve = " SELECT * FROM `$lab` WHERE id_number = '$id' ";
+    $retrieve = " SELECT * FROM student_lab WHERE id_number = '$id' AND lab = '$sitlab'";
 		$resultsss = mysqli_query($con, $retrieve);
-    $the = mysqli_fetch_array($resultsss, MYSQLI_ASSOC);
+    $user = mysqli_fetch_array($resultsss, MYSQLI_ASSOC);
 		
-		if($the["id_number"] != null){
-        $retrieveSession = $the['sit_in'];
-      
-    }
-    
-
-
-    $numbered =  $retrieveSession + 1 ;
-
-  
-  
   $sql = "UPDATE `student_sit_in` SET `status` = 'Finished', `sit_logout` = '$logout' WHERE `id_number` = '$id'";
   $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id'";
-  $verify = " SELECT * FROM `$lab` WHERE id_number = '$id' ";
-		$result = mysqli_query($con, $verify);
-    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+ 
 		
+		    
 		if($user["id_number"] != null){
-        $up = "UPDATE `$lab` SET `sit_in` = '$numbered' WHERE `id_number` = '$id'";
+        $retrieveSession = $user['sit_in'];
+        $numbered =  $retrieveSession + 1 ;
+        $up = "UPDATE `student_lab` SET `sit_in` = '$numbered' WHERE `id_number` = '$id'";
       
     }
     else{
-      $up ="INSERT INTO `$lab` (`id_number`, `sit_in`)
-      VALUES ('$id', '$numbered')";
+      $up ="INSERT INTO `student_lab` (`id_number`,`lab`, `sit_in`)
+      VALUES ('$id','$sitlab', '1')";
     }
 			
   if (mysqli_query($con, $sql) && mysqli_query($con, $sql1) && mysqli_query($con, $up)) {

@@ -70,7 +70,7 @@
 // get the post records
 if(isset($_POST["sitIn"])){
 
-  $sit_id = rand(111111,999999);
+ 
   $idNum = $_POST['studentID'];
   $purpose = $_POST['purpose'];
   $lab = $_POST['lab'];
@@ -79,8 +79,8 @@ if(isset($_POST["sitIn"])){
   
   // database insert SQL code
   
-  $sql = "INSERT INTO `student_sit_in` (`sit_id`,`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
-   VALUES ('$sit_id','$idNum', '$purpose', '$lab', '$login' , 'Active')";
+  $sql = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
+   VALUES ('$idNum', '$purpose', '$lab', '$login' , 'Active')";
   
   // insert in database 
   if (mysqli_query($con, $sql)) {
