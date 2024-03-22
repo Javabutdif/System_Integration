@@ -347,14 +347,51 @@ if(isset($_POST["sitIn"])){
 </body>
 </html>
 <script>
-new DataTable('#example', {
+  // Initialize the DataTable
+  let myDataTable = new DataTable('#example', {
     layout: {
-        topStart: {
-            buttons: [ 'csv', 'excel', 'pdf']
-        }
+      topStart: {
+        buttons: ['csv', 'excel', 'pdf']
+      }
     }
-});
+  });
 
+  // Function to show the SweetAlert popup
+  function showSweetAlert() {
+    let timerInterval;
+    Swal.fire({
+      title: "Downloading Data!",
+      html: "Processing in  <b></b> milliseconds.",
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: () => {
+        Swal.showLoading();
+        const timer = Swal.getPopup().querySelector("b");
+        timerInterval = setInterval(() => {
+          timer.textContent = `${Swal.getTimerLeft()}`;
+        }, 100);
+      },
+      willClose: () => {
+        clearInterval(timerInterval);
+      }
+    }).then((result) => {
+      /* Read more about handling dismissals below */
+      if (result.dismiss === Swal.DismissReason.timer) {
+        console.log("I was closed by the timer");
+      }
+    });
+  }
+
+  // Get all the buttons in the DataTable
+  let buttons = document.querySelectorAll('.dt-button');
+
+  // Attach click event listener to each button
+  buttons.forEach(button => {
+    button.addEventListener('click', function() {
+      // Call the function to show the SweetAlert popup
+      showSweetAlert();
+    });
+  });
 </script>
 
 
