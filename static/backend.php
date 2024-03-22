@@ -4,9 +4,6 @@ $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 $num = "";
 
 
-
-
-
 // Register
 if(isset($_POST["submitRegister"])){
 $idNum =$_POST['idNumber'];
@@ -40,6 +37,7 @@ else{
 }
 mysqli_close($con);
 }
+
 
 
 

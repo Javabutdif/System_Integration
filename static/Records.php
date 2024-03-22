@@ -139,7 +139,7 @@ if(isset($_POST["sitIn"])){
 <?php 
 
 
-$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+
 
 $sqlTable = "SELECT students.id_number , students.firstName , students.middleName, students.lastName ,
      student_sit_in.sit_purpose, student_sit_in.sit_lab , student_session.session, student_sit_in.status
@@ -154,12 +154,6 @@ if(mysqli_num_rows($result) > 0)
           $listPerson[] = $row;
       }
     }
-    else
-    {
-       
-
-    }
-
 ?>
 
 <div class="container">
@@ -388,6 +382,9 @@ if(isset($_POST["logout"])){
 
 
 </script>
+<script>
+  new DataTable('#example');
+  </script>
 
 
 
