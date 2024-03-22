@@ -229,7 +229,7 @@ if(isset($_POST["logout"])){
 		if($user["id_number"] != null){
         $retrieveSession = $user['sit_in'];
         $numbered =  $retrieveSession + 1 ;
-        $up = "UPDATE `student_lab` SET `sit_in` = '$numbered' WHERE `id_number` = '$id'";
+        $up = "UPDATE `student_lab` SET `sit_in` = '$numbered' WHERE `id_number` = '$id'  AND lab = '$sitlab'";
       
     }
     else{

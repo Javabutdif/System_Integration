@@ -159,7 +159,8 @@ if(isset($_POST["sitIn"])){
 
 
 		$sqlTable = "SELECT student_lab.id_number ,students.firstName, students.middleName, students.lastName,
-    student_lab.lab, student_lab.sit_in FROM students INNER JOIN student_lab on student_lab.id_number = students.id_number  ;";
+    student_lab.lab, student_lab.sit_in, student_session.session FROM students INNER JOIN student_lab on student_lab.id_number = students.id_number 
+    INNER JOIN student_session on student_session.id_number = students.id_number ;";
 		$result = mysqli_query($con, $sqlTable);
     if(mysqli_num_rows($result) > 0)
         {
@@ -183,6 +184,7 @@ if(isset($_POST["sitIn"])){
                 <th>ID Number</th>
                 <th>Student Name </th>
                 <th>Number of Sit-in</th>
+                <th>Remaining Session</th>
          
             </tr>
         </thead>
@@ -195,6 +197,7 @@ if(isset($_POST["sitIn"])){
                         <td><?php echo $person['id_number']; ?></td>
                         <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName'] ?></td>
                         <td><?php echo $person['sit_in'] ?></td>
+                        <td><?php echo $person['session'] ?></td>
                         
                     </tr>
                 <?php endforeach; ?>
