@@ -1,6 +1,7 @@
 
 <?php
   session_start();
+  error_reporting(0);
   $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
   if($_SESSION["admin_id_number"] == 0  ){
     header("Location: Login.php");
