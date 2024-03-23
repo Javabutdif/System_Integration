@@ -2,104 +2,13 @@
 <?php
   session_start();
   error_reporting(0);
-  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+  include('backend.php');
+
   if($_SESSION["admin_id_number"] == 0  ){
     header("Location: Login.php");
 		exit();
 	} 
 
-  
-  class Student {
-    // Properties (attributes)
-    public  $id;
-    public  $name;
-    public  $records;
-
-    // Constructor method
-  
-    public function __construct($id, $name, $records) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->records = $records;
-    }
-   
-  }
-
-    if(isset($_GET["search"])) {
-      $search = $_GET["searchBar"];
-  
-   
-  
-
-  
-    // Prepare and bind the SQL statement
-    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ? AND `status` = 'TRUE'";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("sss", $search, $search, $search);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0 ) {
-        // Fetch the user data
-        $user = $result->fetch_assoc();
-       
-        // Fetch the session data
-        $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
-        $stmt1 = $con->prepare($sql1);
-        $stmt1->bind_param("s", $user["id_number"]);
-        $stmt1->execute();
-        $result1 = $stmt1->get_result();
-        $record = $result1->fetch_assoc();
-        
-  
-        $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
-        
-  
-        $displayModal = true;
-    } else {
-      
-      echo '  <script>
-     alert("No Student found!");
-        </script>';
-      
-      
-       
-    }
-  }
-  
-// get the post records
-if(isset($_POST["sitIn"])){
-
- 
-  $idNum = $_POST['studentID'];
-  $purpose = $_POST['purpose'];
-  $lab = $_POST['lab'];
-  $login = date('Y-m-d');
-  
-  
-  // database insert SQL code
-  
-  $sql = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
-   VALUES ('$idNum', '$purpose', '$lab', '$login' , 'Active')";
-  
-  // insert in database 
-  if (mysqli_query($con, $sql)) {
-    echo '<script>window.alert("Student Sit-In Successful")</script>'; 
-    
-
-  }
-  else{
-
-    
-  }
-  
-  }
-
-
-
-
-
- 
 
 ?>
 
@@ -207,35 +116,6 @@ if(isset($_POST["sitIn"])){
 
 
 
-
-<?php
-if(isset($_POST["delete"])){
-  $id = $_POST['idNum'];
-  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-  if(!$con) {
-      die("Connection failed: " . mysqli_connect_error());
-  }
- 
-  $sql = "UPDATE `students` SET `status` = 'FALSE' WHERE `id_number` = '$id'";
-
-  if (mysqli_query($con, $sql)) {
-      echo '<script>';
-      echo 'alert("Delete Student Successful!");';
-      echo 'window.location.href = "Admin.php";';
-      echo '</script>';
-  } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($con);
-  }
-  mysqli_close($con);
-}
-
-if(isset($_POST["edit"])){
-  $_SESSION["editNum"] = $_POST['idNum'];
-  echo '<script>';
-  echo 'window.location.href = "EditAdmin.php";';
-  echo '</script>';
-}
-?>
 
 
 
@@ -354,7 +234,31 @@ if(isset($_POST["edit"])){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+
+
+
 <script>
+new DataTable('#example');
+  </script>
+
+<script>  
+    <?php if ($displayModal): ?>
+    $(document).ready(function(){
+      $('#exampleModalCenter').modal('show');
+    });
+  <?php endif; ?>
+
+  </script>
+  
+
+
+
+</body>
+</html>
+<script>
+  
+
+
   <?php
     if($_SESSION["admin_id"] === 1){
       echo "Swal.fire({
@@ -362,38 +266,14 @@ if(isset($_POST["edit"])){
               text: 'Welcome, {$_SESSION["admin_name"]}!',
               icon: 'success',
               showConfirmButton: false,
-  timer: 1500
+              timer: 1500
             });";
       $_SESSION["admin_id"] = 0;
     }
   ?>
 
-  
-  new DataTable('#example');
-
-  
-  
-  
-
 </script>
 
-
-</body>
-</html>
-
-
-
-
-
-        <script>
-  <?php if ($displayModal): ?>
-            $(document).ready(function(){
-                $('#exampleModalCenter').modal('show');
-            });
-        <?php
-          
-      endif; ?>
-  </script>
    
 
 

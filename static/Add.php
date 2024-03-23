@@ -28,7 +28,7 @@ error_reporting(0);
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
 			  <a class="btn btn-danger" href="Admin.php">Back</a>
-                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Sign up</p>
+                <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Add Student</p>
 
                 <form class="mx-1 mx-md-4">
 

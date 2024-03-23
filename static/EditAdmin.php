@@ -98,11 +98,19 @@
                     </div>
                   </div>
 
-				  <div class="d-flex flex-row align-items-center mb-4">
+                  <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="text" value="<?php echo $_SESSION["yearLevel"]; ?>" id="courseLevel" class="form-control" name="courseLevel" required />
-                      <label class="form-label" for="courseLevel">Course Level</label>
+                   
+            <select value="<?php echo $_SESSION["yearLevel"]; ?>" name="level" id="level" class="form-control">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+           
+            </select>
+            <label class="form-label" for="level">Course Level</label>
+     
                     </div>
                   </div>
 
@@ -116,10 +124,20 @@
                     </div>
                   </div>
 
-				  <div class="d-flex flex-row align-items-center mb-4">
+
+                  <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-envelope fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0"> 
-                      <input type="text" value="<?php echo $_SESSION["course"]; ?>" id="course" class="form-control" name="course" required />
+                            
+            <select name="course"  value="<?php echo $_SESSION["course"]; ?>" id="course" class="form-control">
+                <option value="BSIT">BSIT</option>
+                <option value="BSCS">BSCS</option>
+                <option value="ACT">ACT</option>
+             
+           
+            </select>
+            
+     
                       <label class="form-label" for="course">Course</label>
                     </div>
                   </div>
@@ -193,10 +211,13 @@ $sql = "UPDATE `students` SET  `lastName` = '$last_Name', `firstName`= '$first_N
 // insert in database 
 if (mysqli_query($con, $sql)) {
 	
-  echo '<script>';
-      echo 'alert("Edit Profile Successful!");';
-      echo 'window.location.href = "Admin.php";';
-      echo '</script>';
+  echo "<script>Swal.fire({
+    title: 'Notification',
+    text: 'Edit Profile Successfull',
+    icon: 'success',
+    showConfirmButton: false,
+    timer: 1500
+  });</script>";
 
 	    $_SESSION['name'] = "";
 			$_SESSION['fname'] = "";
@@ -209,7 +230,13 @@ if (mysqli_query($con, $sql)) {
 }
 else{
 	
-	echo '<script>alert("Error! Duplicate Id Number")</script>'; 
+  echo "Swal.fire({
+    title: 'Notification',
+    text: 'Error! Duplicate ID Number',
+    icon: 'error',
+    showConfirmButton: false,
+    timer: 1500
+  });";
 	
 }
 

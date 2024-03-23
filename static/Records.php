@@ -2,6 +2,7 @@
 <?php
   session_start();
   error_reporting(0);
+  include('backend.php');
   $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
   if($_SESSION["admin_id_number"] == 0  ){
     header("Location: Login.php");
@@ -9,86 +10,7 @@
 	} 
 
   
-  class Student {
-    // Properties (attributes)
-    public  $id;
-    public  $name;
-    public  $records;
-
-    // Constructor method
   
-    public function __construct($id, $name, $records) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->records = $records;
-    }
-   
-  }
-
-  if(isset($_GET["search"])) {
-    $search = $_GET["searchBar"];
-
-    // Prepare and bind the SQL statement
-    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ? AND `status` = 'TRUE'";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("sss", $search, $search, $search);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0 ) {
-        // Fetch the user data
-        $user = $result->fetch_assoc();
-       
-        // Fetch the session data
-        $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
-        $stmt1 = $con->prepare($sql1);
-        $stmt1->bind_param("s", $user["id_number"]);
-        $stmt1->execute();
-        $result1 = $stmt1->get_result();
-        $record = $result1->fetch_assoc();
-
-        $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
-        
-        $displayModal = true;
-    } else {
-        // If no student found, set $displayModal to false
-        $displayModal = false;
-        echo '<script>
-                 alert("No Student found!");
-             </script>';
-    }
-}
-  
-// get the post records
-if(isset($_POST["sitIn"])){
-
-
-  $idNum = $_POST['studentID'];
-  $purpose = $_POST['purpose'];
-  $lab = $_POST['lab'];
-  $login = date('Y-m-d');
-  
-  
-  // database insert SQL code
-  
-  $sql = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
-   VALUES ('$idNum', '$purpose', '$lab', '$login' , 'Active')";
-  
-  // insert in database 
-  if (mysqli_query($con, $sql)) {
-    echo '<script>window.alert("Student Sit-In Successful")</script>'; 
-    
-
-  }
-  else{
-
-    
-  }
-  
-  }
-
-
- 
 
 ?>
 
@@ -199,55 +121,7 @@ if(mysqli_num_rows($result) > 0)
 </table>
 </div>
 
-<?php
-if(isset($_POST["logout"])){
-  $id = $_POST['idNum'];
 
-
-  $logout = date('Y-m-d');
-  $ses = $_POST["session"];
-  $sitlab = $_POST["sitLab"];
-  $newSession = $ses - 1;
- 
- 
-
-
-  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-  if(!$con) {
-      die("Connection failed: " . mysqli_connect_error());
-  }
-  //Retrive sit in records
-    $retrieve = " SELECT * FROM student_lab WHERE id_number = '$id' AND lab = '$sitlab'";
-		$resultsss = mysqli_query($con, $retrieve);
-    $user = mysqli_fetch_array($resultsss, MYSQLI_ASSOC);
-		
-  $sql = "UPDATE `student_sit_in` SET `status` = 'Finished', `sit_logout` = '$logout' WHERE `id_number` = '$id'";
-  $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id'";
- 
-		
-		    
-		if($user["id_number"] != null){
-        $retrieveSession = $user['sit_in'];
-        $numbered =  $retrieveSession + 1 ;
-        $up = "UPDATE `student_lab` SET `sit_in` = '$numbered' WHERE `id_number` = '$id'  AND lab = '$sitlab'";
-      
-    }
-    else{
-      $up ="INSERT INTO `student_lab` (`id_number`,`lab`, `sit_in`)
-      VALUES ('$id','$sitlab', '1')";
-    }
-			
-  if (mysqli_query($con, $sql) && mysqli_query($con, $sql1) && mysqli_query($con, $up)) {
-      echo '<script>';
-      echo 'alert("Log Out Successful!");';
-      echo 'window.location.href = "Records.php";';
-      echo '</script>';
-  } else {
-      echo "Error: " . $sql . "<br>" . mysqli_error($con);
-  }
-  mysqli_close($con);
-}
-?>
 
 
 
@@ -360,39 +234,20 @@ if(isset($_POST["logout"])){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
+<script>
+  new DataTable('#example');
+  </script>
+  <script>  
+    <?php if ($displayModal): ?>
+    $(document).ready(function(){
+      $('#exampleModalCenter').modal('show');
+    });
+  <?php endif; ?>
 
+  </script>
 
 
 </body>
 </html>
-<script>
-  <?php
-    if($_SESSION["admin_id"] === 1){
-      echo "Swal.fire({
-              title: 'Successful Login',
-              text: 'Welcome, {$_SESSION["admin_name"]}!',
-              icon: 'success'
-            });";
-      $_SESSION["admin_id"] = 0;
-    }
-  ?>
 
 
-
-
-
-</script>
-<script>
-  new DataTable('#example');
-  </script>
-
-
-
-<script>
-    <?php if ($displayModal): ?>
-        $(document).ready(function(){
-            $('#exampleModalCenter').modal('show');
-        });
-    <?php endif; ?>
-  </script>
-   
