@@ -2,6 +2,7 @@
 <?php
   session_start();
   error_reporting(0);
+  include('backend.php');
   $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
   if($_SESSION["admin_id_number"] == 0  ){
     header("Location: Login.php");
@@ -9,95 +10,6 @@
 	} 
 
   
-  class Student {
-    // Properties (attributes)
-    public  $id;
-    public  $name;
-    public  $records;
-
-    // Constructor method
-  
-    public function __construct($id, $name, $records) {
-        $this->id = $id;
-        $this->name = $name;
-        $this->records = $records;
-    }
-   
-  }
-
-    if(isset($_GET["search"])) {
-      $search = $_GET["searchBar"];
-  
-   
-  
-
-  
-    // Prepare and bind the SQL statement
-    $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ? AND `status` = 'TRUE'";
-    $stmt = $con->prepare($sql);
-    $stmt->bind_param("sss", $search, $search, $search);
-    $stmt->execute();
-    $result = $stmt->get_result();
-    
-    if ($result->num_rows > 0 ) {
-        // Fetch the user data
-        $user = $result->fetch_assoc();
-       
-        // Fetch the session data
-        $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
-        $stmt1 = $con->prepare($sql1);
-        $stmt1->bind_param("s", $user["id_number"]);
-        $stmt1->execute();
-        $result1 = $stmt1->get_result();
-        $record = $result1->fetch_assoc();
-        
-  
-        $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
-        
-  
-        $displayModal = true;
-    } else {
-      
-      echo '  <script>
-     alert("No Student found!");
-        </script>';
-      
-      
-       
-    }
-  }
-  
-// get the post records
-if(isset($_POST["sitIn"])){
-
-  
-  $idNum = $_POST['studentID'];
-  $purpose = $_POST['purpose'];
-  $lab = $_POST['lab'];
-  $login = date('Y-m-d');
-  
-  
-  // database insert SQL code
-  
-  $sql = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
-   VALUES ('$idNum', '$purpose', '$lab', '$login' , 'Active')";
-  
-  // insert in database 
-  if (mysqli_query($con, $sql)) {
-    echo '<script>window.alert("Student Sit-In Successful")</script>'; 
-    
-
-  }
-  else{
-
-    
-  }
-  
-  }
-
-
-
-
 
  
 
@@ -320,7 +232,6 @@ if(isset($_POST["sitIn"])){
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
-
 <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
 <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
