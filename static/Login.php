@@ -1,6 +1,7 @@
 <?php
-	session_start();
+session_start();	
 	error_reporting(0);
+	
 	
 ?>
 <!doctype html>
@@ -114,61 +115,74 @@ height: 100%;
 
 <?php
 	if($_GET['num']==1){
-		echo '<script>alert("Register Successfully")</script>'; 
+		echo '<script>const Toast = Swal.mixin({
+			toast: true,
+			position: "top-end",
+			showConfirmButton: false,
+			timer: 3000,
+			timerProgressBar: true,
+			didOpen: (toast) => {
+			  toast.onmouseenter = Swal.stopTimer;
+			  toast.onmouseleave = Swal.resumeTimer;
+			}
+		  });
+		  Toast.fire({
+			icon: "success",
+			title: "Register Successfuly!"
+		  });</script>';
 	}
 	//Session check
 	if($_SESSION["id_number"] != 0 || $_SESSION["admin_id_number"] != 0){
 		session_destroy();
 		}
 
-	
-
-	
-
-	if(isset($_GET["submit"])){
-		$idNum = $_GET["idNum"];
-		$password = $_GET["password"];
-
-		if($idNum == "admin" && $password == "admin"){
-			$_SESSION['admin_name'] = 'admin';
-			$_SESSION['admin_id_number'] = 1;
-			$_SESSION["admin_id"] = 1;
-			header('Location: Admin.php');
-		}
-		else{
-
-		$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-
-		$sql = " SELECT students.id_number, students.firstName, students.middleName,
-		students.lastName, student_session.session
-		 from students inner join student_session on students.id_number 
-		 = student_session.id_number WHERE students.id_number = '$idNum' AND students.password = '$password'";
-		$result = mysqli_query($con, $sql);
-        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+		if(isset($_GET["submit"])){
+			$idNum = $_GET["idNum"];
+			$password = $_GET["password"];
 		
-		if($user["id_number"] != null){
+			if($idNum == "admin" && $password == "admin"){
+				$_SESSION['admin_name'] = 'admin';
+				$_SESSION['admin_id_number'] = 1;
+				$_SESSION["admin_id"] = 1;
+				header('Location: Admin.php');
+			}
+			else{
+		
+			$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+		
+			$sql = " SELECT students.id_number, students.firstName, students.middleName,
+			students.lastName, student_session.session
+			 from students inner join student_session on students.id_number 
+			 = student_session.id_number WHERE students.id_number = '$idNum' AND students.password = '$password'";
+			$result = mysqli_query($con, $sql);
+			$user = mysqli_fetch_array($result, MYSQLI_ASSOC);
 			
-			$_SESSION['id_number'] = $user["id_number"];
-			$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
-	
-			$_SESSION['remaining'] = $user["session"];
-			$_SESSION["id"] = 1;
-		
-			header("Location: Homepage.php");	
-		}
-		else
-		{
-			echo '<script>Swal.fire({
-				icon: "error",
-				title: "Oops...",
-				text: "Incorret ID Number and Password!",
+			if($user["id_number"] != null){
 				
-			  });</script>'; 
-		}
-	}
+				$_SESSION['id_number'] = $user["id_number"];
+				$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
 		
+				$_SESSION['remaining'] = $user["session"];
+				$_SESSION["id"] = 1;
+			
+				header("Location: Homepage.php");	
+			}
+			else
+			{
+				echo '<script>Swal.fire({
+					icon: "error",
+					title: "Oops...",
+					text: "Incorret ID Number and Password!",
+					
+				  });</script>'; 
+			}
+		}
+			
+		
+		}
+	
 
-	}
+	
 
 
 ?>

@@ -167,7 +167,21 @@ error_reporting(0);
 <?php
 
 if($_GET['num']==2){
-  echo '<script>alert("Duplicate ID Number")</script>'; 
+  echo '<script>const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.onmouseenter = Swal.stopTimer;
+      toast.onmouseleave = Swal.resumeTimer;
+    }
+  });
+  Toast.fire({
+    icon: "error",
+    title: "Duplicate ID Number!"
+  });</script>';
 }
 ?>
 
