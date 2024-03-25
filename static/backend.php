@@ -140,7 +140,30 @@ if(isset($_POST["sitIn"])){
   $lab = $_POST['lab'];
   $login = date('Y-m-d');
   
+  $active= "SELECT * FROM student_sit_in WHERE id_number = '$idNum' AND status = 'Active'";
+  $result = mysqli_query($con, $active);
+  $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
   
+  if($user["sit_id"] != null){
+    echo '<script>const Toast = Swal.mixin({
+      toast: true,
+      position: "top-end",
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.onmouseenter = Swal.stopTimer;
+        toast.onmouseleave = Swal.resumeTimer;
+      }
+    });
+    Toast.fire({
+      icon: "error",
+      title: "Student currently sit-in!"
+    });</script>';
+  }
+  else{
+
+
   // database insert SQL code
   
   $sit = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
@@ -164,6 +187,7 @@ if(isset($_POST["sitIn"])){
     }
  
   }
+}
 
 //Delete Admin
 
