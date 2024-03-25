@@ -139,6 +139,22 @@ if(isset($_POST["sitIn"])){
   $purpose = $_POST['purpose'];
   $lab = $_POST['lab'];
   $login = date('Y-m-d');
+
+  $getSession = "SELECT * FROM student_session WHERE id_number = '$idNum'";
+  $data = mysqli_query($con, $getSession);
+  $sesions = mysqli_fetch_array($data, MYSQLI_ASSOC);
+  
+  if($sesions["session"] == 0){
+   echo '<script>Swal.fire({
+    icon: "error",
+    title: "Oops...",
+    text: "Student Session is 0!",
+
+  });</script>';
+  }
+  else{
+
+
   
   $active= "SELECT * FROM student_sit_in WHERE id_number = '$idNum' AND status = 'Active'";
   $result = mysqli_query($con, $active);
@@ -187,6 +203,7 @@ if(isset($_POST["sitIn"])){
     }
  
   }
+}
 }
 
 //Delete Admin
