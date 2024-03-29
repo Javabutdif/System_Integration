@@ -138,7 +138,7 @@ if(isset($_POST["sitIn"])){
   $idNum = $_POST['studentID'];
   $purpose = $_POST['purpose'];
   $lab = $_POST['lab'];
-  $login = date('Y-m-d');
+  $login = date("h:i:sa");
 
   $getSession = "SELECT * FROM student_session WHERE id_number = '$idNum'";
   $data = mysqli_query($con, $getSession);
@@ -259,7 +259,7 @@ if(isset($_POST["delete"])){
 if(isset($_POST["logout"])){
     $id = $_POST['idNum'];
   
-  
+    $log = date("h:i:sa");
     $logout = date('Y-m-d');
     $ses = $_POST["session"];
     $sitlab = $_POST["sitLab"];
@@ -277,7 +277,7 @@ if(isset($_POST["logout"])){
       $resultsss = mysqli_query($con, $retrieve);
       $user = mysqli_fetch_array($resultsss, MYSQLI_ASSOC);
           
-    $sql = "UPDATE `student_sit_in` SET `status` = 'Finished', `sit_logout` = '$logout' WHERE `id_number` = '$id'";
+    $sql = "UPDATE `student_sit_in` SET `status` = 'Finished', `sit_logout` = '$log', `sit_date` = '$logout' WHERE `id_number` = '$id'";
     $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id'";
    
           

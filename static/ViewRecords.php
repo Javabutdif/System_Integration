@@ -65,7 +65,7 @@ $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
 $sqlTable = " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
  student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
-  student_sit_in.sit_logout, student_sit_in.status FROM
+  student_sit_in.sit_logout,student_sit_in.sit_date, student_sit_in.status FROM
    students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
     INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished';";
 $result = mysqli_query($con, $sqlTable);
@@ -95,6 +95,7 @@ if(mysqli_num_rows($result) > 0)
           <th>Sit Lab</th>
           <th>Sit Login</th>
           <th>Sit Logout</th>
+          <th>Sit Date</th>
           <th>Status</th>
    
 
@@ -111,6 +112,7 @@ if(mysqli_num_rows($result) > 0)
               <td><?php echo $person['sit_lab']; ?></td>
               <td><?php echo $person['sit_login']; ?></td>
               <td><?php echo $person['sit_logout']; ?></td>
+              <td><?php echo $person['sit_date']; ?></td>
               <td><?php echo $person['status']; ?></td>
            
 
