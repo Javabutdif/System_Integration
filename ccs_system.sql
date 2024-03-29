@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 22, 2024 at 04:57 PM
+-- Generation Time: Mar 29, 2024 at 06:58 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -45,7 +45,7 @@ CREATE TABLE `students` (
 --
 
 INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `status`) VALUES
-(1, 'Alcarmen', 'Brandon', 'B.', 3, '123', 'BSIT', 'brandon@gmail.com', 'Lorega', 'TRUE'),
+(1, 'Alcarmen', 'Brandon', 'B.', 3, '123', 'BSIT', 'brandon@gmail.com', 'Lorega', 'FALSE'),
 (2000, 'Sandalo', 'Jude Jefferson', 'L', 4, '123', 'BSIT', 'jude@gmail.com', 'Lorega', 'TRUE'),
 (123123, 'Aguilar', 'Jermaine', 'J', 3, '123', 'BSIT', 'jermaine0@gmail.com', 'San Isidro Talisay', 'TRUE'),
 (19835644, 'Genabio', 'Anton James', 'J', 3, '123', 'BSIT', 'jamesgenabio@yahoo.com', 'San Isidro Talisay', 'TRUE'),
@@ -69,12 +69,9 @@ CREATE TABLE `student_lab` (
 --
 
 INSERT INTO `student_lab` (`id`, `id_number`, `lab`, `sit_in`) VALUES
-(1, 19835644, 526, 3),
-(2, 19835644, 528, 3),
-(3, 19835644, 524, 3),
-(4, 19835644, 530, 3),
-(5, 123123, 524, 1),
-(6, 123123, 526, 1);
+(7, 19835644, 524, 3),
+(8, 19835644, 526, 2),
+(9, 123123, 524, 1);
 
 -- --------------------------------------------------------
 
@@ -92,11 +89,11 @@ CREATE TABLE `student_session` (
 --
 
 INSERT INTO `student_session` (`id_number`, `session`) VALUES
-(1, 29),
-(2000, 29),
-(123123, 26),
-(19835644, 16),
-(19835645, 29);
+(1, 30),
+(2000, 30),
+(123123, 30),
+(19835644, 29),
+(19835645, 30);
 
 -- --------------------------------------------------------
 
@@ -109,8 +106,9 @@ CREATE TABLE `student_sit_in` (
   `id_number` int(11) NOT NULL,
   `sit_purpose` varchar(50) NOT NULL,
   `sit_lab` varchar(20) NOT NULL,
-  `sit_login` date NOT NULL,
-  `sit_logout` date NOT NULL,
+  `sit_login` varchar(15) NOT NULL,
+  `sit_logout` varchar(15) NOT NULL,
+  `sit_date` varchar(10) NOT NULL,
   `status` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -118,10 +116,13 @@ CREATE TABLE `student_sit_in` (
 -- Dumping data for table `student_sit_in`
 --
 
-INSERT INTO `student_sit_in` (`sit_id`, `id_number`, `sit_purpose`, `sit_lab`, `sit_login`, `sit_logout`, `status`) VALUES
-(1, 19835644, 'C Programming', '524', '2024-03-22', '2024-03-22', 'Finished'),
-(2, 123123, 'C Programming', '524', '2024-03-22', '2024-03-22', 'Finished'),
-(3, 123123, 'C Programming', '526', '2024-03-22', '2024-03-22', 'Finished');
+INSERT INTO `student_sit_in` (`sit_id`, `id_number`, `sit_purpose`, `sit_lab`, `sit_login`, `sit_logout`, `sit_date`, `status`) VALUES
+(6, 19835644, 'C Programming', '524', '06:04:19pm', '06:48:18pm', '2024-03-29', 'Finished'),
+(7, 19835644, 'C# Programming', '526', '06:04:46pm', '06:48:18pm', '2024-03-29', 'Finished'),
+(8, 19835644, 'C Programming', '526', '06:18:18pm', '06:48:18pm', '2024-03-29', 'Finished'),
+(9, 123123, 'C Programming', '524', '06:32:06pm', '06:44:02pm', '2024-03-29', 'Finished'),
+(10, 19835644, 'C Programming', '524', '06:46:52pm', '06:48:18pm', '2024-03-29', 'Finished'),
+(11, 19835644, 'C Programming', '524', '06:47:57pm', '06:48:18pm', '2024-03-29', 'Finished');
 
 --
 -- Indexes for dumped tables
@@ -160,13 +161,13 @@ ALTER TABLE `student_sit_in`
 -- AUTO_INCREMENT for table `student_lab`
 --
 ALTER TABLE `student_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `student_sit_in`
 --
 ALTER TABLE `student_sit_in`
-  MODIFY `sit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `sit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

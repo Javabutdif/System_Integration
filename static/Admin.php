@@ -61,14 +61,20 @@
 <h1 class="text-center">Students Information</h1>
 
 <!-- Table -->
-<div class="container ">
+<div class="container d-flex flex-row  gap-3 ">
   <a class="btn btn-primary " href="Add.php">Add Students</a>
+  <form action="Admin.php" method="POST">
+  <button class="btn btn-danger " name="reset">Reset All Session</button>
+</form>
 </div>
 
   <?php 
     $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-		$sqlTable = "SELECT * FROM students WHERE `status` = 'TRUE'";
+		$sqlTable = " SELECT students.id_number, students.firstName,
+     students.middleName, students.lastName , students.yearLevel,
+      students.course, student_session.session from students
+       inner join student_session on student_session.id_number = students.id_number where students.status = 'TRUE'";
 		$result = mysqli_query($con, $sqlTable);
     if(mysqli_num_rows($result) > 0)
         {
@@ -85,10 +91,9 @@
         <tr>
             <th>ID Number</th>
             <th>Name</th>
-            <th>Email</th>
-            <th>Course</th>
             <th>Year Level</th>
-            <th>Address</th>
+            <th>Course</th>
+            <th>Remaining Session</th>
             <th>Actions</th>
         </tr>
     </thead>
@@ -98,10 +103,10 @@
             <tr>
                 <td><?php echo $person['id_number']; ?></td>
                 <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName']; ?></td>
-                <td><?php echo $person['email']; ?></td>
-                <td><?php echo $person['course']; ?></td>
                 <td><?php echo $person['yearLevel']; ?></td>
-                <td><?php echo $person['address']; ?></td>
+                <td><?php echo $person['course']; ?></td>
+                <td><?php echo $person['session']; ?></td>
+               
                 <td class="align-middle">
     <form action="Admin.php" method="POST" class="d-flex justify-content-center align-items-center">
         <button type="submit" name="delete" class="btn btn-danger mr-2">Delete</button>
@@ -114,6 +119,26 @@
     </tbody>
 </table>
   </div>
+  <br>
+  <br>
+  <?php 
+    $number = " SELECT count(id_number) as id from students where status = 'TRUE';";
+    $stats = "SELECT count(sit_id) as id from student_sit_in where status = 'Active';";
+    $result = mysqli_query($con, $number);
+    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    //
+    $result1 = mysqli_query($con, $stats);
+    $user1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+  ?>
+  <div class="d-flex flex-row gap-3 text-center container   ">
+    <div class="text-white bg-primary  col-2 p-2 rounded ">
+      <p>Students Registered: <?php echo $user['id'];?></p>
+    </div>
+    <div class="text-white bg-primary col-2 p-2 rounded ">
+      <p>Currently Sit-in: <?php echo $user1['id'];?></p>
+    </div>
+  </div>
+  
 
 
 
