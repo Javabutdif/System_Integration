@@ -63,65 +63,73 @@
     
   <?php 
 
-    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+    
+$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-  
- 
-    $lab =$_POST['lab'];
-
-
-		$sqlTable = "SELECT student_lab.id_number ,students.firstName, students.middleName, students.lastName,
-    student_lab.lab, student_lab.sit_in, student_session.session FROM students INNER JOIN student_lab on student_lab.id_number = students.id_number 
-    INNER JOIN student_session on student_session.id_number = students.id_number ;";
-		$result = mysqli_query($con, $sqlTable);
-    if(mysqli_num_rows($result) > 0)
-        {
-          $listPerson = [];   
-          while($row = mysqli_fetch_array($result)) {
-              $listPerson[] = $row;
-          }
-        }
+$sqlTable = " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
+ student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
+  student_sit_in.sit_logout,student_sit_in.sit_date, student_sit_in.status FROM
+   students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
+    INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished';";
+$result = mysqli_query($con, $sqlTable);
+if(mysqli_num_rows($result) > 0)
+    {
+      $listPerson = [];   
+      while($row = mysqli_fetch_array($result)) {
+          $listPerson[] = $row;
+      }
+    }
+    else
+    {
       
+
+    }
+
+?>
+
+<div class="container">
+  <table id="example" class="table table-dark display compact" style="width:100%">
+  <thead>
+      <tr>
     
+          <th>ID Number</th>
+          <th>Name</th>
+          <th>Sit Purpose</th>
+          <th>Sit Lab</th>
+          <th>Sit Login</th>
+          <th>Sit Logout</th>
+          <th>Sit Date</th>
+        
+   
 
-    
-  ?>
-  
-  <div class="container">
+      </tr>
+  </thead>
 
-    <table id="example" class="table table-dark display compact " style="width:100%">
-        <thead>
-            <tr>
-                <th>Laboratory</th>
-                <th>ID Number</th>
-                <th>Student Name </th>
-                <th>Number of Sit-in</th>
-                <th>Remaining Session</th>
-         
-            </tr>
-        </thead>
+  <tbody>
+      <?php foreach ($listPerson as $person): ?>
+          <tr>
+      
+              <td><?php echo $person['id_number']; ?></td>
+              <td><?php echo $person['firstName']." ".$person['lastName']; ?></td>
+              <td><?php echo $person['sit_purpose']; ?></td>
+              <td><?php echo $person['sit_lab']; ?></td>
+              <td><?php echo $person['sit_login']; ?></td>
+              <td><?php echo $person['sit_logout']; ?></td>
+              <td><?php echo $person['sit_date']; ?></td>
+       
+           
 
-        <tbody>
-            <?php if (isset($listPerson) && count($listPerson) > 0): ?>
-                <?php foreach ($listPerson as $person): ?>
-                    <tr>
-                        <td><?php echo  $person['lab'];  ?></td>
-                        <td><?php echo $person['id_number']; ?></td>
-                        <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName'] ?></td>
-                        <td><?php echo $person['sit_in'] ?></td>
-                        <td><?php echo $person['session'] ?></td>
-                        
-                    </tr>
-                <?php endforeach; ?>
-            <?php else: ?>
-                <tr>
-                    <td colspan="2" class="text-center">No data available</td>
-                </tr>
-            <?php endif; ?>
-        </tbody>
-    </table>
+             
+          </tr>
+      <?php endforeach; ?>
+      <?php if(empty($listPerson)): ?>
+          <tr>
+              <td colspan="7">No data available</td>
+          </tr>
+      <?php endif; ?>
+  </tbody>
+</table>
 </div>
-
 
 
 <!-- Modal -->

@@ -96,7 +96,7 @@ if(mysqli_num_rows($result) > 0)
           <th>Sit Login</th>
           <th>Sit Logout</th>
           <th>Sit Date</th>
-          <th>Status</th>
+        
    
 
       </tr>
@@ -113,7 +113,7 @@ if(mysqli_num_rows($result) > 0)
               <td><?php echo $person['sit_login']; ?></td>
               <td><?php echo $person['sit_logout']; ?></td>
               <td><?php echo $person['sit_date']; ?></td>
-              <td><?php echo $person['status']; ?></td>
+       
            
 
              
