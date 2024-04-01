@@ -106,15 +106,15 @@
        
   ?>
   <div class="container">
-<table id="example" class="table table-dark display compact " style="width:100%">
-    <thead>
+<table id="example" class="table table-striped table-hover display compact " style="width:100%">
+    <thead  style="background-color: #144c94">
         <tr>
-            <th>ID Number</th>
-            <th>Name</th>
-            <th>Year Level</th>
-            <th>Course</th>
-            <th>Remaining Session</th>
-            <th>Actions</th>
+            <th class="text-white">ID Number</th>
+            <th class="text-white">Name</th>
+            <th class="text-white">Year Level</th>
+            <th class="text-white">Course</th>
+            <th class="text-white">Remaining Session</th>
+            <th class="text-white">Actions</th>
         </tr>
     </thead>
 

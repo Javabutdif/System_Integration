@@ -85,17 +85,17 @@ if(mysqli_num_rows($result) > 0)
 ?>
 
 <div class="container">
-  <table id="example" class="table table-dark display compact" style="width:100%">
-  <thead>
+  <table id="example" class="table table-striped display compact" style="width:100%">
+  <thead  style="background-color: #144c94">
       <tr>
-          <th>Sit-in Number</th>
-          <th>ID Number</th>
-          <th>Name</th>
-          <th>Sit Purpose</th>
-          <th>Sit Lab</th>
-          <th>Sit Login</th>
-          <th>Sit Logout</th>
-          <th>Sit Date</th>
+          <th class="text-white">Sit-in Number</th>
+          <th class="text-white">ID Number</th>
+          <th class="text-white">Name</th>
+          <th class="text-white">Sit Purpose</th>
+          <th class="text-white">Sit Lab</th>
+          <th class="text-white">Sit Login</th>
+          <th class="text-white">Sit Logout</th>
+          <th class="text-white">Sit Date</th>
         
    
 

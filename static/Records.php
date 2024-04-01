@@ -25,6 +25,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <title>Sit In Records</title>
+
 </head>
 <body>
     
@@ -79,16 +80,16 @@ if(mysqli_num_rows($result) > 0)
 ?>
 
 <div class="container">
-  <table id="example" class="table table-dark display compact" style="width:100%">
-  <thead>
-      <tr>
-          <th>ID Number</th>
-          <th>Name</th>
-          <th>Sit Purpose</th>
-          <th>Sit Lab</th>
-          <th>Session</th>
-          <th>Status</th>
-          <th>Actions</th>
+  <table id="example" class="table table-striped display compact" style="width:100%">
+  <thead  style="background-color: #144c94">
+      <tr >
+          <th class="text-white">ID Number</th>
+          <th class="text-white">Name</th>
+          <th class="text-white">Sit Purpose</th>
+          <th class="text-white">Sit Lab</th>
+          <th class="text-white">Session</th>
+          <th class="text-white">Status</th>
+          <th class="text-white">Actions</th>
       </tr>
   </thead>
 
