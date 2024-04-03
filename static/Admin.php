@@ -70,10 +70,10 @@
     $user1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
   ?>
   <div class="d-flex flex-row gap-3 text-center container align-content-center">
-    <div class="text-white bg-primary  col-2 p-2 rounded ">
+    <div class="text-white bg-primary shadow   col-2 p-2 rounded ">
       <p>Students Registered: <?php echo $user['id'];?></p>
     </div>
-    <div class="text-white bg-primary col-2 p-2 rounded ">
+    <div class="text-white bg-primary shadow col-2 p-2 rounded ">
       <p>Currently Sit-in: <?php echo $user1['id'];?></p>
     </div>
   </div>

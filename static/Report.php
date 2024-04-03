@@ -102,9 +102,9 @@ if(mysqli_num_rows($result) > 0)
 
 <div class="container">
   <form action="Report.php" method="POST"> 
-<input type="date" name="date"/>
-<button type="submit" name="dateSubmit">Search</button>
-</form>
+    <input type="date" name="date"/>
+    <button type="submit" name="dateSubmit">Search</button>
+  </form>
   <table id="example" class="table table-striped display compact" style="width:100%">
   <thead style="background-color: #144c94">
       <tr>
@@ -133,10 +133,6 @@ if(mysqli_num_rows($result) > 0)
               <td><?php echo $person['sit_login']; ?></td>
               <td><?php echo $person['sit_logout']; ?></td>
               <td><?php echo $person['sit_date']; ?></td>
-       
-           
-
-             
           </tr>
       <?php endforeach; ?>
       <?php if(empty($listPerson)): ?>

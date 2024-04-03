@@ -37,59 +37,59 @@
     <h2 class="text-black">Welcome! <?php echo $_SESSION["name"] ?></h2>
 </div>
 
+<div class="container">
+    <!-- Session Remaining -->
+    <div class="row">
+        <div class="col-md-3 mb-4">
+            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
+                <h5 class="card-title text-white">
+                    <img src="/jems/images/time.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+                    Session Remaining: <?php echo $_SESSION['remaining']; ?>
+                </h5>
+            </div>
+        </div>
+    </div>
 
-<table class="table">
-  <tbody>
-    <tr class="w-100">
-      <td>
+    <!-- Other Links -->
+    <div class="row">
+        <!-- Edit Profile -->
+        <div class="col-md-3 mb-4">
+            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
+                <a href="Profile.php" class="text-white text-decoration-none">
+                    <h5 class="card-title">
+                        <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+                        Edit Profile
+                    </h5>
+                </a>
+            </div>
+        </div>
 
-  <div class="container container-fluid p-5 m-5 w-75 rounded " style="background-color:#144c94; height:110%" >
+        <!-- Reservations -->
+        <div class="col-md-3 mb-4">
+            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
+                <a href="#" class="text-white text-decoration-none">
+                    <h5 class="card-title">
+                        <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+                        Reservations
+                    </h5>
+                </a>
+            </div>
+        </div>
 
-    <h5 class="text-white"><img src="/jems/images/time.jpg" class="rounded-circle" style="height:50px; width:50px"/>Session Remaining: <?php echo $_SESSION['remaining']; ?></h5>
-
-  </div>
-    </td>
-    <td>
-
-      <div id="box" class="container container-fluid p-5 m-5 w-75  rounded" style="background-color:#144c94;" >
-      <a href="Profile.php" style="width: 100%;" >
-      <h5 class="text-white" type="submit"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>Edit Profile</h5>
-    </a>
-     </div>
-    </td>
-    <td>
-
-  
-  <div id="box" class="container container-fluid p-5 m-5 w-75   rounded" style="background-color:#144c94;" >
-  <a href="#" style="width: 100%;" >
-    <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>View Sessions</h5>
-  </a>
-  </div>
-    </td>
-
-    </tr>
-    <tr>
-    <td>
-  
-
-<div class="container container-fluid d-inline-flex w-100">
-<div id="box" class="container container-fluid p-5 m-5 w-75  rounded" style="background-color:#144c94;" >
-  <a href="#" style="width: 100%;" >
-    <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle" style="height:50px; width:50px"/>History</h5>
-  </a>
-  </div>
-    </td>
-    <td>
-  <div id="box" class="container container-fluid p-5 m-5 w-75 rounded" style="background-color:#144c94;" >
-  <a href="Login.php" style="width: 100%;" >
-    <h5 class="text-white"> <img src="/jems/images/traced-pen.jpg" class="rounded-circle text-danger" style="height:50px; width:50px"/>Log out</h5>
-  </a>
-  </div>
+        <!-- Log out -->
+        <div class="col-md-3 mb-4">
+            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
+                <a href="Login.php" class="text-white text-decoration-none">
+                    <h5 class="card-title">
+                        <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+                        Log out
+                    </h5>
+                </a>
+            </div>
+        </div>
+    </div>
 </div>
-    </td>
-    </tr>
-</tbody>
-<table>
+
 </body>
 </html>
 
