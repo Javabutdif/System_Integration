@@ -58,19 +58,32 @@
   </div>
 </nav>
 
+
 <h1 class="text-center">Generate Reports</h1>
 
     
   <?php 
+  $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
+    if(isset($_POST["dateSubmit"])){
+   $date = $_POST["date"];
+      
+$sqlTable = " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
+student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
+ student_sit_in.sit_logout,student_sit_in.sit_date, student_sit_in.status FROM
+  students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
+   INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished' AND student_sit_in.sit_date = '$date' ;";
+    }
+    else{
     
-$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+
 
 $sqlTable = " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
  student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
   student_sit_in.sit_logout,student_sit_in.sit_date, student_sit_in.status FROM
    students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
     INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished';";
+    }
 $result = mysqli_query($con, $sqlTable);
 if(mysqli_num_rows($result) > 0)
     {
@@ -88,6 +101,10 @@ if(mysqli_num_rows($result) > 0)
 ?>
 
 <div class="container">
+  <form action="Report.php" method="POST"> 
+<input type="date" name="date"/>
+<button type="submit" name="dateSubmit">Search</button>
+</form>
   <table id="example" class="table table-striped display compact" style="width:100%">
   <thead style="background-color: #144c94">
       <tr>

@@ -56,12 +56,13 @@
     </ul>
   </div>
 </nav>
-<h1 class="text-center">Sit In Records</h1>
+<h1 class="text-center">Current Sit In Records</h1>
 
 <?php 
 
-$date = date('Y-m-d');
+
 $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+$date = date('Y-m-d');
 
 $sqlTable = " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
  student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
