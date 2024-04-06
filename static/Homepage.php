@@ -67,7 +67,7 @@
         <!-- Reservations -->
         <div class="col-md-3 mb-4">
             <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
-                <a href="#" class="text-white text-decoration-none">
+                <a href="Reservation.php" class="text-white text-decoration-none">
                     <h5 class="card-title">
                         <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
                         Reservations

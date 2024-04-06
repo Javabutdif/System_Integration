@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Mar 29, 2024 at 06:58 PM
+-- Generation Time: Apr 06, 2024 at 04:24 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -47,6 +47,7 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `status`) VALUES
 (1, 'Alcarmen', 'Brandon', 'B.', 3, '123', 'BSIT', 'brandon@gmail.com', 'Lorega', 'FALSE'),
 (2000, 'Sandalo', 'Jude Jefferson', 'L', 4, '123', 'BSIT', 'jude@gmail.com', 'Lorega', 'TRUE'),
+(9000, 'Lopez', 'Jane', 'L', 3, '123', 'BSIT', 'lopezjane@gmail.com', 'Basak', 'TRUE'),
 (123123, 'Aguilar', 'Jermaine', 'J', 3, '123', 'BSIT', 'jermaine0@gmail.com', 'San Isidro Talisay', 'TRUE'),
 (19835644, 'Genabio', 'Anton James', 'J', 3, '123', 'BSIT', 'jamesgenabio@yahoo.com', 'San Isidro Talisay', 'TRUE'),
 (19835645, 'Lim', 'Kyle', 'L', 3, '123', 'BSCS', 'kyle@gmail.com', 'Lorega', 'TRUE');
@@ -69,9 +70,82 @@ CREATE TABLE `student_lab` (
 --
 
 INSERT INTO `student_lab` (`id`, `id_number`, `lab`, `sit_in`) VALUES
-(7, 19835644, 524, 3),
+(7, 19835644, 524, 4),
 (8, 19835644, 526, 2),
-(9, 123123, 524, 1);
+(9, 123123, 524, 1),
+(10, 9000, 526, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `student_pc`
+--
+
+CREATE TABLE `student_pc` (
+  `pc_id` int(11) NOT NULL,
+  `lab_524` int(11) NOT NULL,
+  `lab_526` int(11) NOT NULL,
+  `lab_528` int(11) NOT NULL,
+  `lab_530` int(11) NOT NULL,
+  `lab_542` int(11) NOT NULL,
+  `lab_Mac` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `student_pc`
+--
+
+INSERT INTO `student_pc` (`pc_id`, `lab_524`, `lab_526`, `lab_528`, `lab_530`, `lab_542`, `lab_Mac`) VALUES
+(1, 1, 1, 1, 1, 1, 1),
+(2, 1, 1, 1, 1, 1, 1),
+(3, 1, 1, 1, 1, 1, 1),
+(4, 1, 1, 1, 1, 1, 1),
+(5, 1, 1, 1, 1, 1, 1),
+(6, 1, 1, 1, 1, 1, 1),
+(7, 1, 1, 1, 1, 1, 1),
+(8, 1, 1, 1, 1, 1, 1),
+(9, 1, 1, 1, 1, 1, 1),
+(10, 1, 1, 1, 1, 1, 1),
+(11, 1, 1, 1, 1, 1, 1),
+(12, 1, 1, 1, 1, 1, 1),
+(13, 1, 1, 1, 1, 1, 1),
+(14, 1, 1, 1, 1, 1, 1),
+(15, 1, 1, 1, 1, 1, 1),
+(16, 1, 1, 1, 1, 1, 1),
+(17, 1, 1, 1, 1, 1, 1),
+(18, 1, 1, 1, 1, 1, 1),
+(19, 1, 1, 1, 1, 1, 1),
+(20, 1, 1, 1, 1, 1, 1),
+(21, 1, 1, 1, 1, 1, 1),
+(22, 1, 1, 1, 1, 1, 1),
+(23, 1, 1, 1, 1, 1, 1),
+(24, 1, 1, 1, 1, 1, 1),
+(25, 1, 1, 1, 1, 1, 1),
+(26, 1, 1, 1, 1, 1, 1),
+(27, 1, 1, 1, 1, 1, 1),
+(28, 1, 1, 1, 1, 1, 1),
+(29, 1, 1, 1, 1, 1, 1),
+(30, 1, 1, 1, 1, 1, 1),
+(31, 1, 1, 1, 1, 1, 1),
+(32, 1, 1, 1, 1, 1, 1),
+(33, 1, 1, 1, 1, 1, 1),
+(34, 1, 1, 1, 1, 1, 1),
+(35, 1, 1, 1, 1, 1, 1),
+(36, 1, 1, 1, 1, 1, 1),
+(37, 1, 1, 1, 1, 1, 1),
+(38, 1, 1, 1, 1, 1, 1),
+(39, 1, 1, 1, 1, 1, 1),
+(40, 1, 1, 1, 1, 1, 1),
+(41, 1, 1, 1, 1, 1, 1),
+(42, 1, 1, 1, 1, 1, 1),
+(43, 1, 1, 1, 1, 1, 1),
+(44, 1, 1, 1, 1, 1, 1),
+(45, 1, 1, 1, 1, 1, 1),
+(46, 1, 1, 1, 1, 1, 1),
+(47, 1, 1, 1, 1, 1, 1),
+(48, 1, 1, 1, 1, 1, 1),
+(49, 1, 1, 1, 1, 1, 1),
+(50, 1, 1, 1, 1, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -91,8 +165,9 @@ CREATE TABLE `student_session` (
 INSERT INTO `student_session` (`id_number`, `session`) VALUES
 (1, 30),
 (2000, 30),
+(9000, 29),
 (123123, 30),
-(19835644, 29),
+(19835644, 28),
 (19835645, 30);
 
 -- --------------------------------------------------------
@@ -117,12 +192,14 @@ CREATE TABLE `student_sit_in` (
 --
 
 INSERT INTO `student_sit_in` (`sit_id`, `id_number`, `sit_purpose`, `sit_lab`, `sit_login`, `sit_logout`, `sit_date`, `status`) VALUES
-(6, 19835644, 'C Programming', '524', '06:04:19pm', '06:48:18pm', '2024-03-29', 'Finished'),
-(7, 19835644, 'C# Programming', '526', '06:04:46pm', '06:48:18pm', '2024-03-29', 'Finished'),
-(8, 19835644, 'C Programming', '526', '06:18:18pm', '06:48:18pm', '2024-03-29', 'Finished'),
+(6, 19835644, 'C Programming', '524', '06:04:19pm', '05:00:49pm', '2024-04-03', 'Finished'),
+(7, 19835644, 'C# Programming', '526', '06:04:46pm', '05:00:49pm', '2024-04-03', 'Finished'),
+(8, 19835644, 'C Programming', '526', '06:18:18pm', '05:00:49pm', '2024-04-03', 'Finished'),
 (9, 123123, 'C Programming', '524', '06:32:06pm', '06:44:02pm', '2024-03-29', 'Finished'),
-(10, 19835644, 'C Programming', '524', '06:46:52pm', '06:48:18pm', '2024-03-29', 'Finished'),
-(11, 19835644, 'C Programming', '524', '06:47:57pm', '06:48:18pm', '2024-03-29', 'Finished');
+(10, 19835644, 'C Programming', '524', '06:46:52pm', '05:00:49pm', '2024-04-03', 'Finished'),
+(11, 19835644, 'C Programming', '524', '06:47:57pm', '05:00:49pm', '2024-04-03', 'Finished'),
+(12, 9000, 'C# Programming', '526', '09:01:54am', '09:02:23am', '2024-03-30', 'Finished'),
+(13, 19835644, 'C Programming', '524', '05:00:45pm', '05:00:49pm', '2024-04-03', 'Finished');
 
 --
 -- Indexes for dumped tables
@@ -140,6 +217,12 @@ ALTER TABLE `students`
 --
 ALTER TABLE `student_lab`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `student_pc`
+--
+ALTER TABLE `student_pc`
+  ADD PRIMARY KEY (`pc_id`);
 
 --
 -- Indexes for table `student_session`
@@ -161,13 +244,13 @@ ALTER TABLE `student_sit_in`
 -- AUTO_INCREMENT for table `student_lab`
 --
 ALTER TABLE `student_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `student_sit_in`
 --
 ALTER TABLE `student_sit_in`
-  MODIFY `sit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
