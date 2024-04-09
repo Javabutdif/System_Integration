@@ -64,7 +64,7 @@
 
 
 
-$sqlTable = "SELECT students.id_number , students.firstName , students.middleName, students.lastName ,
+$sqlTable = "SELECT student_sit_in.sit_id, students.id_number , students.firstName , students.middleName, students.lastName ,
      student_sit_in.sit_purpose, student_sit_in.sit_lab , student_session.session, student_sit_in.status
       FROM students INNER JOIN student_session ON students.id_number = student_session.id_number
        INNER JOIN student_sit_in ON student_sit_in.id_number = student_session.id_number
@@ -83,6 +83,7 @@ if(mysqli_num_rows($result) > 0)
   <table id="example" class="table table-striped display compact" style="width:100%">
   <thead  style="background-color: #144c94">
       <tr >
+          <th class="text-white">Sit ID Number</th>
           <th class="text-white">ID Number</th>
           <th class="text-white">Name</th>
           <th class="text-white">Sit Purpose</th>
@@ -96,6 +97,7 @@ if(mysqli_num_rows($result) > 0)
   <tbody>
       <?php foreach ($listPerson as $person): ?>
           <tr>
+              <td><?php echo $person['sit_id']; ?></td>
               <td><?php echo $person['id_number']; ?></td>
               <td><?php echo $person['firstName']." ".$person['middleName'].". ".$person['lastName']; ?></td>
               <td><?php echo $person['sit_purpose']; ?></td>
@@ -109,6 +111,7 @@ if(mysqli_num_rows($result) > 0)
                       <input type="hidden" name="session" value="<?php echo $person['session']; ?>"/>
                       <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
                       <input type="hidden" name="sitLab" value="<?php echo $person['sit_lab']; ?>"/>
+                      <input type="hidden" name="sitId" value="<?php echo $person['sit_id']; ?>"/>
                   </form>
               </td>
           </tr>

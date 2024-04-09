@@ -280,7 +280,7 @@ if(isset($_POST["delete"])){
 
 if(isset($_POST["logout"])){
     $id = $_POST['idNum'];
-  
+    $sitId = $_POST['sitId'];
     $log = date("h:i:sa");
     $logout = date('Y-m-d');
     $ses = $_POST["session"];
@@ -299,7 +299,7 @@ if(isset($_POST["logout"])){
       $resultsss = mysqli_query($con, $retrieve);
       $user = mysqli_fetch_array($resultsss, MYSQLI_ASSOC);
           
-    $sql = "UPDATE `student_sit_in` SET `status` = 'Finished', `sit_logout` = '$log', `sit_date` = '$logout' WHERE `id_number` = '$id'";
+    $sql = "UPDATE `student_sit_in` SET `status` = 'Finished', `sit_logout` = '$log', `sit_date` = '$logout' WHERE `id_number` = '$id' AND `sit_id` = '$sitId' ";
     $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id'";
    
           
