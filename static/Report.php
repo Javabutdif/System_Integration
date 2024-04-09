@@ -92,11 +92,7 @@ if(mysqli_num_rows($result) > 0)
           $listPerson[] = $row;
       }
     }
-    else
-    {
-      
-
-    }
+   
 
 ?>
 
@@ -288,7 +284,12 @@ if(mysqli_num_rows($result) > 0)
       topStart: {
         buttons: ['csv', 'excel', 'pdf', 'print']
       }
+      
     }
+    ,"oLanguage": {
+   "sSearch": "Filter"
+ }
+    
   });
 
   // Function to show the SweetAlert popup
@@ -327,6 +328,8 @@ if(mysqli_num_rows($result) > 0)
       showSweetAlert();
     });
   });
+
+
 </script>
 
 

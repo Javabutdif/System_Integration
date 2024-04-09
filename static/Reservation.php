@@ -63,6 +63,12 @@
             </select>
         </div>
     </div>
+    <div class="form-group row">
+        <label for="time" class="col-sm-4 col-form-label">Time In:</label>
+        <div class="col-sm-8">
+           <input type="time" id="time" name="time">
+        </div>
+    </div>
     </form>
     <div class="form-group row">
         <label for="name" class="col-sm-4 col-form-label">Remaining Session: </label>
@@ -85,86 +91,6 @@
 ?>
 
     
-<table class="table table-borderless table-group-divider ">
-  <tbody>
-    <tr>
-      <td><button>PC01</button></td>
-      <td><button>PC02</button></td>
-      <td><button>PC03</button></td>
-      <td><button>PC04</button></td>
-      <td><button>PC05</button></td>
-      <td><button>PC06</button></td>
-      <td><button>PC07</button></td>
-      <td><button>PC08</button></td>
-      <td><button>PC09</button></td>
-      <td><button>PC10</button></td>
- 
-    </tr>
-    <tr>
-      <td><button>PC11</button></td>
-      <td><button>PC12</button></td>
-      <td><button>PC13</button></td>
-      <td><button>PC14</button></td>
-      <td><button>PC15</button></td>
-      <td><button>PC16</button></td>
-      <td><button>PC17</button></td>
-      <td><button>PC18</button></td>
-      <td><button>PC19</button></td>
-      <td><button>PC20</button></td>
- 
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-      <td><button>PC21</button></td>
-      <td><button>PC22</button></td>
-      <td><button>PC23</button></td>
-      <td><button>PC24</button></td>
-      <td><button>PC25</button></td>
-      <td><button>PC26</button></td>
-      <td><button>PC27</button></td>
-      <td><button>PC28</button></td>
-      <td><button>PC29</button></td>
-      <td><button>PC30</button></td>
- 
-    </tr>
-    <tr>
-      <td><button>PC31</button></td>
-      <td><button>PC32</button></td>
-      <td><button>PC33</button></td>
-      <td><button>PC34</button></td>
-      <td><button>PC35</button></td>
-      <td><button>PC36</button></td>
-      <td><button>PC37</button></td>
-      <td><button>PC38</button></td>
-      <td><button>PC39</button></td>
-      <td><button>PC40</button></td>
- 
-    </tr>
-    <tr>
-        <td></td>
-        <td></td>
-    </tr>
-    <tr>
-      <td><button>PC41</button></td>
-      <td><button>PC42</button></td>
-      <td><button>PC43</button></td>
-      <td><button>PC44</button></td>
-      <td><button>PC45</button></td>
-      <td><button>PC46</button></td>
-      <td><button>PC47</button></td>
-      <td><button>PC48</button></td>
-      <td><button>PC49</button></td>
-      <td><button>PC50</button></td>
- 
-    </tr>
-    <!-- Add more rows as needed -->
-  </tbody>
-</table>
-
-    </div>
 
     
     
