@@ -148,30 +148,9 @@
   
 
 
-
-
-
-
-
-
-
-
-
-
 <script>
 new DataTable('#example');
   </script>
-
-<script>  
-    <?php if ($displayModal): ?>
-    $(document).ready(function(){
-      $('#exampleModalCenter').modal('show');
-    });
-  <?php endif; ?>
-
-  </script>
-  
-
 
 
 </body>
