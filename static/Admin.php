@@ -83,9 +83,9 @@
 <!-- Table -->
 <div class="container d-flex flex-row  gap-3 ">
   <a class="btn btn-primary " href="Add.php">Add Students</a>
-  <form action="Admin.php" method="POST">
-  <button class="btn btn-danger " name="reset">Reset All Session</button>
-</form>
+ 
+  <button class="btn btn-danger" id="resetButton" >Reset All Session</button>
+
 </div>
 
   <?php 
@@ -304,6 +304,57 @@ new DataTable('#example');
 
 </script>
 
-   
+<script>
+document.getElementById("resetButton").addEventListener("click", function() {
+  Swal.fire({
+    title: "Do you want to reset the session?",
+    showCancelButton: true,
+    confirmButtonText: "Reset",
+
+  }).then((result) => {
+    /* Read more about isConfirmed, isDenied below */
+    if (result.isConfirmed) {
+      // Proceed with reset
+      resetSession();
+    } else if (result.isDenied) {
+      Swal.fire("Action canceled", "", "info");
+    }
+  });
+});
+
+function resetSession() {
+  // Send an AJAX request to trigger the PHP script
+  var xhr = new XMLHttpRequest();
+  xhr.open("POST", "Admin.php", true);
+  xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+  xhr.onreadystatechange = function() {
+    if (xhr.readyState === XMLHttpRequest.DONE) {
+      if (xhr.status === 200) {
+        // If the request is successful, show a success message
+        Swal.fire("Session reset!", "", "success");
+      } else {
+        // If there's an error, show an error message
+        Swal.fire("Error", "Failed to reset session", "error");
+      }
+    }
+  };
+  xhr.send("reset=true"); // Sending the reset parameter
+}
+</script>
+
+<?php
+if(isset($_POST["reset"])){
+  $sql1 = "UPDATE `student_session` SET `session` = 30";
+  if(mysqli_query($con, $sql1)){
+    // Return a success response
+    http_response_code(200);
+    exit; // Exit to prevent further output
+  } else {
+    // Return an error response
+    http_response_code(500);
+    exit; // Exit to prevent further output
+  }
+}
+?>
 
 

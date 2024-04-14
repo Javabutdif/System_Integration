@@ -20,27 +20,15 @@ $num = "";
 //Reset
 
 if(isset($_POST["reset"])){
-
   $sql1 = "UPDATE `student_session` SET `session` = 30";
   if(mysqli_query($con, $sql1)){
-    echo '<script>const Toast = Swal.mixin({
-      toast: true,
-      position: "top-end",
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.onmouseenter = Swal.stopTimer;
-        toast.onmouseleave = Swal.resumeTimer;
-      }
-    });
-    Toast.fire({
-      icon: "success",
-      title: "All students session has been reseted!"
-    });</script>';
+    // Return a success response
+    http_response_code(200);
+  } else {
+    // Return an error response
+    http_response_code(500);
   }
 }
-
 
 
 
