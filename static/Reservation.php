@@ -23,7 +23,11 @@
 </head>
 <body>
     <a href="Homepage.php" class="btn btn-danger">Back</a>
+    <div class="container container-fluid container-lg ">
+<h1 class="text-center text-bg-primary rounded-5 p-2 m-3 ">Reservation</h1>
 
+    <br>
+     <br>
 <div class="container">
 <div class="form-group row">
         <label for="id" class="col-sm-4 col-form-label">ID Number:</label>
@@ -49,7 +53,7 @@
             </select>
         </div>
     </div>
-    <form action="Reservation.php" method="POST">
+   <form action="Reservation.php" method="POST">
     <div class="form-group row">
         <label for="lab" class="col-sm-4 col-form-label">Lab:</label>
         <div class="col-sm-8">
@@ -61,53 +65,52 @@
                 <option value="542">542</option>
                 <option value="Mac">Mac Laboratory</option>
             </select>
+            <button class="btn btn-primary" type="submit" name="submit">Submit</button>
         </div>
     </div>
-    <?php
-    // Establish database connection
-    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-    if ($con === false) {
-        die("Error: Could not connect to the database. " . mysqli_connect_error());
-    }
-
-    if (isset($_POST["lab"])) {
-        // Retrieve the selected lab value
-        $selected_lab = $_POST["lab"];
-        echo "Selected Lab: " . $selected_lab; // Display the selected lab for debugging
-        
-        // Sanitize and escape user input
-        $lab = mysqli_real_escape_string($con, $selected_lab);
-        
-        // Construct the SQL query safely
-        $sentence = "lab_" . $lab;
-        $sqlTable = "SELECT pc_id FROM student_pc WHERE `$sentence` = '1'";
-
-        // Execute the query
-        $result = mysqli_query($con, $sqlTable);
-
-        if ($result) {
-            $data = [];
-            while ($row = mysqli_fetch_array($result)) {
-                $data[] = $row;
-            }
-            
-            // Assuming $data contains the data retrieved from the database
-            foreach ($data as $index => $row) {
-                echo "<select name='mySelect[$index]' class='form-control'>";
-                echo "<option value='" . $row['pc_id'] . "'>" . $row['pc_id'] . "</option>";
-                echo "</select>";
-                echo "<br>";
-            }
-        } else {
-            echo "Error: " . mysqli_error($con);
-        }
-        
-    }
-  
-    // Close the database connection
-    mysqli_close($con);
-    ?>
 </form>
+
+<?php
+// Establish database connection
+$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+if ($con === false) {
+    die("Error: Could not connect to the database. " . mysqli_connect_error());
+}
+
+if (isset($_POST["submit"])) {
+    // Retrieve the selected lab value
+    $selected_lab = $_POST["lab"];
+    // Sanitize and escape user input
+    $lab = mysqli_real_escape_string($con, $selected_lab);
+    // Construct the SQL query safely
+    $sentence = "lab_" . $lab;
+    $sqlTable = "SELECT pc_id FROM student_pc WHERE `$sentence` = '1'";
+    // Execute the query
+    $result = mysqli_query($con, $sqlTable);
+
+    if ($result) {
+        echo "<form action='Reservation.php' method='POST'>";
+        echo "<div class='form-group row'>";
+        echo "<label for='mySelect' class='col-sm-4 col-form-label'>Available PC:</label>";
+        echo "<div class='col-sm-8'>";
+        echo "<select name='mySelect[]' class='form-control'>";
+        while ($row = mysqli_fetch_array($result)) {
+            echo "<option value='" . $row['pc_id'] . "'>" . $row['pc_id'] . "</option>";
+        }
+        echo "</select>";
+        echo "</div>";
+        echo "</div>";
+    
+        echo "</form>";
+    } else {
+        echo "Error: " . mysqli_error($con);
+    }
+}
+
+// Close the database connection
+mysqli_close($con);
+?>
+
 
     
 
@@ -125,20 +128,9 @@
         </div>
     </div>
 
-    <?php 
-    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+ 
 
-    if(isset($_GET["lab"])){
-        $lab = $_GET["lab"];
-
-
-        
-    }
-
-
-?>
-
-    
+    </div>
 
     
     
