@@ -107,7 +107,7 @@ if(mysqli_num_rows($result) > 0)
 
               <td class="d-inline-flex p-3 gap-2">
                   <form action="Records.php" method="POST">
-                      <button type="submit" name="logout" class="btn btn-danger">Log out</button>
+                      <button type="submit" name="logout" class="btn btn-danger">Logout</button>
                       <input type="hidden" name="session" value="<?php echo $person['session']; ?>"/>
                       <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
                       <input type="hidden" name="sitLab" value="<?php echo $person['sit_lab']; ?>"/>

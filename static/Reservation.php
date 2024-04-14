@@ -49,11 +49,11 @@
             </select>
         </div>
     </div>
-    <form action="Reservation.php" method="GET">
+    <form action="Reservation.php" method="POST">
     <div class="form-group row">
         <label for="lab" class="col-sm-4 col-form-label">Lab:</label>
         <div class="col-sm-8">
-            <select name="lab" id="lab" class="form-control">
+            <select type="submit" name="lab" id="lab" class="form-control">
                 <option value="524">524</option>
                 <option value="526">526</option>
                 <option value="528">528</option>
@@ -63,6 +63,49 @@
             </select>
         </div>
     </div>
+    <?php
+    // Establish database connection
+    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+    if ($con === false) {
+        die("Error: Could not connect to the database. " . mysqli_connect_error());
+    }
+
+    if (isset($_POST["lab"])) {
+        // Sanitize and escape user input
+        $lab = mysqli_real_escape_string($con, $_POST['lab']);
+        
+        // Construct the SQL query safely
+        $sentence = "lab_" . $lab;
+        $sqlTable = "SELECT pc_id FROM student_pc WHERE $sentence = '1'";
+        echo $sentence;
+        // Execute the query
+        $result = mysqli_query($con, $sqlTable);
+
+        if ($result) {
+            $data = [];
+            while ($row = mysqli_fetch_array($result)) {
+                $data[] = $row;
+            }
+            
+            // Assuming $data contains the data retrieved from the database
+            foreach ($data as $index => $row) {
+                echo "<select name='mySelect[$index]' class='form-control'>";
+                echo "<option value='" . $row['pc_id'] . "'>" . $row['pc_id'] . "</option>";
+                echo "</select>";
+                echo "<br>";
+            }
+        } else {
+            echo "Error: " . mysqli_error($con);
+        }
+        
+    }
+  
+    // Close the database connection
+    mysqli_close($con);
+    ?>
+</form>
+    
+
     <div class="form-group row">
         <label for="time" class="col-sm-4 col-form-label">Time In:</label>
         <div class="col-sm-8">

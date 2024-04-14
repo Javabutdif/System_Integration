@@ -98,7 +98,7 @@ if(mysqli_num_rows($result) > 0)
 
 <div class="container">
   <form action="Report.php" method="POST"> 
-    <input type="date" name="date"/>
+    <input type="date" name="date" />
     <button type="submit" name="dateSubmit">Search</button>
   </form>
   <table id="example" class="table table-striped display compact" style="width:100%">
