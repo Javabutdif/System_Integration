@@ -53,7 +53,7 @@
     <div class="form-group row">
         <label for="lab" class="col-sm-4 col-form-label">Lab:</label>
         <div class="col-sm-8">
-            <select type="submit" name="lab" id="lab" class="form-control">
+            <select name="lab" id="lab" class="form-control">
                 <option value="524">524</option>
                 <option value="526">526</option>
                 <option value="528">528</option>
@@ -71,13 +71,17 @@
     }
 
     if (isset($_POST["lab"])) {
+        // Retrieve the selected lab value
+        $selected_lab = $_POST["lab"];
+        echo "Selected Lab: " . $selected_lab; // Display the selected lab for debugging
+        
         // Sanitize and escape user input
-        $lab = mysqli_real_escape_string($con, $_POST['lab']);
+        $lab = mysqli_real_escape_string($con, $selected_lab);
         
         // Construct the SQL query safely
         $sentence = "lab_" . $lab;
-        $sqlTable = "SELECT pc_id FROM student_pc WHERE $sentence = '1'";
-        echo $sentence;
+        $sqlTable = "SELECT pc_id FROM student_pc WHERE `$sentence` = '1'";
+
         // Execute the query
         $result = mysqli_query($con, $sqlTable);
 
@@ -104,6 +108,7 @@
     mysqli_close($con);
     ?>
 </form>
+
     
 
     <div class="form-group row">
