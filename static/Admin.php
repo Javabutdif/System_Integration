@@ -128,11 +128,14 @@
                 <td><?php echo $person['session']; ?></td>
                
                 <td class="align-middle">
-    <form action="Admin.php" method="POST" class="d-flex justify-content-center align-items-center">
-        <button type="submit" name="delete" class="btn btn-danger mr-2">Delete</button>
+    <div  class="d-flex justify-content-center align-items-center">
+    <form action="Admin.php" method="POST">
+        <button type="submit" id="delete" name="delete" class="btn btn-danger mr-2">Delete</button>
+       
         <button type="submit" name="edit" class="btn btn-primary">Edit</button>
         <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
-    </form>
+        </form>
+        </div>
 </td>
             </tr>
         <?php endforeach; ?>
@@ -341,6 +344,7 @@ function resetSession() {
   xhr.send("reset=true"); // Sending the reset parameter
 }
 </script>
+
 
 <?php
 if(isset($_POST["reset"])){

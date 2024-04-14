@@ -19,16 +19,6 @@ $num = "";
 
 //Reset
 
-if(isset($_POST["reset"])){
-  $sql1 = "UPDATE `student_session` SET `session` = 30";
-  if(mysqli_query($con, $sql1)){
-    // Return a success response
-    http_response_code(200);
-  } else {
-    // Return an error response
-    http_response_code(500);
-  }
-}
 
 
 
