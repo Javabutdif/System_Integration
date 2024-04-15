@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 06, 2024 at 04:24 PM
+-- Generation Time: Apr 15, 2024 at 08:01 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -47,7 +47,6 @@ CREATE TABLE `students` (
 INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `status`) VALUES
 (1, 'Alcarmen', 'Brandon', 'B.', 3, '123', 'BSIT', 'brandon@gmail.com', 'Lorega', 'FALSE'),
 (2000, 'Sandalo', 'Jude Jefferson', 'L', 4, '123', 'BSIT', 'jude@gmail.com', 'Lorega', 'TRUE'),
-(9000, 'Lopez', 'Jane', 'L', 3, '123', 'BSIT', 'lopezjane@gmail.com', 'Basak', 'TRUE'),
 (123123, 'Aguilar', 'Jermaine', 'J', 3, '123', 'BSIT', 'jermaine0@gmail.com', 'San Isidro Talisay', 'TRUE'),
 (19835644, 'Genabio', 'Anton James', 'J', 3, '123', 'BSIT', 'jamesgenabio@yahoo.com', 'San Isidro Talisay', 'TRUE'),
 (19835645, 'Lim', 'Kyle', 'L', 3, '123', 'BSCS', 'kyle@gmail.com', 'Lorega', 'TRUE');
@@ -73,7 +72,7 @@ INSERT INTO `student_lab` (`id`, `id_number`, `lab`, `sit_in`) VALUES
 (7, 19835644, 524, 4),
 (8, 19835644, 526, 2),
 (9, 123123, 524, 1),
-(10, 9000, 526, 1);
+(11, 19835644, 528, 1);
 
 -- --------------------------------------------------------
 
@@ -165,9 +164,8 @@ CREATE TABLE `student_session` (
 INSERT INTO `student_session` (`id_number`, `session`) VALUES
 (1, 30),
 (2000, 30),
-(9000, 29),
 (123123, 30),
-(19835644, 28),
+(19835644, 27),
 (19835645, 30);
 
 -- --------------------------------------------------------
@@ -198,8 +196,8 @@ INSERT INTO `student_sit_in` (`sit_id`, `id_number`, `sit_purpose`, `sit_lab`, `
 (9, 123123, 'C Programming', '524', '06:32:06pm', '06:44:02pm', '2024-03-29', 'Finished'),
 (10, 19835644, 'C Programming', '524', '06:46:52pm', '05:00:49pm', '2024-04-03', 'Finished'),
 (11, 19835644, 'C Programming', '524', '06:47:57pm', '05:00:49pm', '2024-04-03', 'Finished'),
-(12, 9000, 'C# Programming', '526', '09:01:54am', '09:02:23am', '2024-03-30', 'Finished'),
-(13, 19835644, 'C Programming', '524', '05:00:45pm', '05:00:49pm', '2024-04-03', 'Finished');
+(13, 19835644, 'C Programming', '524', '05:00:45pm', '05:00:49pm', '2024-04-03', 'Finished'),
+(14, 19835644, 'ASP.Net Programming', '528', '07:52:45pm', '07:57:55pm', '2024-04-15', 'Finished');
 
 --
 -- Indexes for dumped tables
@@ -244,13 +242,13 @@ ALTER TABLE `student_sit_in`
 -- AUTO_INCREMENT for table `student_lab`
 --
 ALTER TABLE `student_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `student_sit_in`
 --
 ALTER TABLE `student_sit_in`
-  MODIFY `sit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `sit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

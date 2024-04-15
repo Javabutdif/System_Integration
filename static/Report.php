@@ -108,10 +108,10 @@ if(mysqli_num_rows($result) > 0)
           <th class="text-white">ID Number</th>
           <th  class="text-white">Name</th>
           <th class="text-white">Sit Purpose</th>
-          <th class="text-white">Sit Lab</th>
-          <th class="text-white">Sit Login</th>
-          <th class="text-white">Sit Logout</th>
-          <th class="text-white">Sit Date</th>
+          <th class="text-white">Laboratory</th>
+          <th class="text-white">Login</th>
+          <th class="text-white">Logout</th>
+          <th class="text-white">Date</th>
         
    
 
