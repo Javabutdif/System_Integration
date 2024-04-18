@@ -1,11 +1,11 @@
 A System Integration Project:
 ![image](https://github.com/Javabutdif/System_Integration/assets/116171287/192d3494-037c-4b37-9bd9-3bae70084f63)
-![image](https://github.com/Javabutdif/System_Integration/assets/116171287/4fc258c3-805d-40f6-8dfd-d5ccb9c3d211)
-![image](https://github.com/Javabutdif/System_Integration/assets/116171287/e46181ab-407f-40ea-bae4-792f5f2c2249)
-![image](https://github.com/Javabutdif/System_Integration/assets/116171287/250748a7-e42f-4bfc-9ee1-1e705252ddb4)
-![image](https://github.com/Javabutdif/System_Integration/assets/116171287/c7ec54a8-43b6-4338-baff-125081511633)
-![image](https://github.com/Javabutdif/System_Integration/assets/116171287/8fdfed93-0712-41d3-8a0a-3a64aa43cdb7)
-
+![image](https://github.com/Javabutdif/System_Integration/assets/116171287/8221fe69-153a-44ed-b104-2d86ea1bd78f)
+![image](https://github.com/Javabutdif/System_Integration/assets/116171287/19e73ebb-4dbe-4bcd-ace9-6d976f1be39f)
+![image](https://github.com/Javabutdif/System_Integration/assets/116171287/b0a9badb-3c20-417f-8cb4-7ec4853d7535)
+![image](https://github.com/Javabutdif/System_Integration/assets/116171287/ef6a406d-4804-4ec7-8e91-7043b6ecf6d1)
+![image](https://github.com/Javabutdif/System_Integration/assets/116171287/684ada0a-4d23-436a-8248-346432030230)
+![image](https://github.com/Javabutdif/System_Integration/assets/116171287/553253bc-167d-4dba-b365-aa9b606d412c)
 
 
 
