@@ -43,6 +43,9 @@
       <li class="nav-item">
         <a type="button" class="nav-link text-white" data-toggle="modal" data-target="#exampleModal">Search</a>
       </li>
+       <li class="nav-item">
+        <a type="button" class="nav-link text-white" href="">Students</a>
+      </li>
       <li class="nav-item">
         <a class="nav-link text-white" href="Records.php"> Sit-in</a>
       </li>
