@@ -85,22 +85,41 @@
     </nav>
 
     <div class="container mt-5">
-        <h1 class="text-center mb-4">Dashboard</h1>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="dashboard-card">
-                    <h2 class="text-center mb-3">Students Registered</h2>
-                    <p class="text-center fs-3"><?php echo $user['id']; ?></p>
+    <h1 class="text-center mb-4">Dashboard</h1>
+    <div class="row">
+        <div class="col-md-6">
+            <div class="card bg-primary dashboard-card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-3">Students Registered</h2>
+                    <p class="card-text text-center fs-3"><?php echo $user['id']; ?></p>
+                    <button class="btn btn-light btn-block" onclick="viewRegisteredStudents()">View Details</button>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="dashboard-card">
-                    <h2 class="text-center mb-3">Currently Sit-in</h2>
-                    <p class="text-center fs-3"><?php echo $user1['id']; ?></p>
+        </div>
+        <div class="col-md-6">
+            <div class="card bg-primary dashboard-card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-3">Currently Sit-in</h2>
+                    <p class="card-text text-center fs-3"><?php echo $user1['id']; ?></p>
+                    <button class="btn btn-light btn-block" onclick="viewSitInStudents()">View Details</button>
                 </div>
             </div>
         </div>
     </div>
+</div>
+
+<script>
+    function viewRegisteredStudents() {
+        // Add your code to display registered students' details
+        alert('Functionality to view registered students will be implemented soon.');
+    }
+
+    function viewSitInStudents() {
+        // Add your code to display currently sit-in students' details
+        alert('Functionality to view sit-in students will be implemented soon.');
+    }
+</script>
+
 
     <!-- Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
