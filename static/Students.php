@@ -7,6 +7,28 @@
         header("Location: Login.php");
             exit();
         } 
+        if(isset($_POST["delete"])){
+          $id = $_POST['idNum'];
+        
+          
+          
+         
+          if(!$con) {
+              die("Connection failed: " . mysqli_connect_error());
+          }
+        
+              $sql = "UPDATE `students` SET `status` = 'FALSE' WHERE `id_number` = '$id'";
+        
+              if (mysqli_query($con, $sql)) {
+                echo '<script>alert("User has been deleted.");</script>';
+        
+            } else {
+                echo "Error: " . $sql . "<br>" . mysqli_error($con);
+            }
+            
+              mysqli_close($con);
+        
+        }
 
 
 
@@ -123,13 +145,15 @@
                 <td><?php echo $person['session']; ?></td>
                
                 <td class="align-middle">
-    <div  class="d-flex justify-content-center align-items-center">
+    <div  class="d-flex justify-content-center align-items-center gap-3">
     <form action="Admin.php" method="POST">
-        <button type="submit" id="delete" name="delete" class="btn btn-danger mr-2">Delete</button>
-       
         <button type="submit" name="edit" class="btn btn-primary">Edit</button>
         <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>"/>
         </form>
+        <form action="Students.php" method="POST" class="delete-form">
+                            <input type="hidden" name="idNum" value="<?php echo $person['id_number']; ?>" />
+                            <button type="submit" name="delete" class="btn btn-danger mr-2" onclick="return confirm('Are you sure you want to delete this Student?')">Delete</button>
+                        </form>
         </div>
 </td>
             </tr>
@@ -144,6 +168,15 @@
 <script>
 new DataTable('#example');
   </script>
+
+    
+<script>
+document.getElementById("deleteBtn").addEventListener("click", function() {
+    if (confirm("Are you sure you want to delete this Student?")) {
+        document.getElementById("deleteForm").submit();
+    }
+});
+</script>
 
 </body>
 </html>
@@ -200,6 +233,8 @@ if(isset($_POST["reset"])){
     exit; // Exit to prevent further output
   }
 }
+
+
 ?>
 
 

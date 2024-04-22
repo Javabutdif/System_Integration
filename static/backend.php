@@ -211,45 +211,8 @@ if(isset($_POST["sitIn"])){
 }
 }
 
-//Delete Admin
-
-if(isset($_POST["delete"])){
-    $id = $_POST['idNum'];
-
-    
-    
-   
-    if(!$con) {
-        die("Connection failed: " . mysqli_connect_error());
-    }
-  
-    echo '<script>Swal.fire({
-      title: "Are you sure?",
-      text: "You wont be able to revert this!",
-      icon: "warning",
-      showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#d33",
-      confirmButtonText: "Yes, delete it!"
-    }).then((result) => {
-      if (result.isConfirmed) {';
-        $sql = "UPDATE `students` SET `status` = 'FALSE' WHERE `id_number` = '$id'";
-  
-        if (mysqli_query($con, $sql)) {
-            echo 'Swal.fire("Deleted!", "Your file has been deleted.", "success");';
-            echo 'window.location.href = "Admin.php";';
-        } else {
-            echo "Error: " . $sql . "<br>" . mysqli_error($con);
-        }
-        mysqli_close($con);
-        echo '
-      }
-    });</script>';
 
 
-   
-   
-  }
   //EDIT ADMIN
   if(isset($_POST["edit"])){
     $_SESSION["editNum"] = $_POST['idNum'];
