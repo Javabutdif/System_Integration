@@ -20,7 +20,7 @@ $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 $num = "";
 
 
-//Reset
+
 
 
 
@@ -88,30 +88,30 @@ class Student {
   
    
   
+$sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ? AND `status` = 'TRUE'";
+    $stmt = $con->prepare($sql);
+    $stmt->bind_param("sss", $search, $search, $search);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-  
-    // Prepare and bind the SQL statement
-$sql = "SELECT * FROM students WHERE (id_number = ? OR lastName = ? OR firstName = ?) AND `status` = 'TRUE'";
-$stmt = $con->prepare($sql);
-$stmt->bind_param("sss", $search, $search, $search);
-$stmt->execute();
-$result = $stmt->get_result();
+    if ($result->num_rows > 0 ) {
+        // Fetch the user data
+        $user = $result->fetch_assoc();
 
-if ($result->num_rows > 0 ) {
-    // Fetch the user data
-    $user = $result->fetch_assoc();
+        // Fetch the session data
+        $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
+        $stmt1 = $con->prepare($sql1);
+        $stmt1->bind_param("s", $user["id_number"]);
+        $stmt1->execute();
+        $result1 = $stmt1->get_result();
+        $record = $result1->fetch_assoc();
 
-    // Fetch the session data
-    $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
-    $stmt1 = $con->prepare($sql1);
-    $stmt1->bind_param("s", $user["id_number"]);
-    $stmt1->execute();
-    $result1 = $stmt1->get_result();
-    $record = $result1->fetch_assoc();
 
-    $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
-}
+        $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
 
+
+        $displayModal = true;
+    }
     else{
         echo '<script>const Toast = Swal.mixin({
             toast: true,
