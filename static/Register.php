@@ -15,7 +15,7 @@ error_reporting(0);
 	
 	<body style="background-color: #eee;">
 		
-	<form action="backend.php"method="post">
+	<form action="backend.php"method="POST">
 	<section class="vh-100" >
 		
   <div class="container h-100">

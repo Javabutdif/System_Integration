@@ -111,12 +111,12 @@
 <script>
     function viewRegisteredStudents() {
         // Add your code to display registered students' details
-        alert('Functionality to view registered students will be implemented soon.');
+        window.location.href = "Students.php";
     }
 
     function viewSitInStudents() {
         // Add your code to display currently sit-in students' details
-        alert('Functionality to view sit-in students will be implemented soon.');
+        window.location.href = "Records.php";
     }
 </script>
 
