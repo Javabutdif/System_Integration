@@ -1,5 +1,6 @@
 <?php 
 session_start();
+  error_reporting(0);
 $idNumber = $_SESSION['id_number'];
 
 $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
