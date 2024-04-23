@@ -9,13 +9,16 @@
 		exit();
 	} 
 
-  $number = " SELECT count(id_number) as id from students where status = 'TRUE';";
+    $number = " SELECT count(id_number) as id from students where status = 'TRUE';";
     $stats = "SELECT count(sit_id) as id from student_sit_in where status = 'Active';";
+    $total = "SELECT count(sit_id) as id from student_sit_in ;";
     $result = mysqli_query($con, $number);
     $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
     //
     $result1 = mysqli_query($con, $stats);
     $user1 = mysqli_fetch_array($result1, MYSQLI_ASSOC);
+    $result2 = mysqli_query($con, $total);
+    $user2 = mysqli_fetch_array($result2, MYSQLI_ASSOC);
 
 ?>
 
@@ -52,7 +55,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Admin.php">Admin</a>
+            <a class="navbar-brand" href="Admin.php">College of Computer Studies Admin</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -84,10 +87,10 @@
         </div>
     </nav>
 
-    <div class="container mt-5">
-    <h1 class="text-center mb-4">Dashboard</h1>
+   <div class="container mt-5">
+    <h1 class="text-center mb-4">Admin Dashboard</h1>
     <div class="row">
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
             <div class="card bg-primary dashboard-card">
                 <div class="card-body">
                     <h2 class="card-title text-center mb-3">Students Registered</h2>
@@ -96,12 +99,23 @@
                 </div>
             </div>
         </div>
-        <div class="col-md-6">
+        <div class="col-md-6 mb-4">
             <div class="card bg-primary dashboard-card">
                 <div class="card-body">
                     <h2 class="card-title text-center mb-3">Currently Sit-in</h2>
                     <p class="card-text text-center fs-3"><?php echo $user1['id']; ?></p>
                     <button class="btn btn-light btn-block" onclick="viewSitInStudents()">View Details</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6 mb-4">
+            <div class="card bg-primary dashboard-card">
+                <div class="card-body">
+                    <h2 class="card-title text-center mb-3">Total Sit-in</h2>
+                    <p class="card-text text-center fs-3"><?php echo $user2['id']; ?></p>
+                    <button class="btn btn-light btn-block" onclick="viewTotalSitInStudents()">View Details</button>
                 </div>
             </div>
         </div>
@@ -117,6 +131,9 @@
     function viewSitInStudents() {
         // Add your code to display currently sit-in students' details
         window.location.href = "Records.php";
+    }
+    function viewTotalSitInStudents(){
+        window.location.href = "Report.php";
     }
 </script>
 

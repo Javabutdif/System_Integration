@@ -46,7 +46,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Admin.php">Admin</a>
+            <a class="navbar-brand" href="Admin.php">College of Computer Studies Admin</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -106,7 +106,7 @@ if(mysqli_num_rows($result) > 0)
           <th class="text-white">Sit ID Number</th>
           <th class="text-white">ID Number</th>
           <th class="text-white">Name</th>
-          <th class="text-white">Sit Purpose</th>
+          <th class="text-white">Purpose</th>
           <th class="text-white">Sit Lab</th>
           <th class="text-white">Session</th>
           <th class="text-white">Status</th>

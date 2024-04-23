@@ -46,7 +46,7 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Admin.php">Admin</a>
+            <a class="navbar-brand" href="Admin.php">College of Computer Studies Admin</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -82,6 +82,7 @@
     
   <?php 
   $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+      
 
     if(isset($_POST["dateSubmit"])){
    $date = $_POST["date"];
@@ -92,7 +93,7 @@ student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
   students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
    INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished' AND student_sit_in.sit_date = '$date' ;";
     }
-    else{
+    if(isset($_POST['resetSubmit'])){
     
 
 
@@ -116,8 +117,9 @@ if(mysqli_num_rows($result) > 0)
 
 <div class="container">
   <form action="Report.php" method="POST"> 
-    <input type="date" name="date" />
-    <button type="submit" name="dateSubmit">Search</button>
+    <input class="" type="date" name="date" />
+    <button type="submit" class="btn btn-primary " name="dateSubmit">Search</button>
+    <button type="submit" class="btn btn-danger " name="resetSubmit">Reset</button>
   </form>
   <table id="example" class="table table-striped display compact" style="width:100%">
   <thead style="background-color: #144c94">
@@ -125,7 +127,7 @@ if(mysqli_num_rows($result) > 0)
     
           <th class="text-white">ID Number</th>
           <th  class="text-white">Name</th>
-          <th class="text-white">Sit Purpose</th>
+          <th class="text-white">Purpose</th>
           <th class="text-white">Laboratory</th>
           <th class="text-white">Login</th>
           <th class="text-white">Logout</th>
