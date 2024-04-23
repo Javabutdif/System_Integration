@@ -93,6 +93,14 @@ student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
   students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
    INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished' AND student_sit_in.sit_date = '$date' ;";
     }
+    else{
+      
+$sqlTable = " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
+ student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
+  student_sit_in.sit_logout,student_sit_in.sit_date, student_sit_in.status FROM
+   students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
+    INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished';";
+    }
     if(isset($_POST['resetSubmit'])){
     
 

@@ -1,6 +1,10 @@
 <?php 
 session_start();
   error_reporting(0);
+    if($_SESSION["id_number"] == 0){
+    header("Location: Login.php");
+  
+		}
 $idNumber = $_SESSION['id_number'];
 
 $con = mysqli_connect('localhost', 'root', '', 'ccs_system');

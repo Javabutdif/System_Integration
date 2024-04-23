@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdn.datatables.net/2.0.2/css/dataTables.bootstrap5.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <title>CCS Monitoring System</title>
+    <title>College of Computer Studies Report</title>
+    
 </head>
 <body>
   
@@ -348,7 +349,7 @@ if(isset($_POST["logout"])){
         <label for="purposes" class="col-sm-4 col-form-label">Purpose:</label>
         <div class="col-sm-8">
             <select name="purpose" id="purposes" class="form-control">
-                <option value="C Programming">C Programming</option>
+                <option value="C-Programming">C Programming</option>
                 <option value="Java Programming">Java Programming</option>
                 <option value="C# Programming">C# Programming</option>
                 <option value="Php Programming">Php Programming</option>
