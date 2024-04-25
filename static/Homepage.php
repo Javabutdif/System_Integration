@@ -6,102 +6,95 @@
   
 		}
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    
-    <title>Dashboard</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <style>
-      #box:hover{
-        opacity: 75%;
-      }
-      </style>
- 
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dashboard</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    /* Custom styles */
+    .sidebar {
+      background-color: #144c94;
+      color: #ffffff;
+      height: 100vh;
+      transition: background-color 0.3s ease;
+    }
+    .sidebar:hover {
+      background-color: #0b2d5f;
+    }
+    .nav-link {
+      color: #ffffff !important;
+    }
+  </style>
 </head>
 <body>
-
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #144c94">
-  <a class="navbar-brand text-white " href="Homepage.php">College of Computer Studies</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
   
-</nav>
-<div class="container container-fluid p-5 m-2 col-6 rounded  "  >
-    <h2 class="text-black">Welcome! <?php echo $_SESSION["name"] ?></h2>
-</div>
-
-<div class="container">
-    <!-- Session Remaining -->
+  <div class="container-fluid">
     <div class="row">
-        <div class="col-md-3 mb-4">
-            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
-                <h5 class="card-title text-white">
-                    <img src="/jems/images/time.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
-                    Session Remaining: <?php echo $_SESSION['remaining']; ?>
-                </h5>
-            </div>
+      <!-- Sidebar -->
+      <div class="col-md-3 sidebar py-4 d-flex flex-column">
+        <h2 class="sidebar-heading text-center mb-4">Dashboard</h2>
+        <ul class="nav flex-column">
+          <li class="nav-item">
+            <a class="nav-link" href="Profile.php">
+              <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+              Edit Profile
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Reservation.php">
+              <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+              Reservations
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="history.php">
+              <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+              History
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Login.php">
+              <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+              Log out
+            </a>
+          </li>
+        </ul>
+        <div class="mt-auto"></div> <!-- Push sidebar items to the top -->
+      </div>
+
+      <!-- Main Content -->
+      <div class="col-md-9 py-4">
+        <div class="container container-fluid p-5 m-2 col-6 rounded">
+          <h2 class="text-black">Welcome! <?php echo $_SESSION["name"] ?></h2>
         </div>
+
+        <div class="row">
+          <!-- Session Remaining -->
+          <div class="col-md-3 mb-4">
+            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
+              <h5 class="card-title text-white">
+                <img src="/jems/images/time.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+                Session Remaining: <?php echo $_SESSION['remaining']; ?>
+              </h5>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
+  </div>
 
-    <!-- Other Links -->
-    <div class="row">
-        <!-- Edit Profile -->
-        <div class="col-md-3 mb-4">
-            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
-                <a href="Profile.php" class="text-white text-decoration-none">
-                    <h5 class="card-title">
-                        <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
-                        Edit Profile
-                    </h5>
-                </a>
-            </div>
-        </div>
-
-        <!-- Reservations -->
-        <div class="col-md-3 mb-4">
-            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
-                <a href="Reservation.php" class="text-white text-decoration-none">
-                    <h5 class="card-title">
-                        <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
-                        Reservations
-                    </h5>
-                </a>
-            </div>
-        </div>
-        <div class="col-md-3 mb-4">
-            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
-                <a href="history.php" class="text-white text-decoration-none">
-                    <h5 class="card-title">
-                        <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
-                        History
-                    </h5>
-                </a>
-            </div>
-        </div>
-
-        <!-- Log out -->
-        <div class="col-md-3 mb-4">
-            <div class="card p-4 rounded-3 text-center" style="background-color:#144c94;">
-                <a href="Login.php" class="text-white text-decoration-none">
-                    <h5 class="card-title">
-                        <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
-                        Log out
-                    </h5>
-                </a>
-            </div>
-        </div>
-    </div>
-</div>
-
+  <!-- Bootstrap JS -->
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 </body>
 </html>
+
+
 
 <script>
   
