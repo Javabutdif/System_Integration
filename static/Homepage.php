@@ -40,25 +40,25 @@
         <ul class="nav flex-column">
           <li class="nav-item">
             <a class="nav-link" href="Profile.php">
-              <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+             
               Edit Profile
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Reservation.php">
-              <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+             
               Reservations
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="history.php">
-              <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+           
               History
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Login.php">
-              <img src="/jems/images/traced-pen.jpg" class="rounded-circle me-2" style="height:40px; width:40px;" />
+           
               Log out
             </a>
           </li>
