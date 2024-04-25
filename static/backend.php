@@ -19,6 +19,7 @@
 
 $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 $num = "";
+date_default_timezone_set('Asia/Manila');
 
 
 
