@@ -1,16 +1,12 @@
 <?php
 
-error_reporting(0);
+    include '../../Controller/api_admin.php';
 
 ?>
 <!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<head>
-		<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-		<link rel="stylesheet" href="jems/css/style.css">
-
-       <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+		
 	
 	</head>
 
@@ -142,7 +138,7 @@ error_reporting(0);
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img src="/jems/images/sign.webp"
+                <img src="../../images/sign.webp"
                   class="img-fluid" alt="Sample image">
 
               </div>
@@ -166,66 +162,3 @@ error_reporting(0);
 	</body>
 </html>
 
-<script>
-<?php
-session_start();
-$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-$num = "";
-
-
-
-
-
-// Register
-if(isset($_POST["submitRegister"])){
-$idNum =$_POST['idNumber'];
-$last_Name = $_POST['lName'];
-$first_Name = $_POST['fName'];
-$middle_Name = $_POST['mName'];
-$course_Level = $_POST['level'];
-$passWord = $_POST['password'];
-$email = $_POST['email'];
-$course = $_POST['course'];
-$address = $_POST['address'];
-
-// database insert SQL code
-
-$sql1 = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `status`)
- VALUES ('$idNum', '$last_Name', '$first_Name', '$middle_Name', '$course_Level', '$passWord', '$course', '$email', '$address', 'TRUE')";
-$sql2 = "INSERT INTO `student_session` (`id_number` , `session`) VALUES ('$idNum', 30)";
- 
-
-// insert in database 
-if (mysqli_query($con, $sql1) && mysqli_query($con, $sql2) ) {
-	
-    echo "Swal.fire({
-        title: 'Notification',
-        text: 'Student Added!',
-        icon: 'success',
-        showConfirmButton: false,
-        timer: 1500
-      });";
-}
-else{
-	
-
-    echo "Swal.fire({
-        title: 'Notification',
-        text: 'Error! Duplicate ID Number',
-        icon: 'error',
-        showConfirmButton: false,
-        timer: 1500
-      });";
-}
-mysqli_close($con);
-}
-
-
-//Modal Admin
-
-
-
-
-?>
-
-</script>

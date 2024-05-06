@@ -237,6 +237,20 @@
         return $listPerson;
     }
 
+    function add_student($idNum,$last_Name,$first_Name,$middle_Name,$course_Level,$passWord,$email,$course,$address){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        
+        $sqlStudents = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `status`)
+        VALUES ('$idNum', '$last_Name', '$first_Name', '$middle_Name', '$course_Level', '$passWord', '$course', '$email', '$address', 'TRUE')";
+
+        $sqlSession = "INSERT INTO `student_session` (`id_number` , `session`) VALUES ('$idNum', 30)";
+ 
+        if(mysqli_query($con, $sqlStudents) && mysqli_query($con, $sqlSession)){return true;}
+        else{return false;}
+    }
+
  
     
 ?>

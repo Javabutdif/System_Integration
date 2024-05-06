@@ -236,13 +236,13 @@ if (edit_student_admin($idNum,$last_Name,$first_Name,$middle_Name,$course_Level,
 }
 else{
 	
-  echo "Swal.fire({
+  echo "<script>Swal.fire({
     title: 'Notification',
     text: 'Error! Duplicate ID Number',
     icon: 'error',
     showConfirmButton: false,
     timer: 1500
-  });";
+  });</script>";
 	
 }
 
@@ -261,7 +261,46 @@ if(isset($_POST['resetSubmit'])){
        $sql = get_date_report(reset_date());
   }
 
-   
+
+
+// Register
+if(isset($_POST["submitRegister"])){
+$idNum =$_POST['idNumber'];
+$last_Name = $_POST['lName'];
+$first_Name = $_POST['fName'];
+$middle_Name = $_POST['mName'];
+$course_Level = $_POST['level'];
+$passWord = $_POST['password'];
+$email = $_POST['email'];
+$course = $_POST['course'];
+$address = $_POST['address'];
+
+
+if (add_student($idNum,$last_Name,$first_Name,$middle_Name,$course_Level,$passWord,$email,$course,$address)) {
+	
+    echo "<script>Swal.fire({
+        title: 'Notification',
+        text: 'Student Added!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      });</script>";
+}
+else{
+	
+
+    echo "<script>Swal.fire({
+        title: 'Notification',
+        text: 'Error! Duplicate ID Number',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 1500
+      });</script>";
+}
+
+}
+
+  
 
   
 ?>
