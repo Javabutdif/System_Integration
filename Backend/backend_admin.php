@@ -91,6 +91,31 @@
         }
         return $listPerson;
     }
+
+    function search_student($search){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $sql = "SELECT * FROM students WHERE id_number = ? OR lastName = ? OR firstName = ? AND `status` = 'TRUE'";
+        $stmt = $con->prepare($sql);
+        $stmt->bind_param("sss", $search, $search, $search);
+        $stmt->execute();
+        return $result = $stmt->get_result();
+    }
+    function retrieve_student_session($id){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $sql1 = "SELECT * FROM student_session WHERE id_number = ?";
+        $stmt1 = $con->prepare($sql1);
+        $stmt1->bind_param("s", $id);
+        $stmt1->execute();
+        $result1 = $stmt1->get_result();
+        return $record = $result1->fetch_assoc();
+    }
+
+ 
+    
 ?>
 
   

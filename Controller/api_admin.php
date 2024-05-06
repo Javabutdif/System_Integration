@@ -1,10 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css
+    ">
+    
+    
+    <title>CCS | Home</title>
+    
+</head>
+</head>
+<body>
+    
+</body>
+</html>
+
 <?php
 
     include '..\..\Backend\backend_admin.php';
 
     //Login
    
+
+     loginAdmin();
+    
+    //Object Student
+    class Student {
+        // Properties (attributes)
+        public  $id;
+        public  $name;
+        public  $records;
+
+        // Constructor method
+    
+        public function __construct($id, $name, $records) {
+            $this->id = $id;
+            $this->name = $name;
+            $this->records = $records;
+        }
+    
+    }
+     //Delete Student
+     if(isset($_POST["deleteStudent"])){
+        $id = $_POST['idNum'];
+        
+        if(delete_student($id)){
+            echo '<script>alert("Delete Successful");</script>';
+            echo '<script>window.location.href = "Students.php";</script>';
+            exit();
+        }
+        else{
+            echo '<script>alert("Delete Unsuccessful");</script>';
+            echo '<script>window.location.href = "Students.php";</script>';
+            exit();
+        }
+      }
+
+
+      if(isset($_GET["search"])) {
+        $search = $_GET["searchBar"];
+        
+        //Search Student Method
+        $retrieve = search_student($search);
+
+      if ($retrieve->num_rows > 0 ) {
+          
+          $user = $retrieve->fetch_assoc();
+          $record = retrieve_student_session($user['id_number']);
+ 
+          $student = new Student($user["id_number"], $user["firstName"]." ".$user["middleName"]." ".$user["lastName"], $record["session"]);
+  
+  
+          $displayModal = true;
+      }
+      else{
+          echo '<script>const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "error",
+              title: "No student found!"
+            });</script>';
+      }
+    }
+    
+  // get the post records
+  if(isset($_POST["sitIn"])){
+
+    $idNum = $_POST['studentID'];
+    $purpose = $_POST['purpose'];
+    $lab = $_POST['lab'];
+    $login = date("h:i:sa");
+    
+    $sesions = retrieve_student_session($idNum);
+
+
+    if($sesions["session"] == 0){
+     echo '<script>Swal.fire({
+      icon: "error",
+      title: "Oops...",
+      text: "Student Session is 0!",
+  
+    });</script>';
+    }
+    else{
+  
+  
+    
+    $active= "SELECT * FROM student_sit_in WHERE id_number = '$idNum' AND status = 'Active'";
+    $result = mysqli_query($con, $active);
+    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
+    if($user["sit_id"] != null){
+      echo '<script>const Toast = Swal.mixin({
+        toast: true,
+        position: "top-end",
+        showConfirmButton: false,
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.onmouseenter = Swal.stopTimer;
+          toast.onmouseleave = Swal.resumeTimer;
+        }
+      });
+      Toast.fire({
+        icon: "error",
+        title: "Student currently sit-in!"
+      });</script>';
+    }
+    else{
+  
+  
+    // database insert SQL code
+    
+    $sit = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
+     VALUES ('$idNum', '$purpose', '$lab', '$login' , 'Active')";
+      if (mysqli_query($con, $sit)) {
+          echo '<script>const Toast = Swal.mixin({
+              toast: true,
+              position: "top-end",
+              showConfirmButton: false,
+              timer: 3000,
+              timerProgressBar: true,
+              didOpen: (toast) => {
+                toast.onmouseenter = Swal.stopTimer;
+                toast.onmouseleave = Swal.resumeTimer;
+              }
+            });
+            Toast.fire({
+              icon: "success",
+              title: "Sit-in successfully!"
+            });</script>';
+  
+          
+      }
+   
+    }
+  }
+  }
+  
 ?>
+
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -194,22 +371,11 @@
 
 </body>
 </html>
-<?php
-     loginAdmin();
+<script>  
+    <?php if ($displayModal): ?>
+    $(document).ready(function(){
+      $('#exampleModalCenter').modal('show');
+    });
+  <?php endif; ?>
 
-     //Delete Student
-     if(isset($_POST["deleteStudent"])){
-        $id = $_POST['idNum'];
-        
-        if(delete_student($id)){
-            echo '<script>alert("Delete Successful");</script>';
-            echo '<script>window.location.href = "Students.php";</script>';
-            exit();
-        }
-        else{
-            echo '<script>alert("Delete Unsuccessful");</script>';
-            echo '<script>window.location.href = "Students.php";</script>';
-            exit();
-        }
-      }
-?>
+  </script>
