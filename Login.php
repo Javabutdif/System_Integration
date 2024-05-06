@@ -1,7 +1,7 @@
 <?php
-include 'Controller\api_index.php';
+require_once 'Controller\api_index.php';
 	
-	session_check();
+	
 ?>
 <!doctype html>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -24,7 +24,7 @@ include 'Controller\api_index.php';
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
 
-        <form action="Login.php" method="GET">
+        <form action="Login.php" method="POST">
 
 
 
@@ -99,56 +99,7 @@ include 'Controller\api_index.php';
 	//Session check
 	
 
-		if(isset($_GET["submit"])){
-			$idNum = $_GET["idNum"];
-			$password = $_GET["password"];
 		
-			if($idNum == "admin" && $password == "admin"){
-				$_SESSION['admin_name'] = 'admin';
-				$_SESSION['admin_id_number'] = 1;
-				$_SESSION["admin_id"] = 1;
-				echo '<script>window.location.href = "View/Admin/Admin.php";</script>';
-			}
-			else{
-		
-			$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-		
-			$sql = " SELECT students.id_number, students.firstName, students.middleName,
-			students.lastName, students.yearLevel , students.email, students.course, students.address, student_session.session
-			 from students inner join student_session on students.id_number 
-			 = student_session.id_number WHERE students.id_number = '$idNum' AND students.password = '$password'";
-			$result = mysqli_query($con, $sql);
-			$user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-			
-			if($user["id_number"] != null){
-				
-				$_SESSION['id_number'] = $user["id_number"];
-				$_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
-				$_SESSION["lname"] = $user["lastName"];
-				$_SESSION["fname"] = $user["firstName"];
-				$_SESSION["mname"] = $user["middleName"];
-				$_SESSION["yearLevel"] = $user["yearLevel"];
-				$_SESSION["email"] = $user["email"];
-				$_SESSION["course"] = $user["course"];
-				$_SESSION["address"] = $user["address"];
-				$_SESSION['remaining'] = $user["session"];
-				$_SESSION["id"] = 1;
-			
-				header("Location: Homepage.php");	
-			}
-			else
-			{
-				echo '<script>Swal.fire({
-					icon: "error",
-					title: "Oops...",
-					text: "Incorret ID Number and Password!",
-					
-				  });</script>'; 
-			}
-		}
-			
-		
-		}
 	
 
 	

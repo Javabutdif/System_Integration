@@ -1,7 +1,10 @@
 <?php
 
-    include '..\..\Backend\backend_index.php';
+    include 'Backend\backend_index.php';
 
+    if(session_check()){
+        session_destroy();
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,6 +45,58 @@
 </html>
 
 <?php
+
+if(isset($_POST["submit"])){
+    $idNum = $_POST["idNum"];
+    $password = $_POST["password"];
+
+    //Admin Login
+    if(admin_login($idNum,$password)){
+        $_SESSION['admin_name'] = 'admin';
+        $_SESSION['admin_id_number'] = 1;
+        $_SESSION["admin_id"] = 1;
+        echo '<script>window.location.href = "View/Admin/Admin.php";</script>';
+    }
+    else{
+
+    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+
+    $sql = " SELECT students.id_number, students.firstName, students.middleName,
+    students.lastName, students.yearLevel , students.email, students.course, students.address, student_session.session
+     from students inner join student_session on students.id_number 
+     = student_session.id_number WHERE students.id_number = '$idNum' AND students.password = '$password'";
+    $result = mysqli_query($con, $sql);
+    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    
+    if($user["id_number"] != null){
+        
+        $_SESSION['id_number'] = $user["id_number"];
+        $_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
+        $_SESSION["lname"] = $user["lastName"];
+        $_SESSION["fname"] = $user["firstName"];
+        $_SESSION["mname"] = $user["middleName"];
+        $_SESSION["yearLevel"] = $user["yearLevel"];
+        $_SESSION["email"] = $user["email"];
+        $_SESSION["course"] = $user["course"];
+        $_SESSION["address"] = $user["address"];
+        $_SESSION['remaining'] = $user["session"];
+        $_SESSION["id"] = 1;
+    
+        header("Location: Homepage.php");	
+    }
+    else
+    {
+        echo '<script>Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Incorret ID Number and Password!",
+            
+          });</script>'; 
+    }
+}
+    
+
+}
 
 
 ?>

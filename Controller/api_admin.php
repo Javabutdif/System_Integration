@@ -3,7 +3,7 @@
     include '..\..\Backend\backend_admin.php';
 
     //Login
-    loginAdmin();
+   
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -73,3 +73,6 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
 </body>
 </html>
+<?php
+     loginAdmin();
+?>
