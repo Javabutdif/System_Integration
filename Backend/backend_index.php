@@ -22,6 +22,21 @@
         return $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
     }
 
+    function student_register($idNum,$last_Name,$first_Name,$middle_Name,$course_Level,$passWord,$course,$email,$address){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $sql1 = "INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `status`)
+        VALUES ('$idNum', '$last_Name', '$first_Name', '$middle_Name', '$course_Level', '$passWord', '$course', '$email', '$address', 'TRUE')";
+        $sql2 = "INSERT INTO `student_session` (`id_number` , `session`) VALUES ('$idNum', 30)";
+     
+    
+      
+        if (mysqli_query($con, $sql1) && mysqli_query($con, $sql2) ) {return true;}
+        else{return false;}
+
+    }
+
 
 
 

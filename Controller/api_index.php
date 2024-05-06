@@ -46,6 +46,7 @@
 
 <?php
 
+//Login
 if(isset($_POST["submit"])){
     $idNum = $_POST["idNum"];
     $password = $_POST["password"];
@@ -58,8 +59,6 @@ if(isset($_POST["submit"])){
         echo '<script>window.location.href = "View/Admin/Admin.php";</script>';
     }
     else{
-
-   
 
     $user = student_login($idNum,$password);
     
@@ -92,6 +91,37 @@ if(isset($_POST["submit"])){
     
 
 }
+
+//Register
+
+// Register
+if(isset($_POST["submitRegister"])){
+    $idNum =$_POST['idNumber'];
+    $last_Name = $_POST['lName'];
+    $first_Name = $_POST['fName'];
+    $middle_Name = $_POST['mName'];
+    $course_Level = $_POST['level'];
+    $passWord = $_POST['password'];
+    $email = $_POST['email'];
+    $course = $_POST['course'];
+    $address = $_POST['address'];
+    
+    if(student_register($idNum,$last_Name,$first_Name,$middle_Name,$course_Level,$passWord,$course,$email,$address)){
+        echo '<script>alert("Registration Successful");</script>';
+        echo '<script>window.location.href = "Login.php";</script>';
+        exit(); 
+    }
+    else{
+        echo '<script>Swal.fire({
+            icon: "error",
+            title: "Oops...",
+            text: "Duplicate Id Number!",
+            
+          });</script>';
+          exit();
+    }
+    
+    }
 
 
 ?>
