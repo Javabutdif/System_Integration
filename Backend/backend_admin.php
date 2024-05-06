@@ -32,7 +32,7 @@
     
     //Number of students to Dashboard Admin
 
-    function retrieve_students(){
+    function retrieve_students_dashboard(){
         $db = Database::getInstance();
         $con = $db->getConnection();
 
@@ -42,7 +42,7 @@
 
         return $user['id'];
     }
-    function retrieve_current_sit_in(){
+    function retrieve_current_sit_in_dashboard(){
         $db = Database::getInstance();
         $con = $db->getConnection();
 
@@ -52,7 +52,7 @@
 
         return $sit['id'];
     }
-    function retrieve_total_sit_in(){
+    function retrieve_total_sit_in_dashboard(){
         $db = Database::getInstance();
         $con = $db->getConnection();
 
@@ -61,6 +61,35 @@
         $total = mysqli_fetch_array($result, MYSQLI_ASSOC);
 
         return $total['id'];
+    }
+
+    function delete_student($idNum){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $sql = "UPDATE `students` SET `status` = 'FALSE' WHERE `id_number` = '$idNum'";
+      
+        if (mysqli_query($con, $sql)) {return true;} else {return false;}
+          
+    }
+
+    function retrieve_students(){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $sql = " SELECT students.id_number, students.firstName,
+        students.middleName, students.lastName , students.yearLevel,
+        students.course, student_session.session from students
+        inner join student_session on student_session.id_number = students.id_number where students.status = 'TRUE'";
+
+        $result = mysqli_query($con, $sql);
+        if(mysqli_num_rows($result) > 0){
+             $listPerson = [];   
+             while($row = mysqli_fetch_array($result)) {
+                 $listPerson[] = $row;
+             }
+        }
+        return $listPerson;
     }
 ?>
 

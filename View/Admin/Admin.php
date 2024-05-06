@@ -25,7 +25,7 @@
             <div class="card bg-primary dashboard-card">
                 <div class="card-body">
                     <h2 class="card-title text-center mb-3">Students Registered</h2>
-                    <p class="card-text text-center fs-3"><?php echo retrieve_students(); ?></p>
+                    <p class="card-text text-center fs-3"><?php echo retrieve_students_dashboard(); ?></p>
                     <button class="btn btn-light btn-block" onclick="viewRegisteredStudents()">View Details</button>
                 </div>
             </div>
@@ -34,7 +34,7 @@
             <div class="card bg-primary dashboard-card">
                 <div class="card-body">
                     <h2 class="card-title text-center mb-3">Currently Sit-in</h2>
-                    <p class="card-text text-center fs-3"><?php echo retrieve_current_sit_in(); ?></p>
+                    <p class="card-text text-center fs-3"><?php echo retrieve_current_sit_in_dashboard(); ?></p>
                     <button class="btn btn-light btn-block" onclick="viewSitInStudents()">View Details</button>
                 </div>
             </div>
@@ -45,7 +45,7 @@
             <div class="card bg-primary dashboard-card">
                 <div class="card-body">
                     <h2 class="card-title text-center mb-3">Total Sit-in</h2>
-                    <p class="card-text text-center fs-3"><?php echo retrieve_total_sit_in(); ?></p>
+                    <p class="card-text text-center fs-3"><?php echo retrieve_total_sit_in_dashboard(); ?></p>
                     <button class="btn btn-light btn-block" onclick="viewTotalSitInStudents()">View Details</button>
                 </div>
             </div>
@@ -69,11 +69,7 @@
 </script>
 
 
-    <!-- Bootstrap Bundle with Popper -->
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-    <!-- SweetAlert2 -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+
 
     
 </body>
