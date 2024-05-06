@@ -13,9 +13,7 @@ require_once 'navbar.php';
 	</head>
 
 	<body>
-	<h1 style="color: black; text-align:center"> 
-		College of Computer Studies Sit-In Monitoring System
-	</h1>
+
 	<section class="vh-100" >
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">

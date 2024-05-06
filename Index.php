@@ -14,7 +14,7 @@ require 'navbar.php';
         <h5 class=" card-header text-white " style="background-color:#074873">Announcement</h5>
         <div class="card-body">
         <p class="card-title">This is for the announcement!</p>
-    
+        <marquee>This is for announcement only, if you want to reach out just call</marquee>
         </div>
         </div>
     </div>
