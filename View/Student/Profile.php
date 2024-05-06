@@ -1,33 +1,21 @@
 <?php
- 
-  session_start();
-  if($_SESSION["id_number"] == 0){
-    header("Location: Login.php");
-  
-		}
+include '../../Controller/api_student.php';
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Profile</title>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #144c94">
-  <a class="navbar-brand text-white" href="Homepage.php">College of Computer Studies</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
- 
-</nav>
 
 	
-<form action="Profile.php"method="post">
-	<section class="vh-100" >
+<form action="Profile.php"method="POST">
+	<section class="vh-100 py-5 px-5" >
 		
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -119,7 +107,7 @@
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img src="/jems/images/sign.webp"
+                <img src="../../images/sign.webp"
                   class="img-fluid" alt="Sample image">
 
               </div>
@@ -140,74 +128,3 @@
 </body>
 </html>
 
-
-<?php
-$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-
-
-
-
-
-
-// get the post records
-if(isset($_POST["submit"])){
-$idNum =$_POST['idNumber'];
-$last_Name = $_POST['lName'];
-$first_Name = $_POST['fName'];
-$middle_Name = $_POST['mName'];
-$course_Level = $_POST['courseLevel'];
-$email = $_POST['email'];
-$course = $_POST['course'];
-$address = $_POST['address'];
-
-// database insert SQL code
-
-$sql = "UPDATE `students` SET  `lastName` = '$last_Name', `firstName`= '$first_Name', `middleName`= '$middle_Name', `yearLevel`= '$course_Level', `course` = '$course', `email` = '$email', `address`= '$address' WHERE `id_number` = '$idNum'";
- 
-
-// insert in database 
-if (mysqli_query($con, $sql)) {
-	
-  echo '<script>Swal.fire({
-    icon: "success",
-    title: "Successful",
-    text: "You have change your profile",
-    
-    });</script>'; 
-	    $_SESSION['name'] =  $first_Name." ".$middle_Name." ".$last_Name;
-			$_SESSION['fname'] = $first_Name;
-			$_SESSION['lname'] = $last_Name;
-			$_SESSION['mname'] = $middle_Name;
-			$_SESSION['yearLevel'] = $course_Level;
-			$_SESSION['course'] = $course;
-			$_SESSION['email'] = $email;
-			$_SESSION['address'] = $address;
-}
-else{
-	
-	echo '<script>alert("Error! Duplicate Id Number")</script>'; 
-	
-}
-
-}
-
-
-
-// Close connection
-mysqli_close($con);
-?>
-
-<script>
-  
-  function call(){
-    Swal.fire({
-  title: "Successful!",
-  text: "",
-  icon: "success"
-});
-    
-  }
- 
-
-
-    </script>
