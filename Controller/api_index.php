@@ -59,16 +59,11 @@ if(isset($_POST["submit"])){
     }
     else{
 
-    $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+   
 
-    $sql = " SELECT students.id_number, students.firstName, students.middleName,
-    students.lastName, students.yearLevel , students.email, students.course, students.address, student_session.session
-     from students inner join student_session on students.id_number 
-     = student_session.id_number WHERE students.id_number = '$idNum' AND students.password = '$password'";
-    $result = mysqli_query($con, $sql);
-    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $user = student_login($idNum,$password);
     
-    if($user["id_number"] != null){
+    if($user['id_number'] != null){
         
         $_SESSION['id_number'] = $user["id_number"];
         $_SESSION['name'] =  $user["firstName"]." ".$user["middleName"]." ".$user["lastName"];
@@ -82,7 +77,7 @@ if(isset($_POST["submit"])){
         $_SESSION['remaining'] = $user["session"];
         $_SESSION["id"] = 1;
     
-        header("Location: Homepage.php");	
+        echo '<script>window.location.href = "View/Student/Homepage.php";</script>';	
     }
     else
     {
