@@ -137,7 +137,7 @@ height: 100%;
 				$_SESSION['admin_name'] = 'admin';
 				$_SESSION['admin_id_number'] = 1;
 				$_SESSION["admin_id"] = 1;
-				header('Location: Admin.php');
+				echo '<script>window.location.href = "View/Admin/Admin.php";</script>';
 			}
 			else{
 		

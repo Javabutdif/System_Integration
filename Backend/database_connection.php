@@ -1,10 +1,11 @@
 <?php
 
-error_reporting(0);
+
+session_start();
 
 class Database {
     private static $instance;
-    private $conn;
+    private $con;
     private $db_host = "localhost"; 
     private $db_username = "root"; 
     private $db_password = ""; 
@@ -12,7 +13,7 @@ class Database {
     private $db_port = "3306"; 
 
     private function __construct() {
-        $this->conn = mysqli_connect($this->db_host, $this->db_username , $this->db_password, $this->db_name, $this->db_port);
+        $this->con = mysqli_connect($this->db_host, $this->db_username , $this->db_password, $this->db_name, $this->db_port);
     }
 
     public static function getInstance() {
@@ -23,7 +24,7 @@ class Database {
     }
 
     public function getConnection() {
-        return $this->conn;
+        return $this->con;
     }
 }
 
