@@ -123,13 +123,10 @@
     }
     else{
   
-  
+    //Check if the student is currently sit in
+    $check = check_student_active($idNum);
     
-    $active= "SELECT * FROM student_sit_in WHERE id_number = '$idNum' AND status = 'Active'";
-    $result = mysqli_query($con, $active);
-    $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
-    
-    if($user["sit_id"] != null){
+    if($check["sit_id"] != null){
       echo '<script>const Toast = Swal.mixin({
         toast: true,
         position: "top-end",
@@ -147,13 +144,8 @@
       });</script>';
     }
     else{
-  
-  
-    // database insert SQL code
-    
-    $sit = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
-     VALUES ('$idNum', '$purpose', '$lab', '$login' , 'Active')";
-      if (mysqli_query($con, $sit)) {
+ 
+      if (student_sit_in($idNum,$purpose,$lab,$login)) {
           echo '<script>const Toast = Swal.mixin({
               toast: true,
               position: "top-end",
@@ -176,6 +168,101 @@
     }
   }
   }
+
+  //Edit Admin
+
+  if(isset($_POST["edit"])){
+    $_SESSION["editNum"] = $_POST['idNum'];
+    echo '<script>';
+    echo 'window.location.href = "Edit.php";';
+    echo '</script>';
+  }
+
+ //Logout 
+if(isset($_POST["logout"])){
+    $id = $_POST['idNum'];
+    $sitId = $_POST['sitId'];
+    $log = date("h:i:sa");
+    $logout = date('Y-m-d');
+    $ses = $_POST["session"];
+    $sitlab = $_POST["sitLab"];
+    $newSession = $ses - 1;
+    
+    if (student_logout($id,$sitId,$log,$logout,$newSession)) {
+        echo '<script>const Toast = Swal.mixin({
+            toast: true,
+            position: "top-end",
+            showConfirmButton: false,
+            timer: 3000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+              toast.onmouseenter = Swal.stopTimer;
+              toast.onmouseleave = Swal.resumeTimer;
+            }
+          });
+          Toast.fire({
+            icon: "success",
+            title: "Student Logout!"
+          });</script>';
+      }
+    }
+
+    
+
+
+if(isset($_POST["submitEdit"])){
+$idNum =$_POST['idNumber'];
+$last_Name = $_POST['lName'];
+$first_Name = $_POST['fName'];
+$middle_Name = $_POST['mName'];
+$course_Level = $_POST['courseLevel'];
+$email = $_POST['email'];
+$course = $_POST['course'];
+$address = $_POST['address'];
+
+
+
+if (edit_student_admin($idNum,$last_Name,$first_Name,$middle_Name,$course_Level,$email,$course,$address)) {
+	
+  echo "<script>Swal.fire({
+    title: 'Notification',
+    text: 'Edit Profile Successfull',
+    icon: 'success',
+    showConfirmButton: false,
+    timer: 1500
+  });</script>";
+
+
+}
+else{
+	
+  echo "Swal.fire({
+    title: 'Notification',
+    text: 'Error! Duplicate ID Number',
+    icon: 'error',
+    showConfirmButton: false,
+    timer: 1500
+  });";
+	
+}
+
+}
+
+
+if(isset($_POST["dateSubmit"])){
+   $date = $_POST["date"];
+      $sql = get_date_report(filter_date($date));
+  }
+  else{
+       $sql = get_date_report(reset_date());
+  }
+if(isset($_POST['resetSubmit'])){
+    
+       $sql = get_date_report(reset_date());
+  }
+
+   
+
   
 ?>
 
@@ -235,7 +322,7 @@
                         <a class="nav-link" href="Students.php">Students</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="Records.php">Sit-in</a>
+                        <a class="nav-link" href="Sit_in.php">Sit-in</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="ViewRecords.php">View Sit-in Records</a>
@@ -365,9 +452,15 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
 <script src="https://cdn.datatables.net/2.0.2/js/dataTables.bootstrap5.js"></script>
-    
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
+
 
 </body>
 </html>

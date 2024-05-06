@@ -20,7 +20,7 @@ require_once 'navbar.php';
   <div class="container-fluid h-custom">
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-md-9 col-lg-6 col-xl-5 ">
-        <img src="/jems/images/ccsLogo.png"
+        <img src="images/ccsLogo.png"
           class="img-fluid h-75 w-100" alt="CCS Logo" >
       </div>
       <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">

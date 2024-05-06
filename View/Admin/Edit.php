@@ -1,19 +1,9 @@
 <?php
  
-  session_start();
-  error_reporting(0);
-  if($_SESSION["admin_id_number"] == 0){
-    header("Location: Login.php");
-  
-		}
+  include '../../Controller/api_admin.php';
 
-
-
-        $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-        $idNum = $_SESSION["editNum"];
-		$sql = "SELECT * FROM students WHERE id_number = '$idNum'";
-		$result = mysqli_query($con, $sql);
-        $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    $user = retrieve_edit_student($_SESSION["editNum"]);
+		
 		
 		if($user["id_number"] != null){
 			
@@ -42,17 +32,10 @@
 </head>
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light" style="background-color: #144c94">
-  <a class="navbar-brand text-white" href="Homepage.php">College of Computer Studies</a>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
- 
-</nav>
 
 	
-<form action="EditAdmin.php"method="post">
-	<section class="vh-100" >
+<form action="Edit.php"method="post">
+	<section class="vh-100 pt-4" >
 		
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -154,7 +137,7 @@
 
 
                   <div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
-                    <button class="btn btn-primary btn-lg"  type="submit" name="submit">Save</button>
+                    <button class="btn btn-primary btn-lg"  type="submit" name="submitEdit">Save</button>
                   </div>
 
                 </form>
@@ -162,7 +145,7 @@
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img src="/jems/images/sign.webp"
+                <img src="../../images/sign.webp"
                   class="img-fluid" alt="Sample image">
 
               </div>
@@ -184,81 +167,4 @@
 </html>
 
 
-<?php
-$con = mysqli_connect('localhost', 'root', '', 'ccs_system');
 
-
-
-
-
-
-// get the post records
-if(isset($_POST["submit"])){
-$idNum =$_POST['idNumber'];
-$last_Name = $_POST['lName'];
-$first_Name = $_POST['fName'];
-$middle_Name = $_POST['mName'];
-$course_Level = $_POST['courseLevel'];
-$email = $_POST['email'];
-$course = $_POST['course'];
-$address = $_POST['address'];
-
-// database insert SQL code
-
-$sql = "UPDATE `students` SET  `lastName` = '$last_Name', `firstName`= '$first_Name', `middleName`= '$middle_Name', `yearLevel`= '$course_Level', `course` = '$course', `email` = '$email', `address`= '$address' WHERE `id_number` = '$idNum'";
- 
-
-// insert in database 
-if (mysqli_query($con, $sql)) {
-	
-  echo "<script>Swal.fire({
-    title: 'Notification',
-    text: 'Edit Profile Successfull',
-    icon: 'success',
-    showConfirmButton: false,
-    timer: 1500
-  });</script>";
-
-	    $_SESSION['name'] = "";
-			$_SESSION['fname'] = "";
-			$_SESSION['lname'] = "";
-			$_SESSION['mname'] = "";
-			$_SESSION['yearLevel'] = "";
-			$_SESSION['course'] = "";
-			$_SESSION['email'] = "";
-			$_SESSION['address'] = "";
-}
-else{
-	
-  echo "Swal.fire({
-    title: 'Notification',
-    text: 'Error! Duplicate ID Number',
-    icon: 'error',
-    showConfirmButton: false,
-    timer: 1500
-  });";
-	
-}
-
-}
-
-
-
-// Close connection
-mysqli_close($con);
-?>
-
-<script>
-  
-  function call(){
-    Swal.fire({
-  title: "Successful!",
-  text: "",
-  icon: "success"
-});
-    
-  }
- 
-
-
-    </script>

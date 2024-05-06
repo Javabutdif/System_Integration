@@ -114,6 +114,129 @@
         return $record = $result1->fetch_assoc();
     }
 
+    function check_student_active($idNum){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $active= "SELECT * FROM student_sit_in WHERE id_number = '$idNum' AND status = 'Active'";
+        $result = mysqli_query($con, $active);
+        return $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+    }
+    function student_sit_in($idNum,$purpose,$lab,$login){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $sit = "INSERT INTO `student_sit_in` (`id_number`, `sit_purpose`, `sit_lab`, `sit_login` , `status`)
+        VALUES ('$idNum', '$purpose', '$lab', '$login' , 'Active')";
+
+        if(mysqli_query($con, $sit)){return true;}
+        else{return false;}
+    }
+
+    function student_logout($id,$sitId,$log,$logout,$newSession){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $sql = "UPDATE `student_sit_in` SET `status` = 'Finished', `sit_logout` = '$log', `sit_date` = '$logout' WHERE `id_number` = '$id' AND `sit_id` = '$sitId' ";
+        $sql1 = "UPDATE `student_session` SET `session` = '$newSession' WHERE `id_number` = '$id'";
+
+        if(mysqli_query($con, $sql) && mysqli_query($con, $sql1)){return true;}
+        else{return false;}
+    }
+
+    function retrieve_edit_student($idNum){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $sql = "SELECT * FROM students WHERE id_number = '$idNum'";
+		$result = mysqli_query($con, $sql);
+        return $user = mysqli_fetch_array($result, MYSQLI_ASSOC);
+
+    }
+    function edit_student_admin($idNum,$last_Name,$first_Name,$middle_Name,$course_Level,$email,$course,$address){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+        
+        $sql = "UPDATE `students` SET  `lastName` = '$last_Name', `firstName`= '$first_Name', `middleName`= '$middle_Name', `yearLevel`= '$course_Level', `course` = '$course', `email` = '$email', `address`= '$address' WHERE `id_number` = '$idNum'";
+
+        if(mysqli_query($con, $sql)){return true;}
+        else{return false;}
+    }
+
+    function retrieve_sit_in(){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        
+        $sqlTable = "SELECT student_sit_in.sit_id, students.id_number , students.firstName , students.middleName, students.lastName ,student_sit_in.sit_purpose, student_sit_in.sit_lab , student_session.session, student_sit_in.status FROM students INNER JOIN student_session ON students.id_number = student_session.id_number INNER JOIN student_sit_in ON student_sit_in.id_number = student_session.id_number
+        WHERE student_sit_in.status = 'Active';";
+        $result = mysqli_query($con, $sqlTable);
+        if(mysqli_num_rows($result) > 0)
+        {
+            $listPerson = [];   
+            while($row = mysqli_fetch_array($result)) {
+                $listPerson[] = $row;
+            }
+        }
+        return $listPerson;
+
+    }
+
+    function retrieve_current_sit_in(){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $date = date('Y-m-d');
+
+        $sqlTable = " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
+        student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
+        student_sit_in.sit_logout,student_sit_in.sit_date, student_sit_in.status FROM
+        students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
+        INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.sit_date = '$date' ;";
+        $result = mysqli_query($con, $sqlTable);
+        if(mysqli_num_rows($result) > 0)
+        {
+        $listPerson = [];   
+        while($row = mysqli_fetch_array($result)) {
+            $listPerson[] = $row;
+        }
+        }
+        return $listPerson;
+    }
+
+    function filter_date($date){
+
+        return " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
+        student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
+        student_sit_in.sit_logout,student_sit_in.sit_date, student_sit_in.status FROM
+        students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
+        INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished' AND student_sit_in.sit_date = '$date' ;";
+   
+    }
+    function reset_date(){
+        return " SELECT student_sit_in.sit_id, students.id_number, students.firstName,students.lastName,
+        student_sit_in.sit_purpose, student_sit_in.sit_lab , student_sit_in.sit_login,
+        student_sit_in.sit_logout,student_sit_in.sit_date, student_sit_in.status FROM
+        students INNER JOIN student_sit_in ON students.id_number = student_sit_in.id_number
+        INNER JOIN student_session ON student_sit_in.id_number = student_session.id_number WHERE student_sit_in.status = 'Finished';";
+    }
+
+    function get_date_report($sql){
+        $db = Database::getInstance();
+        $con = $db->getConnection();
+
+        $result = mysqli_query($con, $sql);
+        if(mysqli_num_rows($result) > 0)
+        {
+            $listPerson = [];   
+            while($row = mysqli_fetch_array($result)) {
+            $listPerson[] = $row;
+        }
+        }
+        return $listPerson;
+    }
+
  
     
 ?>
