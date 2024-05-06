@@ -1,6 +1,7 @@
-<?php include 'backend.php';
+<?php 
+require_once 'navbar.php';
 
-error_reporting(0);
+
 
 ?>
 <!doctype html>

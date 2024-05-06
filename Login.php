@@ -1,5 +1,6 @@
 <?php
 require_once 'Controller\api_index.php';
+require_once 'navbar.php';
 	
 	
 ?>
