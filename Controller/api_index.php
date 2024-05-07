@@ -53,7 +53,7 @@ if(isset($_POST["submit"])){
 
     //Admin Login
     if(admin_login($idNum,$password)){
-        $_SESSION['admin_name'] = 'admin';
+        $_SESSION['admin_name'] = 'CCS Admin';
         $_SESSION['admin_id_number'] = 1;
         $_SESSION["admin_id"] = 1;
         echo '<script>window.location.href = "View/Admin/Admin.php";</script>';

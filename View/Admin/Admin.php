@@ -1,6 +1,6 @@
 <?php
 include '../../Controller/api_admin.php';
-
+$announce = view_announcement();
 ?>
 
 <!DOCTYPE html>
@@ -39,19 +39,23 @@ include '../../Controller/api_admin.php';
             <div class="col-md-6 mb-4">
                 <div class="card">
                     <div class=" card-header">Announcement</div>
-                    <div class="card-body form">
+                    <div class="card-body h-75">
                         <label for="an">New Announcement</label>
-                        <form action="" method="">
-                            <input type="text" id="an" class="form-control form-text">
+                        <form action="Admin.php" method="POST">
+                            <input type="text" name="announcement_text" id="an" class="form-control form-text">
                             <button type="submit" name="post_announcement" class="btn btn-success mt-2">Submit</button>
                         </form>
                         <hr>
-                        <p>Admin  01/01/01</p>
-                        <p>For the upcoming 1st year students. Please read the safety and rules of the laboratory</p>
+                        <div style="overflow-y: auto; max-height: 400px;">
+                            <p> <?php foreach ($announce as $row) : ?> <p><?php echo $row['admin_name'] . " | " . $row['date'] ?></p>
+                                <p><?php echo $row['message'] ?></p>
+                                <hr>
+                            <?php endforeach; ?>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
 
 

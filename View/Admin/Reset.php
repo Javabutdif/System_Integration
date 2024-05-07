@@ -9,6 +9,12 @@ include '../../Controller/api_admin.php';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CCS | Home</title>
+    <style>
+        .card-header {
+            background-color: #144c94;
+            color: white;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,7 +30,7 @@ include '../../Controller/api_admin.php';
                     <button type="submit" name="reset_password" class="btn btn-primary mt-3">Submit</button>
 
                 </div>
-            </div>
+        </div>
         </form>
     </div>
 

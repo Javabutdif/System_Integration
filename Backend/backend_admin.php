@@ -287,3 +287,32 @@ function reset_password($new_password,$id){
         return false;
     }
 }
+
+function post_announcement($message,$admin_name,$date){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "INSERT INTO announce (`admin_name`,`date`,`message`) VALUE ('$admin_name','$date','$message')";
+    if (mysqli_query($con, $sql)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+function view_announcement(){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT * FROM announce ORDER BY announce_id desc";
+
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $announcement = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $announcement[] = $row;
+        }
+    }
+    return $announcement;
+}
+
