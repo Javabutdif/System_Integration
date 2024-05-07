@@ -86,7 +86,7 @@ function submit_feedback($id,$message){
     $con = $db->getConnection();
     $date = date('Y-M-d');
 
-    $sql = "INSERT INTO feedback (`id_number`,`date`,`message`)VALUES ('$id','$message','$date')";
+    $sql = "INSERT INTO feedback (`id_number`,`date`,`message`)VALUES ('$id','$date','$message')";
     if(mysqli_query($con, $sql)){
         return true;
     }
