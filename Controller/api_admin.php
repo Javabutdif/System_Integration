@@ -3,18 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+
+   
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css
-    ">
-    
+   
     
     <title>CCS | Home</title>
     
@@ -295,7 +287,7 @@ else{
         icon: 'error',
         showConfirmButton: false,
         timer: 1500
-      });</script>";
+      });";
 }
 
 }
@@ -404,8 +396,6 @@ else{
 </form>
 
 
-<!-- Vertical Modal-->
-
 <!-- Modal -->
 <form action="Admin.php" method="POST">
 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -417,7 +407,7 @@ else{
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <div class="modal-body text-center container container-fluid">
+      <div class="modal-body text-center container d-flex flex-md-column gap-3" >
     <div class="form-group row">
         <label for="id" class="col-sm-4 col-form-label">ID Number:</label>
         <div class="col-sm-8">

@@ -1,8 +1,6 @@
 
 <?php
     include '../../Controller/api_admin.php';
- 
-
 
 ?>
 
@@ -26,7 +24,7 @@
                 <div class="card-body">
                     <h2 class="card-title text-center mb-3">Students Registered</h2>
                     <p class="card-text text-center fs-3"><?php echo retrieve_students_dashboard(); ?></p>
-                    <button class="btn btn-light btn-block" onclick="viewRegisteredStudents()">View Details</button>
+                    <button class="btn btn-light " onclick="viewRegisteredStudents()">View Details</button>
                 </div>
             </div>
         </div>
