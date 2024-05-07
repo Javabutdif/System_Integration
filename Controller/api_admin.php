@@ -1,3 +1,7 @@
+<?php
+    include '..\..\Backend\backend_admin.php';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -19,7 +23,7 @@
 
 <?php
 
-    include '..\..\Backend\backend_admin.php';
+   
 
     //Login
    

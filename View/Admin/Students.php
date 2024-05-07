@@ -126,6 +126,9 @@ function resetSession() {
 
 <?php
 if(isset($_POST["reset"])){
+  $db = Database::getInstance();
+  $con = $db->getConnection();
+  
   $sql1 = "UPDATE `student_session` SET `session` = 30";
   if(mysqli_query($con, $sql1)){
     // Return a success response
