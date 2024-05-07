@@ -140,7 +140,7 @@ require_once 'Controller\api_index.php';
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img src="/jems/images/sign.webp"
+                <img src="images/sign.webp"
                   class="img-fluid" alt="Sample image">
 
               </div>
