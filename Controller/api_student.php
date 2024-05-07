@@ -48,7 +48,7 @@ include '..\..\Backend\backend_student.php';
 
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
-            <a class="navbar-brand" href="Homepage.php"><?php echo $_SESSION['name'] ?></a>
+            <a class="navbar-brand" href="Homepage.php">Dashboard</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -126,6 +126,21 @@ if (isset($_POST["submit"])) {
     showConfirmButton: false,
     timer: 1500
   });</script>";
+    }
+}
+
+if(isset($_POST['submit_feedback'])){
+    $message = $_POST['feedback_text'];
+    $id = $_SESSION['id_number'];
+
+    if(submit_feedback($id,$message)){
+        echo "<script>Swal.fire({
+        title: 'Notification',
+        text: 'Feedback Submitted',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+    });</script>";
     }
 }
 

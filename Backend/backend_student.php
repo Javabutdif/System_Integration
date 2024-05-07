@@ -64,3 +64,33 @@ function edit_student_student($idNum, $last_Name, $first_Name, $middle_Name, $co
         return false;
     }
 }
+function view_announcement()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT * FROM announce ORDER BY announce_id desc";
+
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $announcement = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $announcement[] = $row;
+        }
+    }
+    return $announcement;
+}
+
+function submit_feedback($id,$message){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-M-d');
+
+    $sql = "INSERT INTO feedback (`id_number`,`date`,`message`)VALUES ('$id','$message','$date')";
+    if(mysqli_query($con, $sql)){
+        return true;
+    }
+    else{
+        return false;
+    }
+}

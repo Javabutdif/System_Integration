@@ -26,16 +26,20 @@ $announce = view_announcement();
     <div class="container mt-5">
 
         <div class="row">
-            <div class="col-md-6 mb-4">
-                <div class="card">
-                    <div class="card-header">Statistics</div>
-                    <div class="card-body">
-                        <p class="card-text">Students Registered: <?php echo retrieve_students_dashboard(); ?></p>
-                        <p class="card-text">Currently Sit-in: <?php echo retrieve_current_sit_in_dashboard(); ?></p>
-                        <p class="card-text">Total Sit-in: <?php echo retrieve_total_sit_in_dashboard(); ?></p>
+        
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header">Statistics</div>
+                        <div class="card-body">
+                            <p class="card-text">Students Registered: <?php echo retrieve_students_dashboard(); ?></p>
+                            <p class="card-text">Currently Sit-in: <?php echo retrieve_current_sit_in_dashboard(); ?></p>
+                            <p class="card-text">Total Sit-in: <?php echo retrieve_total_sit_in_dashboard(); ?></p>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+
+      
             <div class="col-md-6 mb-4">
                 <div class="card">
                     <div class=" card-header">Announcement</div>
@@ -46,16 +50,17 @@ $announce = view_announcement();
                             <button type="submit" name="post_announcement" class="btn btn-success mt-2">Submit</button>
                         </form>
                         <hr>
-                        <div style="overflow-y: auto; max-height: 400px;">
-                            <p> <?php foreach ($announce as $row) : ?> <p><?php echo $row['admin_name'] . " | " . $row['date'] ?></p>
-                                <p><?php echo $row['message'] ?></p>
-                                <hr>
-                            <?php endforeach; ?>
-                            </div>
+                        <div style="overflow-y: auto; max-height: 300px;">
+                            <p> <?php foreach ($announce as $row) : ?>
+                            <p><?php echo $row['admin_name'] . " | " . $row['date'] ?></p>
+                            <p><?php echo $row['message'] ?></p>
+                            <hr>
+                        <?php endforeach; ?>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
 
 
 

@@ -315,4 +315,20 @@ function view_announcement(){
     }
     return $announcement;
 }
+function view_feedback()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT * FROM feedback ORDER BY feedback_id desc";
+
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $feedback = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $feedback[] = $row;
+        }
+    }
+    return $feedback;
+}
 
