@@ -288,7 +288,7 @@ function reset_password($new_password,$id){
     }
 }
 
-function post_announcement($message,$admin_name,$date){
+ function post_announcement($message,$admin_name,$date){
     $db = Database::getInstance();
     $con = $db->getConnection();
 
