@@ -296,6 +296,31 @@ else{
 
 }
 
+if(isset($_POST['reset_password'])){
+  $new_password = $_POST['new_password'];
+  $id = $_SESSION['id_number'];
+
+  if(reset_password($new_password, $id)){
+    echo "<script>Swal.fire({
+        title: 'Notification',
+        text: 'Password Reset!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      });</script>";
+   
+  }
+  else{
+    echo "<script>Swal.fire({
+        title: 'Notification',
+        text: 'Error! Password did not change',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 1500
+      });";
+  }
+}
+
   
 
   
