@@ -65,7 +65,7 @@ $feedback = view_feedback();
                     <div class="card-body" style="height:28rem">
                         <label for="an">New Announcement</label>
                         <form action="Admin.php" method="POST">
-                            <input type="text" name="announcement_text" id="an" class="form-control form-text">
+                            <input type="text" name="announcement_text" id="an" class="form-control">
                             <button type="submit" name="post_announcement" class="btn btn-success mt-2">Submit</button>
                         </form>
                         <hr>

@@ -296,6 +296,8 @@ function reset_password($new_password,$id){
     if (mysqli_query($con, $sql)) {
         return true;
     } else {
+        // Log or display MySQL errors
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
         return false;
     }
 }
