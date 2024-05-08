@@ -1,5 +1,5 @@
 <?php
-
+require_once '../asset/navbar_student.html';
 include '../../Controller/api_student.php';
 
 

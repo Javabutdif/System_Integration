@@ -1,5 +1,5 @@
 <?php
-
+require_once '../asset/navbar_student.html';
 include '../../Controller/api_student.php';
 $announce = view_announcement();
 ?>
@@ -60,6 +60,16 @@ $announce = view_announcement();
 
 
           </div>
+        </div>
+
+      </div>
+      <div class="card">
+        <div class=" card-header text-white" style="background-color:#144c94">Rules and Regulation</div>
+        <div class="card-body container-fluid position-sticky " style="width:32rem;height:27rem;">
+          <div style="overflow-y: auto; max-height: 440px; ">
+            <img class="img-fluid card-img" src="../../images/rules.png" style="height:39rem;width:32rem">
+          </div>
+
         </div>
       </div>
 
