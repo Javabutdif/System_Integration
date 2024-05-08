@@ -18,11 +18,11 @@ include '../../Controller/api_student.php';
 
     <div class="container container-fluid container-lg ">
   
-        <h1 class="text-center text-bg-primary rounded-5 p-2 m-3 ">Reservation</h1>
+       
 
         <br>
         <br>
-        <div class="container">
+        <div class="container mx-5">
 
             <div class="form-group row">
                 <label for="id" class="col-sm-4 col-form-label">ID Number:</label>
@@ -60,7 +60,7 @@ include '../../Controller/api_student.php';
                             <option value="542">542</option>
                             <option value="Mac">Mac Laboratory</option>
                         </select>
-                        <button class="btn btn-primary" type="submit" name="submit">Submit</button>
+                        <button class="btn btn-primary" type="submit" name="submitReserve">Submit</button>
                     </div>
                 </div>
             </form>
@@ -72,7 +72,7 @@ include '../../Controller/api_student.php';
                 die("Error: Could not connect to the database. " . mysqli_connect_error());
             }
 
-            if (isset($_POST["submit"])) {
+            if (isset($_POST["submitReserve"])) {
                 // Retrieve the selected lab value
                 $selected_lab = $_POST["lab"];
                 // Sanitize and escape user input

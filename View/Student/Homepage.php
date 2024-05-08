@@ -22,12 +22,12 @@ $announce = view_announcement();
         <div class="card-body text-center">
           <img class=" card-img rounded-circle" style="height:10rem;width:10rem" src="../../images/hutao.webp">
           <hr>
-          <p class="card-text text-left"><strong>Name:</strong> <?php echo $_SESSION['name']; ?></p>
-          <p class="card-text text-left"><strong>Course:</strong> <?php echo $_SESSION['course']; ?></p>
-          <p class="card-text text-left"><strong>Year:</strong> <?php echo $_SESSION['yearLevel']; ?></p>
-          <p class="card-text text-left"><strong>Email:</strong> <?php echo $_SESSION['email']; ?></p>
-          <p class="card-text text-left"><strong>Address:</strong> <?php echo $_SESSION['address']; ?></p>
-          <p class="card-text text-left"><strong>Session:</strong> <?php echo $_SESSION['remaining']; ?></p>
+          <p class="card-text text-left"><i class="fa-solid fa-user-large"></i> <strong>Name:</strong> <?php echo $_SESSION['name']; ?></p>
+          <p class="card-text text-left"><i class="fa-solid fa-graduation-cap"></i> <strong>Course:</strong> <?php echo $_SESSION['course']; ?></p>
+          <p class="card-text text-left"><i class="fa-solid fa-arrow-up-9-1"></i> <strong>Year:</strong> <?php echo $_SESSION['yearLevel']; ?></p>
+          <p class="card-text text-left"><i class="fa-solid fa-envelope"></i> <strong>Email:</strong> <?php echo $_SESSION['email']; ?></p>
+          <p class="card-text text-left"><i class="fa-solid fa-address-card"></i> <strong>Address:</strong> <?php echo $_SESSION['address']; ?></p>
+          <p class="card-text text-left"><i class="fa-solid fa-stopwatch-20"></i> <strong>Session:</strong> <?php echo $_SESSION['remaining']; ?></p>
 
         </div>
       </div>
@@ -39,7 +39,7 @@ $announce = view_announcement();
 
             <div style="overflow-y: auto; max-height: 200px;">
               <p> <?php foreach ($announce as $row) : ?>
-              <p><?php echo $row['admin_name'] . " | " . $row['date'] ?></p>
+              <p><strong><?php echo $row['admin_name'] . " | " . $row['date'] ?></strong></p>
               <div class="card-body bg-light w-100">
                 <p><?php echo $row['message'] ?></p>
               </div>

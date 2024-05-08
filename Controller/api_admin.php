@@ -11,6 +11,8 @@ include '..\..\Backend\backend_admin.php';
 
 
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-nrZw6K5mh7Pdc0eo+eX+56dD5w0UKqNwKAU9PIO8KjkvRdK2AZzU6vXfb4rIWj80" crossorigin="anonymous">
+
 
 
   <title>CCS | Home</title>
@@ -386,7 +388,7 @@ if(isset($_POST['post_announcement'])){
             <a class="nav-link" href="Admin.php">Home</a>
           </li>
           <li class="nav-item">
-            <a type="button" class="nav-link" data-toggle="modal" data-target="#exampleModal">Search</a>
+            <a type="button" class="nav-link" data-toggle="modal" data-target="#exampleModal"> Search </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" href="Students.php">Students</a>

@@ -25,7 +25,7 @@ $announce = view_announcement();
 
                 <div style="overflow-y: auto; max-height: 300px;">
                     <p> <?php foreach ($announce as $row) : ?>
-                    <p><?php echo $row['admin_name'] . " | " . $row['date'] ?></p>
+                    <p><strong><?php echo $row['admin_name'] . " | " . $row['date'] ?></strong></p>
                     <div class="card-body bg-light w-100">
                         <p><?php echo $row['message'] ?></p>
                     </div>

@@ -32,7 +32,7 @@ $feedback = view_feedback();
             <div class="d-flex flex-column">
 
                 <div class="card mb-4" style="width:35rem">
-                    <div class="card-header">Statistics</div>
+                    <div class="card-header"> <i class="fa-solid fa-chart-column"></i> Statistics</div>
                     <div class="card-body">
                         <p class="card-text"><strong>Students Registered: </strong> <?php echo retrieve_students_dashboard(); ?></p>
                         <p class="card-text"><strong>Currently Sit-in: </strong><?php echo retrieve_current_sit_in_dashboard(); ?></p>
@@ -43,7 +43,7 @@ $feedback = view_feedback();
 
 
                 <div class="card">
-                    <div class="card-header">Feedback and Report</div>
+                    <div class="card-header"><i class="fa-solid fa-chalkboard-user"></i> Feedback and Report </div>
                     <div class="card-body">
                       
                         <div style="overflow-y: auto; max-height: 270px;">
@@ -61,7 +61,7 @@ $feedback = view_feedback();
 
             <div class="col-md-6 mb-4">
                 <div class="card">
-                    <div class=" card-header">Announcement</div>
+                    <div class=" card-header"><i class="fa-solid fa-bullhorn"></i> Announcement</div>
                     <div class="card-body" style="height:28rem">
                         <label for="an">New Announcement</label>
                         <form action="Admin.php" method="POST">
