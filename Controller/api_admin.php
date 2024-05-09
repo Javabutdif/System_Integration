@@ -412,11 +412,60 @@ if(isset($_POST['post_announcement'])){
 }
 
 if(isset($_POST['labSubmit'])){
-  $lab = "lab_".$_POST['lab'];
+  $lab_final = "lab_".$_POST['lab'];
+  $data = retrieve_pc($lab_final);
 
-  $data = retrieve_pc($lab);
+}
+if(isset($_POST['submitAvail'])){
+  $pc1 = $_POST['pc'];
+  $lab = $_POST['filter_lab'];
 
 
+  $concat = ""; // Initialize an empty string to store concatenated values
+
+  for ($i = 0; $i < count($pc1); $i++) {
+    $concat .= $pc1[$i];
+
+    // Add a comma after each element except for the last one
+    if ($i < count($pc1) - 1) {
+      $concat .= ",";
+    }
+  }
+  if(available_pc($concat,$lab)){
+    echo "<script>Swal.fire({
+        title: 'Notification',
+        text: 'PC Available!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      });</script>";
+  }
+ 
+}
+if (isset($_POST['submitDecline'])) {
+  $pc1 = $_POST['pc'];
+  $lab = $_POST['filter_lab'];
+
+
+  $concat = ""; // Initialize an empty string to store concatenated values
+
+  for ($i = 0; $i < count($pc1); $i++) {
+    $concat .= $pc1[$i];
+
+    // Add a comma after each element except for the last one
+    if ($i < count($pc1) - 1) {
+      $concat .= ",";
+    }
+  }
+  if (used_pc($concat, $lab)) {
+    echo "<script>Swal.fire({
+        title: 'Notification',
+        text: 'PC Not Available!',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+      });</script>";
+  }
 }
 
 
