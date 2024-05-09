@@ -43,6 +43,7 @@ include '../../Controller/api_admin.php';
                         </div>
                     </form>
                     <form action="Reservation.php" method="POST">
+                        <p><?php echo $current_lab ?></p>
                         <div style="overflow-y: auto; max-height: 275px;">
                             <?php foreach ($data as $row) : ?>
                                 <div>
@@ -69,7 +70,7 @@ include '../../Controller/api_admin.php';
             </div>
         </div>
     </div>
-   
+
 </body>
 
 </html>

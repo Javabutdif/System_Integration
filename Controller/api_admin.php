@@ -413,6 +413,7 @@ if(isset($_POST['post_announcement'])){
 
 if(isset($_POST['labSubmit'])){
   $lab_final = "lab_".$_POST['lab'];
+  $current_lab =$_POST['lab'];
   $data = retrieve_pc($lab_final);
 
 }
