@@ -69,12 +69,7 @@ include '../../Controller/api_admin.php';
             </div>
         </div>
     </div>
-    <?php foreach ($pc1 as $pc2) : ?>
-        <div>
-            <p><?php echo $pc2 ?></p>
-        </div>
-    <?php endforeach; ?>
-    <?php echo $concat ?>
+   
 </body>
 
 </html>

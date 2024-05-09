@@ -354,7 +354,7 @@ function available_pc($concat,$lab){
     $con = $db->getConnection();
     $concat1 = "(" . $concat . ")";
 
-    $sql = "UPDATE `student_pc` SET `$lab` = '1' WHERE `pc_id` IN '$concat1';";
+    $sql = "UPDATE `student_pc` SET `$lab` = '1' WHERE `pc_id` IN $concat1;";
     if (mysqli_query($con, $sql)) {
         return true;
     } else {
@@ -369,7 +369,7 @@ function used_pc($concat, $lab)
     $con = $db->getConnection();
     $concat1 = "(" . $concat . ")";
 
-    $sql = "UPDATE `student_pc` SET `$lab` = '0' WHERE `pc_id` IN '$concat1';";
+    $sql = "UPDATE `student_pc` SET `$lab` = '0' WHERE `pc_id` IN $concat1;";
     if (mysqli_query($con, $sql)) {
         return true;
     } else {

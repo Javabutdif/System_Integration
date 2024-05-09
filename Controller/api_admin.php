@@ -431,7 +431,9 @@ if(isset($_POST['submitAvail'])){
       $concat .= ",";
     }
   }
-  if(available_pc($concat,$lab)){
+  
+
+  if (available_pc($concat, $lab)) {
     echo "<script>Swal.fire({
         title: 'Notification',
         text: 'PC Available!',
