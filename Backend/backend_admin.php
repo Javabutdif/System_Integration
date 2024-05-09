@@ -337,7 +337,7 @@ function retrieve_pc($lab){
     $db = Database::getInstance();
     $con = $db->getConnection();
 
-    $sql = "SELECT pc_id FROM student_pc WHERE ".$lab;
+    $sql = "SELECT pc_id , '$lab' as lab FROM student_pc WHERE ".$lab;
 
     $result = mysqli_query($con, $sql);
     if (mysqli_num_rows($result) > 0) {

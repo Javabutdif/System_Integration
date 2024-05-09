@@ -43,12 +43,17 @@
                 </form>
                 <form action="Reservation.php" method="POST">
                 <div  style="overflow-y: auto; max-height: 275px;">
-                    <?php foreach($data as $row): ?>
-                    <div >
-                        <input type="checkbox" id="PC<?php echo $row['pc_id'] ?>" name="PC<?php echo $row['pc_id'] ?>"value="Yes">
-                        <label for="PC<?php echo $row['pc_id'] ?>">PC <?php echo $row['pc_id'] ?></label>
+                                <?php foreach($data as $row): ?>
+                    <div>
+                        <input type="checkbox" id="PC<?php echo $row['pc_id']; ?>" name="PC<?php echo $row['pc_id']; ?>" value="Yes">
+                        <label for="PC<?php echo $row['pc_id']; ?>">
+                            <?php if($row['lab'] == 1) echo "<p style='color:red;'>"; ?>
+                            PC <?php echo $row['pc_id']; ?>
+                            <?php if($row['lab'] == 1) echo "</p>"; ?>
+                        </label>
                     </div>
-                   <?php endforeach; ?>
+                <?php endforeach; ?>
+
                    </div>
                    <div class="d-flex flex-row gap-3">
                    <button type="submit" name="submitAvail" class="btn btn-success mt-3">Available</button>
