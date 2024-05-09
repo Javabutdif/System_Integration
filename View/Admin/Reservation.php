@@ -47,10 +47,13 @@
                     <div>
                         <input type="checkbox" id="PC<?php echo $row['pc_id']; ?>" name="PC<?php echo $row['pc_id']; ?>" value="Yes">
                         <label for="PC<?php echo $row['pc_id']; ?>">
-                            <?php if($row['lab'] == 1) echo "<p style='color:red;'>"; ?>
-                            PC <?php echo $row['pc_id']; ?>
-                            <?php if($row['lab'] == 1) echo "</p>"; ?>
-                        </label>
+                        <?php if($row['lab'] == 1): ?>
+                            <p style='color:green;'>PC <?php echo $row['pc_id']." (Available)"; ?></p>
+                        <?php else: ?>
+                            <p>PC <?php echo $row['pc_id']." (Used)"; ?></p>
+                        <?php endif; ?>
+                    </label>
+
                     </div>
                 <?php endforeach; ?>
 
