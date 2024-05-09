@@ -1,39 +1,7 @@
 <?php
 include '..\..\Backend\backend_admin.php';
 
-?>
-<!DOCTYPE html>
-<html lang="en">
 
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-nrZw6K5mh7Pdc0eo+eX+56dD5w0UKqNwKAU9PIO8KjkvRdK2AZzU6vXfb4rIWj80" crossorigin="anonymous">
-
-
-
-  <title>CCS | Home</title>
-
-</head>
-</head>
-
-<body>
-
-</body>
-
-</html>
-
-<?php
-
-
-
-//Login
-
-
-loginAdmin();
 
 //Object Student
 class Student
@@ -340,76 +308,15 @@ if(isset($_POST['post_announcement'])){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css
-    ">
+  
 
 
   <title>CCS | Home</title>
-  <style>
-    .navbar {
-      background-color: #144c94;
-    }
-
-    .navbar-brand,
-    .nav-link {
-      color: white !important;
-    }
-
-    .navbar-brand:hover,
-    .nav-link:hover {
-      color: yellow !important;
-    }
-
-    .dashboard-card {
-      background-color: #007bff;
-      color: white;
-      border-radius: 10px;
-      padding: 20px;
-    }
-  </style>
+  
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-light">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="Admin.php">College of Computer Studies Admin</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav ms-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="Admin.php">Home</a>
-          </li>
-          <li class="nav-item">
-            <a type="button" class="nav-link" data-toggle="modal" data-target="#exampleModal"> Search </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Students.php">Students</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Sit_in.php">Sit-in</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="ViewRecords.php">View Sit-in Records</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="Report.php">Generate Reports</a>
-          </li>
-          <li class="nav-item">
-            <a class="btn btn-warning" href="..\..\Login.php">Log out</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-
+  
 
 
   <!-- Modal -->
@@ -545,3 +452,7 @@ if(isset($_POST['post_announcement'])){
     });
   <?php endif; ?>
 </script>
+
+<?php
+loginAdmin();
+?>
