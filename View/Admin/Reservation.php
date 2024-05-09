@@ -20,7 +20,7 @@
 
     <div class="container">
         <div class="d-flex flex-row">
-            <div class="card" style="width:17rem; height:30rem">
+            <div class="card" style="width:17rem; height:31rem">
                 <div class="card-header">Computer Control</div>
                 <div class="card-body">
                 <form action="Reservation.php" method="POST">
@@ -41,7 +41,8 @@
                         <button type="submit" name="labSubmit" class="btn btn-primary">Filter</button>
                 </div>
                 </form>
-                <div style="overflow-y: auto; max-height: 270px;">
+                <form action="Reservation.php" method="POST">
+                <div  style="overflow-y: auto; max-height: 275px;">
                     <?php foreach($data as $row): ?>
                     <div >
                         <input type="checkbox" id="PC<?php echo $row['pc_id'] ?>" name="PC<?php echo $row['pc_id'] ?>"value="Yes">
@@ -49,7 +50,11 @@
                     </div>
                    <?php endforeach; ?>
                    </div>
-                    
+                   <div class="d-flex flex-row gap-3">
+                   <button type="submit" name="submitAvail" class="btn btn-success mt-3">Available</button>
+                   <button type="submit" name="submitDecline" class="btn btn-danger mt-3">Used</button>
+                   </div>
+                   </form>
                 </div>
             </div>
         </div>
