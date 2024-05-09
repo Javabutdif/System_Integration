@@ -1,6 +1,6 @@
 <?php
 include '../../Controller/api_admin.php';
-require_once '../asset/navbar_admin.html';
+
 $listPerson = retrieve_sit_in();
 ?>
 

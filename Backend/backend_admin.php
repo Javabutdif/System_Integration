@@ -333,4 +333,20 @@ function view_feedback()
     }
     return $feedback;
 }
+function retrieve_pc($lab){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT pc_id FROM student_pc WHERE ".$lab." = '1'";
+
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $pc = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $pc[] = $row;
+        }
+    }
+    return $pc;
+
+}
 
