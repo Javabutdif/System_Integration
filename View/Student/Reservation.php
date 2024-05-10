@@ -61,7 +61,7 @@ include '../../Controller/api_student.php';
                             <option value="542">542</option>
                             <option value="Mac">Mac Laboratory</option>
                         </select>
-                        <button class="btn btn-primary" type="submit" name="submitReserve">Submit</button>
+                        <button class="btn btn-primary mt-2" type="submit" name="submitReserve">Submit</button>
                     </div>
                 </div>
             </form>

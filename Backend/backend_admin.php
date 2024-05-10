@@ -379,3 +379,57 @@ function used_pc($concat, $lab)
     }
 }
 
+function retrieve_c_programming(){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'C-Programming'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}
+function retrieve_c_sharp_programming()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'C# Programming'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}
+function retrieve_java_programming()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'Java Programming'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}
+function retrieve_asp_programming()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'ASP.Net Programming'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}
+function retrieve_php_programming()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'Php Programming'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}

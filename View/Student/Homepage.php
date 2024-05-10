@@ -34,7 +34,7 @@ $announce = view_announcement();
 
       <div class="column">
         <div class="card mb-4" style="width: 30rem; height:17rem">
-          <h5 class=" card-header text-white " style="background-color:#144c94">Announcement</h5>
+          <h5 class=" card-header text-white " style="background-color:#144c94"><i class="fa-solid fa-bullhorn"></i> Announcement</h5>
           <div class="card-body" id="card-background">
 
             <div style="overflow-y: auto; max-height: 200px;">
@@ -50,7 +50,7 @@ $announce = view_announcement();
 
         </div>
         <div class="card " style="height:42%">
-          <div class=" card-header text-white" style="background-color:#144c94">Feedback and Report</div>
+          <div class=" card-header text-white" style="background-color:#144c94"><i class="fa-solid fa-chalkboard-user"></i> Feedback and Report</div>
           <div class="card-body">
             <label for="an">Enter Feedback</label>
             <form action="Homepage.php" method="POST">
