@@ -50,24 +50,12 @@ $feedback = view_feedback();
 
 
 
-                <div class="card">
-                    <div class="card-header"><i class="fa-solid fa-chalkboard-user"></i> Feedback and Report </div>
-                    <div class="card-body">
 
-                        <div style="overflow-y: auto; max-height: 270px;">
-                            <p> <?php foreach ($feedback as $row) : ?>
-                            <p><strong><?php echo $row['id_number'] . " | " . $row['date'] ?></strong></p>
-                            <p><?php echo $row['message'] ?></p>
-                            <hr>
-                        <?php endforeach; ?>
-                        </div>
-                    </div>
-                </div>
             </div>
 
 
+            <div class="column">
 
-            <div class="col-md-6 mb-4">
                 <div class="card">
                     <div class=" card-header"><i class="fa-solid fa-bullhorn"></i> Announcement</div>
                     <div class="card-body" style="height:28rem">
@@ -86,11 +74,32 @@ $feedback = view_feedback();
                         </div>
                     </div>
                 </div>
+
+
+                <div class="card mt-4">
+                    <div class="card-header"><i class="fa-solid fa-chalkboard-user"></i> Feedback and Report </div>
+                    <div class="card-body " style="height:10rem">
+
+                        <div style="overflow-y: auto; max-height: 270px;">
+                            <p> <?php foreach ($feedback as $row) : ?>
+                            <p><strong><?php echo $row['id_number'] . " | " . $row['date'] ?></strong></p>
+                            <p><?php echo $row['message'] ?></p>
+                            <hr>
+                        <?php endforeach; ?>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card mt-4">
+            <div class="card-header"><i class="fa-solid fa-chalkboard-user"></i> Students Year Level</div>
+            <div class="card-body ">
+
+                <canvas id="students"></canvas>
             </div>
 
-
         </div>
-
 
 
 
@@ -102,6 +111,7 @@ $feedback = view_feedback();
 
 <script>
     const ctx = document.getElementById('myChart');
+    const stud = document.getElementById('students');
 
     new Chart(ctx, {
         type: 'pie',
@@ -110,6 +120,42 @@ $feedback = view_feedback();
             datasets: [{
                 label: 'Programming Languages',
                 data: [<?php echo retrieve_c_sharp_programming(); ?>, <?php echo retrieve_c_programming(); ?>, <?php echo retrieve_java_programming(); ?>, <?php echo retrieve_asp_programming(); ?>, <?php echo retrieve_php_programming(); ?>],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+    new Chart(stud, {
+        type: 'bar',
+        data: {
+            labels: ['Freshmen', 'Sophomore', 'Junior', 'Senior'],
+            datasets: [{
+                label: 'College of Computer Studies Students Year Level',
+                data: [<?php echo retrieve_first(); ?>, <?php echo retrieve_second(); ?>, <?php echo retrieve_third(); ?>, <?php echo retrieve_fourth(); ?>],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(255, 159, 64, 0.2)',
+                    'rgba(255, 205, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(201, 203, 207, 0.2)'
+                ],
+                borderColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(255, 159, 64)',
+                    'rgb(255, 205, 86)',
+                    'rgb(75, 192, 192)',
+                    'rgb(54, 162, 235)',
+                    'rgb(153, 102, 255)',
+                    'rgb(201, 203, 207)'
+                ],
                 borderWidth: 1
             }]
         },

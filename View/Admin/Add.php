@@ -1,6 +1,6 @@
 <?php
-require_once '../asset/navbar_admin.html';
-  include '../../Controller/api_admin.php';
+
+include '../../Controller/api_admin.php';
 
 
 ?>

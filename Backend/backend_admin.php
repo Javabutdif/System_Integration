@@ -433,3 +433,47 @@ function retrieve_php_programming()
     $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
     return $language['lang'];
 }
+
+function retrieve_first(){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT count(yearLevel) as year from students where yearLevel = '1';";
+
+    $result = mysqli_query($con, $sql);
+    $students = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $students['year'];
+}
+function retrieve_second()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT count(yearLevel) as year from students where yearLevel = '2';";
+
+    $result = mysqli_query($con, $sql);
+    $students = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $students['year'];
+}
+function retrieve_third()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT count(yearLevel) as year from students where yearLevel = '3';";
+
+    $result = mysqli_query($con, $sql);
+    $students = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $students['year'];
+}
+function retrieve_fourth()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT count(yearLevel) as year from students where yearLevel = '4';";
+
+    $result = mysqli_query($con, $sql);
+    $students = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $students['year'];
+}
