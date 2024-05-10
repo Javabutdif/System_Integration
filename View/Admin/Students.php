@@ -11,6 +11,11 @@ $listPerson = retrieve_students();
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Student</title>
+  <style>
+    .th {
+      background-color: #144c94;
+    }
+  </style>
 
 </head>
 
@@ -20,7 +25,7 @@ $listPerson = retrieve_students();
   <br>
 
   <!-- Table -->
-  <div class="container d-flex flex-row  gap-3 ">
+  <div class="container d-flex flex-row  gap-3 mb-4">
     <a class="btn btn-primary " href="Add.php">Add Students</a>
 
     <button class="btn btn-danger" id="resetButton">Reset All Session</button>
@@ -29,8 +34,8 @@ $listPerson = retrieve_students();
 
 
   <div class="container">
-    <table id="example" class="table table-striped table-hover display compact " style="width:100%">
-      <thead style="background-color: #144c94">
+    <table id="example" class="table table-striped table-hover ">
+      <thead>
         <tr>
           <th>ID Number</th>
           <th>Name</th>
