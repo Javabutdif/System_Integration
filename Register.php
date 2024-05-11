@@ -16,7 +16,7 @@ require_once 'Controller\api_index.php';
 	<body style="background-color: #eee;">
 		
 	<form action="Register.php"method="POST">
-	<section class="vh-100" >
+	<section class="vh-100 pt-4" >
 		
   <div class="container h-100">
     <div class="row d-flex justify-content-center align-items-center h-100">
@@ -144,12 +144,19 @@ require_once 'Controller\api_index.php';
                   class="img-fluid" alt="Sample image">
 
               </div>
+            
             </div>
+            
           </div>
+          
         </div>
+        
       </div>
+      
     </div>
+    
   </div>
+
 </section>
 	</form>
 	
@@ -158,7 +165,7 @@ require_once 'Controller\api_index.php';
 
 	
 
-			
+		
 	</body>
 </html>
 

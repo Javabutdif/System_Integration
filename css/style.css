@@ -4,47 +4,10 @@
 
 		body{
 				
-				background-position:center;
-				background-size: cover;
-				background-color: #144c94";
+				margin: 0;
+				padding: 0;
+				height: 0;
+				width: 0;
 				
 			}
 			
-			h3{
-				color: white;
-			}
-			h1{
-				color: black;
-			}
-			h5{
-				color: white;
-			}
-			.formm{
-			
-			
-				margin-left:35%; 
-				margin-right:35%;
-				background-color: white; 
-				text-align: center;
-				border-radius: 20px 20px 20px 20px;
-				position: relative;
-			}
-			
-			a{
-				color: blue;
-			}
-			.btn:hover{
-				color:black;
-				
-			}
-			.inputted{
-				border-radius: 10px 10px 10px 10px;
-				border-color: white;
-			}
-			.coll{
-
-				color:black;
-			}
-			.inputt{
-				border-radius: 20px 20px 20px 20px;
-			}
