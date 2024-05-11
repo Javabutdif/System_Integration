@@ -17,10 +17,11 @@ loginAdmin();
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css">
-
+    <link rel="icon" href="ccsLogo.ico" type="image/x-icon">
 
 
   <title>CCS | Home</title>
+  
   <style>
     .navbar {
       background-color: #144c94;
