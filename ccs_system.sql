@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 15, 2024 at 08:01 PM
+-- Generation Time: May 12, 2024 at 01:04 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -20,6 +20,46 @@ SET time_zone = "+00:00";
 --
 -- Database: `ccs_system`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `announce`
+--
+
+CREATE TABLE `announce` (
+  `announce_id` int(11) NOT NULL,
+  `admin_name` varchar(20) NOT NULL,
+  `date` varchar(20) NOT NULL,
+  `message` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `announce`
+--
+
+INSERT INTO `announce` (`announce_id`, `admin_name`, `date`, `message`) VALUES
+(7, 'CCS Admin', '2024-May-08', 'Important Announcement  We are excited to announce the launch of our new website! 🎉 Explore our latest products and services now!');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `feedback_id` int(11) NOT NULL,
+  `id_number` int(11) NOT NULL,
+  `date` varchar(20) NOT NULL,
+  `message` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `feedback`
+--
+
+INSERT INTO `feedback` (`feedback_id`, `id_number`, `date`, `message`) VALUES
+(3, 19835644, '2024-May-08', 'Ang lab 524 kay bati');
 
 -- --------------------------------------------------------
 
@@ -50,29 +90,6 @@ INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yea
 (123123, 'Aguilar', 'Jermaine', 'J', 3, '123', 'BSIT', 'jermaine0@gmail.com', 'San Isidro Talisay', 'TRUE'),
 (19835644, 'Genabio', 'Anton James', 'J', 3, '123', 'BSIT', 'jamesgenabio@yahoo.com', 'San Isidro Talisay', 'TRUE'),
 (19835645, 'Lim', 'Kyle', 'L', 3, '123', 'BSCS', 'kyle@gmail.com', 'Lorega', 'TRUE');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `student_lab`
---
-
-CREATE TABLE `student_lab` (
-  `id` int(11) NOT NULL,
-  `id_number` int(11) NOT NULL,
-  `lab` int(11) NOT NULL,
-  `sit_in` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `student_lab`
---
-
-INSERT INTO `student_lab` (`id`, `id_number`, `lab`, `sit_in`) VALUES
-(7, 19835644, 524, 4),
-(8, 19835644, 526, 2),
-(9, 123123, 524, 1),
-(11, 19835644, 528, 1);
 
 -- --------------------------------------------------------
 
@@ -204,17 +221,23 @@ INSERT INTO `student_sit_in` (`sit_id`, `id_number`, `sit_purpose`, `sit_lab`, `
 --
 
 --
+-- Indexes for table `announce`
+--
+ALTER TABLE `announce`
+  ADD PRIMARY KEY (`announce_id`);
+
+--
+-- Indexes for table `feedback`
+--
+ALTER TABLE `feedback`
+  ADD PRIMARY KEY (`feedback_id`);
+
+--
 -- Indexes for table `students`
 --
 ALTER TABLE `students`
   ADD PRIMARY KEY (`id_number`),
   ADD UNIQUE KEY `id_number` (`id_number`);
-
---
--- Indexes for table `student_lab`
---
-ALTER TABLE `student_lab`
-  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `student_pc`
@@ -239,10 +262,16 @@ ALTER TABLE `student_sit_in`
 --
 
 --
--- AUTO_INCREMENT for table `student_lab`
+-- AUTO_INCREMENT for table `announce`
 --
-ALTER TABLE `student_lab`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+ALTER TABLE `announce`
+  MODIFY `announce_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `feedback`
+--
+ALTER TABLE `feedback`
+  MODIFY `feedback_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `student_sit_in`
