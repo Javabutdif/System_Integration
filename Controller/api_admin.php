@@ -1,7 +1,7 @@
 <?php
 include '..\..\Backend\backend_admin.php';
 
-loginAdmin();
+
 ?>
 
 <!DOCTYPE html>
@@ -43,6 +43,7 @@ loginAdmin();
       border-radius: 10px;
       padding: 20px;
     }
+
   </style>
 
 </head>
@@ -120,7 +121,7 @@ loginAdmin();
 </html>
 
 <?php
-
+loginAdmin();
 //Object Student
 class Student
 {

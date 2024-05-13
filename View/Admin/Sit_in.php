@@ -21,16 +21,16 @@ $listPerson = retrieve_sit_in();
 
     <div class="container">
         <table id="example" class="table table-striped display compact" style="width:100%">
-            <thead style="background-color: #144c94">
+            <thead>
                 <tr>
-                    <th class="text-white">Sit ID Number</th>
-                    <th class="text-white">ID Number</th>
-                    <th class="text-white">Name</th>
-                    <th class="text-white">Purpose</th>
-                    <th class="text-white">Sit Lab</th>
-                    <th class="text-white">Session</th>
-                    <th class="text-white">Status</th>
-                    <th class="text-white">Actions</th>
+                    <th>Sit ID Number</th>
+                    <th>ID Number</th>
+                    <th>Name</th>
+                    <th>Purpose</th>
+                    <th>Sit Lab</th>
+                    <th>Session</th>
+                    <th>Status</th>
+                    <th>Actions</th>
                 </tr>
             </thead>
 
