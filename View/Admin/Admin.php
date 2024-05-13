@@ -80,7 +80,7 @@ $feedback = view_feedback();
                     <div class="card-header"><i class="fa-solid fa-chalkboard-user"></i> Feedback and Report </div>
                     <div class="card-body " style="height:10rem">
 
-                        <div style="overflow-y: auto; max-height: 270px;">
+                        <div style="overflow-y: auto; max-height: 140px;">
                             <p> <?php foreach ($feedback as $row) : ?>
                             <p><strong><?php echo $row['id_number'] . " | " . $row['date'] ?></strong></p>
                             <p><?php echo $row['message'] ?></p>
