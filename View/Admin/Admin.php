@@ -61,11 +61,11 @@ $feedback = view_feedback();
                     <div class="card-body" style="height:28rem">
                         <label for="an">New Announcement</label>
                         <form action="Admin.php" method="POST">
-                            <input type="text" name="announcement_text" id="an" class="form-control">
+                            <textarea type="text" name="announcement_text" id="an" class="form-control"></textarea>
                             <button type="submit" name="post_announcement" class="btn btn-success mt-2">Submit</button>
                         </form>
                         <hr>
-                        <div style="overflow-y: auto; max-height: 270px;">
+                        <div style="overflow-y: auto; max-height: 260px;">
                             <p> <?php foreach ($announce as $row) : ?>
                             <p><strong><?php echo $row['admin_name'] . " | " . $row['date'] ?></strong></p>
                             <p><?php echo $row['message'] ?></p>
