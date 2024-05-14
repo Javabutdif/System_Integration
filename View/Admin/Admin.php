@@ -56,16 +56,19 @@ $feedback = view_feedback();
 
             <div class="column">
 
-                <div class="card">
+                <div class="card" style="max-width:37rem">
                     <div class=" card-header"><i class="fa-solid fa-bullhorn"></i> Announcement</div>
-                    <div class="card-body" style="height:28rem">
+                    <div class="card-body" style="height:42.5rem">
                         <label for="an">New Announcement</label>
-                        <form action="Admin.php" method="POST">
+                        <form class="mb-4" action="Admin.php" method="POST">
                             <textarea type="text" name="announcement_text" id="an" class="form-control"></textarea>
                             <button type="submit" name="post_announcement" class="btn btn-success mt-2">Submit</button>
                         </form>
+
+                        <h3><strong>Posted Announcement</strong></h3>
                         <hr>
-                        <div style="overflow-y: auto; max-height: 260px;">
+
+                        <div class="mt-3" style="overflow-y: auto; max-height: 390px;">
                             <p> <?php foreach ($announce as $row) : ?>
                             <p><strong><?php echo $row['admin_name'] . " | " . $row['date'] ?></strong></p>
                             <p><?php echo $row['message'] ?></p>
@@ -76,20 +79,7 @@ $feedback = view_feedback();
                 </div>
 
 
-                <div class="card mt-4">
-                    <div class="card-header"><i class="fa-solid fa-chalkboard-user"></i> Feedback and Report </div>
-                    <div class="card-body " style="height:10rem">
 
-                        <div style="overflow-y: auto; max-height: 140px;">
-                            <p> <?php foreach ($feedback as $row) : ?>
-                            <p><strong><?php echo $row['id_number'] . " | " . $row['date'] ?></strong></p>
-                            <p><?php echo $row['message'] ?></p>
-                            <hr>
-                        <?php endforeach; ?>
-                        </div>
-                    </div>
-
-                </div>
             </div>
         </div>
         <div class="card mt-4">

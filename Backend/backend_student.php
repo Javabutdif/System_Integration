@@ -81,12 +81,12 @@ function view_announcement()
     return $announcement;
 }
 
-function submit_feedback($id,$message){
+function submit_feedback($id,$lab,$message){
     $db = Database::getInstance();
     $con = $db->getConnection();
     $date = date('Y-M-d');
 
-    $sql = "INSERT INTO feedback (`id_number`,`date`,`message`)VALUES ('$id','$date','$message')";
+    $sql = "INSERT INTO feedback (`id_number`,`lab`,`date`,`message`)VALUES ('$id','$lab','$date','$message')";
     if(mysqli_query($con, $sql)){
         return true;
     }

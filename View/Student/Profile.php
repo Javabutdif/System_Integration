@@ -25,7 +25,7 @@ include '../../Controller/api_student.php';
           <div class="card-body p-md-5">
             <div class="row justify-content-center">
               <div class="col-md-10 col-lg-6 col-xl-5 order-2 order-lg-1">
-			  <a class="btn btn-danger" href="Homepage.php">Back</a>
+	
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Edit Profile</p>
 
                 <form class="mx-1 mx-md-4">

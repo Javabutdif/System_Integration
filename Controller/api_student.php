@@ -53,8 +53,9 @@ if (isset($_POST["submit"])) {
 if(isset($_POST['submit_feedback'])){
     $message = $_POST['feedback_text'];
     $id = $_SESSION['id_number'];
+    $lab = $_POST['sit_lab'];
 
-    if(submit_feedback($id,$message)){
+    if(submit_feedback($id,$lab,$message)){
         echo "<script>Swal.fire({
         title: 'Notification',
         text: 'Feedback Submitted',

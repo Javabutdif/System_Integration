@@ -10,18 +10,17 @@ include '..\..\Backend\backend_admin.php';
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-nrZw6K5mh7Pdc0eo+eX+56dD5w0UKqNwKAU9PIO8KjkvRdK2AZzU6vXfb4rIWj80" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css">
-    <link rel="icon" href="ccsLogo.ico" type="image/x-icon">
-
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" integrity="sha384-nrZw6K5mh7Pdc0eo+eX+56dD5w0UKqNwKAU9PIO8KjkvRdK2AZzU6vXfb4rIWj80" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/dataTables.bootstrap5.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/2.0.6/css/dataTables.bootstrap5.css">
+  <link rel="icon" href="ccsLogo.ico" type="image/x-icon">
 
   <title>CCS | Home</title>
-  
+
   <style>
     .navbar {
       background-color: #144c94;
@@ -43,14 +42,12 @@ include '..\..\Backend\backend_admin.php';
       border-radius: 10px;
       padding: 20px;
     }
-
   </style>
 
 </head>
-</head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light">
+  <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container-fluid">
       <a class="navbar-brand" href="Admin.php">College of Computer Studies Admin</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -74,8 +71,12 @@ include '..\..\Backend\backend_admin.php';
             <a class="nav-link" href="ViewRecords.php">View Sit-in Records</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="Report.php">Generate Reports</a>
+            <a class="nav-link" href="Report.php">Sit-in Reports</a>
           </li>
+          <li class="nav-item">
+            <a class="nav-link" href="Feedback_Report.php">Feedback Reports</a>
+          </li>
+
           <li class="nav-item">
             <a class="nav-link" href="Reservation.php">Reservation</a>
           </li>
@@ -87,38 +88,29 @@ include '..\..\Backend\backend_admin.php';
     </div>
   </nav>
 
-
-
-
+  <!-- Your HTML content goes here -->
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.js"></script>
-<script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
-
-
-
-
-
-
-
-
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.js"></script>
+  <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
 </body>
 
 </html>
+
 
 <?php
 loginAdmin();
@@ -396,12 +388,12 @@ if (isset($_POST['reset_password'])) {
       });";
   }
 }
-if(isset($_POST['post_announcement'])){
+if (isset($_POST['post_announcement'])) {
   $message = $_POST['announcement_text'];
   $admin_name = $_SESSION['admin_name'];
   $date = date('Y-M-d');
 
-  if(post_announcement($message,$admin_name,$date)){
+  if (post_announcement($message, $admin_name, $date)) {
     echo "<script>Swal.fire({
         title: 'Notification',
         text: 'Announcement Posted!',
@@ -410,16 +402,14 @@ if(isset($_POST['post_announcement'])){
         timer: 1500
       });</script>";
   }
-
 }
 
-if(isset($_POST['labSubmit'])){
-  $lab_final = "lab_".$_POST['lab'];
-  $current_lab =$_POST['lab'];
+if (isset($_POST['labSubmit'])) {
+  $lab_final = "lab_" . $_POST['lab'];
+  $current_lab = $_POST['lab'];
   $data = retrieve_pc($lab_final);
-
 }
-if(isset($_POST['submitAvail'])){
+if (isset($_POST['submitAvail'])) {
   $pc1 = $_POST['pc'];
   $lab = $_POST['filter_lab'];
 
@@ -434,7 +424,7 @@ if(isset($_POST['submitAvail'])){
       $concat .= ",";
     }
   }
-  
+
 
   if (available_pc($concat, $lab)) {
     echo "<script>Swal.fire({
@@ -445,7 +435,6 @@ if(isset($_POST['submitAvail'])){
         timer: 1500
       });</script>";
   }
- 
 }
 if (isset($_POST['submitDecline'])) {
   $pc1 = $_POST['pc'];
@@ -486,15 +475,15 @@ if (isset($_POST['submitDecline'])) {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
+
 
 
   <title>CCS | Home</title>
-  
+
 </head>
 
 <body>
-  
+
 
 
   <!-- Modal -->
@@ -595,22 +584,22 @@ if (isset($_POST['submitDecline'])) {
 
 
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-<script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.js"></script>
-<script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
-<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
+  <script src="https://cdn.datatables.net/2.0.6/js/dataTables.bootstrap5.js"></script>
+  <script src="https://cdn.datatables.net/2.0.6/js/dataTables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.1/js/dataTables.buttons.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.dataTables.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.html5.min.js"></script>
+  <script src="https://cdn.datatables.net/buttons/3.0.1/js/buttons.print.min.js"></script>
 
 
 </body>
