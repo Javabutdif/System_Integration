@@ -23,7 +23,10 @@ include '../../Controller/api_student.php';
 
         <br>
         <br>
-        <div class="container mx-5">
+        <h4 class="text-center">Reservation</h4>
+
+        <form action="Reservation.php" method="POST">
+        <div class="container mx-5 col-md-11 my-5">
 
             <div class="form-group row">
                 <label for="id" class="col-sm-4 col-form-label">ID Number:</label>
@@ -40,7 +43,7 @@ include '../../Controller/api_student.php';
             <div class="form-group row">
                 <label for="purposes" class="col-sm-4 col-form-label">Purpose:</label>
                 <div class="col-sm-8">
-                    <select name="purpose" id="purposes" class="form-control">
+                    <select name="purpose" id="purposes" class="form-control"  required>
                         <option value="C Programming">C Programming</option>
                         <option value="Java Programming">Java Programming</option>
                         <option value="C# Programming">C# Programming</option>
@@ -49,11 +52,11 @@ include '../../Controller/api_student.php';
                     </select>
                 </div>
             </div>
-            <form action="Reservation.php" method="POST">
+           
                 <div class="form-group row">
                     <label for="lab" class="col-sm-4 col-form-label">Lab:</label>
                     <div class="col-sm-8">
-                        <select name="lab" id="lab" class="form-control">
+                        <select name="lab" id="lab" class="form-control" required>
                             <option value="524">524</option>
                             <option value="526">526</option>
                             <option value="528">528</option>
@@ -64,7 +67,7 @@ include '../../Controller/api_student.php';
                         <button class="btn btn-primary mt-2" type="submit" name="submitReserve">Submit</button>
                     </div>
                 </div>
-            </form>
+            
 
             <?php
             // Establish database connection
@@ -113,10 +116,17 @@ include '../../Controller/api_student.php';
             <div class="form-group row">
                 <label for="time" class="col-sm-4 col-form-label">Time In:</label>
                 <div class="col-sm-8">
-                    <input type="time" id="time" name="time">
+                    <input class="form-control" type="time" id="time" name="time" >
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="date" class="col-sm-4 col-form-label">Date:</label>
+                <div class="col-sm-8">
+                    <input class="form-control" type="date" id="date" name="date" >
                 </div>
             </div>
             </form>
+            
             <div class="form-group row">
                 <label for="name" class="col-sm-4 col-form-label">Remaining Session: </label>
                 <div class="col-sm-8">
@@ -124,9 +134,13 @@ include '../../Controller/api_student.php';
                 </div>
             </div>
 
+            <div classs="form-group row align-content-end">
+                <button type="submit" class="btn btn-primary">Reserve</button>
+            </div>
 
 
         </div>
+        </form>
 
 
 
