@@ -623,7 +623,13 @@ function retrieve_reservation(){
 
     $sql = "SELECT * FROM reservation";
     $result = mysqli_query($con, $sql);
-    return  mysqli_fetch_array($result, MYSQLI_ASSOC);
+    if (mysqli_num_rows($result) > 0) {
+        $listPerson = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $listPerson[] = $row;
+        }
+    }
+    return $listPerson;
 }
 
 

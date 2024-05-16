@@ -26,7 +26,7 @@ include '../../Controller/api_student.php';
         <br>
         <h4 class="text-center">Reservation</h4>
 
-        <form action="Reservation.php" method="POST" onsubmit="updateHiddenField()">
+        <form action="Reservation.php" method="POST">
             <div class=" container mx-5 col-md-11 my-5">
 
                 <div class="form-group row">
@@ -53,11 +53,11 @@ include '../../Controller/api_student.php';
                         </select>
                     </div>
                 </div>
-                <form action="Reservation.php" method="POST">
+                <form action="Reservation.php" method="POST" onsubmit="updateHiddenField()">
                     <div class="form-group row">
                         <label for="lab" class="col-sm-4 col-form-label">Lab:</label>
                         <div class="col-sm-8">
-                            <select name="lab" id="lab" class="form-control" required>
+                            <select name="lab" id="lab" value="<?php echo $selected_lab ?>" class="form-control" required>
                                 <option value="524">524</option>
                                 <option value="526">526</option>
                                 <option value="528">528</option>
