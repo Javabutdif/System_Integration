@@ -44,7 +44,7 @@ include '../../Controller/api_admin.php';
                     </form>
                     <form action="Reservation.php" method="POST">
                         <p><?php echo $current_lab ?></p>
-                        <div style="overflow-y: auto; max-height: 275px;">
+                        <div style="overflow-y: auto; max-height: 220px;">
                             <?php foreach ($data as $row) : ?>
                                 <div>
                                     <input type="hidden" name="filter_lab" value="<?php echo $lab_final ?>">
