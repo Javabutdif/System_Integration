@@ -66,3 +66,23 @@ if(isset($_POST['submit_feedback'])){
     }
 }
 
+if(isset($_POST['reserve_user'])){
+    $id_number = $_POST['id_number'];
+    $purpose = $_POST['purpose'];
+    $lab = $_POST['lab2'];
+    $pc_number = $_POST['pc'];
+    $time = $_POST['time'];
+    $date = $_POST['date'];
+
+    if(submit_reservation($id_number, $purpose, $lab, $pc_number, $time, $date)){
+        echo "<script>Swal.fire({
+        title: 'Notification',
+        text: 'Reservation Submitted',
+        icon: 'success',
+        showConfirmButton: false,
+        timer: 1500
+    });</script>";
+    }
+
+}
+

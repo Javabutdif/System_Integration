@@ -617,5 +617,15 @@ function retrieve_lab_Mac()
     return $language['lab'];
 }
 
+function retrieve_reservation(){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT * FROM reservation";
+    $result = mysqli_query($con, $sql);
+    return  mysqli_fetch_array($result, MYSQLI_ASSOC);
+}
+
+
 
 

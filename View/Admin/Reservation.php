@@ -20,7 +20,7 @@ include '../../Controller/api_admin.php';
     <h1 class="text-center">Reservation</h1>
 
     <div class="container">
-        <div class="d-flex flex-row">
+        <div class="d-flex flex-row gap-3">
             <div class="card" style="width:17rem; height:31rem">
                 <div class="card-header">Computer Control</div>
                 <div class="card-body">
@@ -68,8 +68,34 @@ include '../../Controller/api_admin.php';
                     </form>
                 </div>
             </div>
+            <div class="col-8">
+                <div class="card">
+                    <h3 class="card-header">Reservation Request</h3>
+                    <div class="card-body">
+                        <div class="mt-3" style="overflow-y: auto; max-height: 390px;">
+                            <?php foreach (retrieve_reservation() as $row) :
+                            ?>
+                                <p><strong><?php $row['id_number'] ?> | <?php $row['reservation_date'] ?> | Time: <?php $row['reservation_time'] ?></strong></p>
+                                <p>Request to Sit in Lab <?php $row['lab'] ?>| PC <?php $row['pc_number'] ?> | Purpose: <?php $row['purpose'] ?></p>
+                                <div class="d-flex flex-row gap-3">
+                                    <form action="Reservation.php" method="POST">
+                                        <input name="reservation_id" value="<?php $row['reservation_id'] ?>" type="hidden">
+
+                                        <button type="submit" name="accept_reservation" class="btn btn-success">Accept</button>
+                                        <button type="submit" name="deny_reservation" class="btn btn-danger">Deny</button>
+                                    </form>
+                                </div>
+                                <hr>
+                            <?php endforeach;
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
+
+
 
 </body>
 

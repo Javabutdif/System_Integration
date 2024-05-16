@@ -94,3 +94,19 @@ function submit_feedback($id,$lab,$message){
         return false;
     }
 }
+
+function submit_reservation($id_number, $purpose, $lab, $pc_number, $time, $date)
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "INSERT INTO `reservation` (`reservation_date`,`reservation_time`,`pc_number`,`lab`,`purpose`,`id_number`,`status`) VALUES('$date','$time','$pc_number','$lab','$purpose','$id_number','Pending')";
+
+    if (mysqli_query($con, $sql)) {
+        return true;
+    } else {
+        // Log or display MySQL errors
+        echo "Error: " . $sql . "<br>" . mysqli_error($con);
+        return false;
+    }
+}
