@@ -477,3 +477,145 @@ function retrieve_fourth()
     $students = mysqli_fetch_array($result, MYSQLI_ASSOC);
     return $students['year'];
 }
+
+
+//Current Sit in Retrieval 
+//Ugghhhh Redundant nasaddddd
+function retrieve_c_programming_current()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');  
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'C-Programming' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}
+function retrieve_c_sharp_programming_current()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');  
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'C# Programming' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}
+function retrieve_java_programming_current()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');  
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'Java Programming' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}
+function retrieve_asp_programming_current()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');  
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'ASP.Net Programming' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}
+function retrieve_php_programming_current()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');  
+
+    $sql = "SELECT count(sit_purpose) as lang FROM student_sit_in WHERE sit_purpose = 'Php Programming' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lang'];
+}
+
+
+//Laboratory
+function retrieve_lab_524()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');
+
+    $sql = "SELECT count(sit_lab) as lab FROM student_sit_in WHERE sit_lab = '524' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lab'];
+}
+function retrieve_lab_526()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');
+
+    $sql = "SELECT count(sit_lab) as lab FROM student_sit_in WHERE sit_lab = '526' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lab'];
+}
+function retrieve_lab_528()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');
+
+    $sql = "SELECT count(sit_lab) as lab FROM student_sit_in WHERE sit_lab = '528' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lab'];
+}
+function retrieve_lab_530()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');
+
+    $sql = "SELECT count(sit_lab) as lab FROM student_sit_in WHERE sit_lab = '530' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lab'];
+}
+function retrieve_lab_542()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');
+
+    $sql = "SELECT count(sit_lab) as lab FROM student_sit_in WHERE sit_lab = '542' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lab'];
+}
+function retrieve_lab_Mac()
+{
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+    $date = date('Y-m-d');
+
+    $sql = "SELECT count(sit_lab) as lab FROM student_sit_in WHERE sit_lab = 'Mac' AND sit_date = '$date'";
+
+    $result = mysqli_query($con, $sql);
+    $language = mysqli_fetch_array($result, MYSQLI_ASSOC);
+    return $language['lab'];
+}
+
+
+
