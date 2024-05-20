@@ -94,21 +94,18 @@ include '../../Controller/api_student.php';
 
                     if ($result) {
                         ?>
-                        <form action='Reservation.php' method='POST'>
-                        <div class='form-group row'>
-                        <label for='pc_number' class='col-sm-4 col-form-label'>Available PC:</label>
-                        <div class='col-sm-8'>
+            
+            <div class='form-group row'>
+                <label for='pc_number' class='col-sm-4 col-form-label'>Available PC:</label>
+                    <div class='col-sm-8'>
                         <select name="pc_number" id="pc_number" class='form-control'>
-                        <?php foreach($result as $row): 
-                            ?>
-                            <option value="<?php echo $row['pc_id'] ?>"><?php echo $row['pc_id'] ?></option>
-                        <?php 
-                        endforeach; ?>
+                            <?php foreach($result as $row): ?>
+                                <option value="<?php echo $row['pc_id']; ?>"><?php echo $row['pc_id']; ?></option>
+                            <?php endforeach; ?>
                         </select>
-                        </div>
-                        </div>
-
-                   </form>
+                    </div>
+            </div>
+            
                    <?php
                     } 
                 ?>
