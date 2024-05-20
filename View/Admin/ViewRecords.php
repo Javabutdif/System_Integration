@@ -20,8 +20,8 @@ $listPerson = retrieve_current_sit_in();
 
     <h1 class="text-center">Current Sit In Records</h1>
     <div class="container container-fluid d-flex flex-row gap-3 ">
-        <div class="col-4"> <canvas id="myChart" class=""></canvas></div>
-        <div class="col-8"> <canvas id="students" class="h-100 w-100"></canvas></div>
+        <div class="col-4 me-4"> <canvas id="myChart" class=""></canvas></div>
+        <div class="col-4"> <canvas id="students" class=""></canvas></div>
 
     </div>
     <div class="container">
@@ -92,7 +92,7 @@ $listPerson = retrieve_current_sit_in();
             }
         });
         new Chart(stud, {
-            type: 'bar',
+            type: 'pie',
             data: {
                 labels: ['524', '526', '528', '530', '542', 'Mac'],
                 datasets: [{
