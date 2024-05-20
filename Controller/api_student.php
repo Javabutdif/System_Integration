@@ -2,7 +2,25 @@
 
 include '..\..\Backend\backend_student.php';
 
-
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</head>
+<body>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
+<?php
 
 loginStudent();
 
@@ -54,6 +72,7 @@ if(isset($_POST['submit_feedback'])){
     $message = $_POST['feedback_text'];
     $id = $_SESSION['id_number'];
     $lab = $_POST['sit_lab'];
+    $date = date("Y-m-d");
 
     if(submit_feedback($id,$lab,$message)){
         echo "<script>Swal.fire({
@@ -63,6 +82,7 @@ if(isset($_POST['submit_feedback'])){
         showConfirmButton: false,
         timer: 1500
     });</script>";
+    notifications($id,"Feedback Confirmed! | ".$date."\nYou have successfuly submitted a feedback");
     }
 }
 
@@ -82,6 +102,7 @@ if(isset($_POST['reserve_user'])){
         showConfirmButton: false,
         timer: 1500
     });</script>";
+    notifications($id_number,"Reservation Confirmed! | ".$date."\nYou have successfuly submitted a reservation");
     }
 
 }

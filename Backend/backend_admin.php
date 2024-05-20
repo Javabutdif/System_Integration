@@ -645,25 +645,39 @@ function retrieve_reservation_logs(){
     }
     return $listPerson;
 }
-function approve_reservation($reservation_id, $pc_number,$lab){
+function approve_reservation($reservation_id, $pc_number,$lab,$id_number){
     $db = Database::getInstance();
     $con = $db->getConnection();
+    $date = date("Y-m-d");
 
     $sql = "UPDATE `reservation` SET `status` = 'Approve' WHERE reservation_id = '$reservation_id'";
     $sql_pc = "UPDATE `student_pc` SET `$lab` = '0' WHERE pc_id = '$pc_number' ";
 
-    if(mysqli_query($con,$sql) && mysqli_query($con,$sql_pc)){return true;}
+    if(mysqli_query($con,$sql) && mysqli_query($con,$sql_pc)){
+        notification($id_number,"Your Reservation has been Approve! ".$date);
+        return true;}
     else{return false;}
 }
-function decline_reservation($reservation_id, $pc_number,$lab){
+function decline_reservation($reservation_id, $pc_number,$lab,$id_number){
     $db = Database::getInstance();
     $con = $db->getConnection();
+    $date = date("Y-m-d");
 
     $sql = "UPDATE `reservation` SET `status` = 'Decline' WHERE reservation_id = '$reservation_id'";
  
 
-    if(mysqli_query($con,$sql) ){return true;}
+    if(mysqli_query($con,$sql) ){
+        notification($id_number,"Your Reservation has been Denied! ".$date);
+        return true;}
     else{return false;}
+}
+function notification($id_number,$message){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "INSERT INTO notification (`id_number`,`message`) VALUES ('$id_number','$message')";
+    mysqli_query($con,$sql);
+    
 }
 
 

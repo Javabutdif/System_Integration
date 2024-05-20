@@ -89,6 +89,7 @@ include '../../Controller/api_admin.php';
                                         <input name="reservation_id" value="<?php echo $row['reservation_id'] ?>" type="hidden">
                                         <input name="pc_number" value="<?php echo $row['pc_number'] ?>" type="hidden">
                                         <input name="lab" value="<?php echo "lab_".$row['lab'] ?>" type="hidden">
+                                        <input name="id_number" value="<?php echo $row['id_number'] ?>" type="hidden">
 
                                         <button type="submit" name="accept_reservation" class="btn btn-success">Accept</button>
                                         <button type="submit" name="deny_reservation" class="btn btn-danger">Deny</button>

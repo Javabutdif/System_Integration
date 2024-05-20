@@ -1,14 +1,13 @@
+<?php
+    include '../../Controller/api_student.php';
+?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  
     <title>CCS | Home</title>
 
 
@@ -48,9 +47,29 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="notification.php">Notification</a>
-                    </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Notification
+                    </a>
+                    <div class="dropdown-menu bg-light " aria-labelledby="navbarDropdown">
+                        <div style="overflow-x: auto; max-height: 390px; width:20rem">
+                        
+                            <?php foreach(retrieve_notification($_SESSION['id_number']) as $row) : ?>
+                                <ul>
+                                    <li>
+                                    <small class="dropdown-item" style="word-wrap: break-word; white-space: normal;">
+                                        <strong><?php echo $row['message']; ?></strong>
+                                    </small>
+                                    <hr>
+                                    </li>
+                                </ul>
+                                <br>
+                              
+                            <?php endforeach; ?>
+                        </div>
+                    </div>
+                </li>
+
                     <li class="nav-item">
                         <a class="nav-link" href="Homepage.php">Home</a>
                     </li>
@@ -72,9 +91,7 @@
     </nav>
 
 
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
 </body>
 
 </html>

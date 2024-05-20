@@ -89,6 +89,7 @@ function submit_feedback($id,$lab,$message){
 
     $sql = "INSERT INTO feedback (`id_number`,`lab`,`date`,`message`)VALUES ('$id','$lab','$date','$message')";
     if(mysqli_query($con, $sql)){
+      
         return true;
     }
     else{
@@ -104,6 +105,7 @@ function submit_reservation($id_number, $purpose, $lab, $pc_number, $time, $date
     $sql = "INSERT INTO `reservation` (`reservation_date`,`reservation_time`,`pc_number`,`lab`,`purpose`,`id_number`,`status`) VALUES('$date','$time','$pc_number','$lab','$purpose','$id_number','Pending')";
 
     if (mysqli_query($con, $sql)) {
+       
         return true;
     } else {
         // Log or display MySQL errors
@@ -124,4 +126,27 @@ function retrieve_reservation_logs($id_number){
         }
     }
     return $listPerson;
+}
+
+function notifications($id_number,$message){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "INSERT INTO notification (`id_number`,`message`) VALUES ('$id_number','$message')";
+    mysqli_query($con,$sql);
+    
+}
+function retrieve_notification($id_number){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT * FROM `notification` WHERE id_number = '$id_number' ORDER BY notification_id desc";
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $notification = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $notification[] = $row;
+        }
+    }
+    return $notification;
 }

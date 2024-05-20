@@ -467,8 +467,9 @@ if(isset($_POST['accept_reservation'])){
   $reservation_id = $_POST['reservation_id'];
   $pc_number = $_POST['pc_number'];
   $lab = $_POST['lab'];
+  $id_number = $_POST['id_number'];
 
-  if(approve_reservation($reservation_id, $pc_number,$lab)){
+  if(approve_reservation($reservation_id, $pc_number,$lab,$id_number )){
     echo "<script>Swal.fire({
       title: 'Notification',
       text: 'Approve Reservation!',
@@ -483,8 +484,9 @@ if(isset($_POST['deny_reservation'])){
   $reservation_id = $_POST['reservation_id'];
   $pc_number = $_POST['pc_number'];
   $lab = $_POST['lab'];
+  $id_number = $_POST['id_number'];
 
-  if(decline_reservation($reservation_id, $pc_number,$lab)){
+  if(decline_reservation($reservation_id, $pc_number,$lab,$id_number )){
     echo "<script>Swal.fire({
       title: 'Notification',
       text: 'Decline Reservation!',
