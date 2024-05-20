@@ -20,9 +20,10 @@ include '../../Controller/api_admin.php';
     <h1 class="text-center">Reservation</h1>
 
     <div class="container">
-        <div class="d-flex flex-row gap-3">
+        <div class="d-flex flex-row gap-1">
+            <div class="col-3">
             <div class="card" style="width:17rem; height:31rem">
-                <div class="card-header">Computer Control</div>
+                <div class="card-header text-white text-center"  style=" background-color: #144c94;">Computer Control</div>
                 <div class="card-body">
                     <form action="Reservation.php" method="POST">
                         <div class="form-group row pb-3">
@@ -67,24 +68,53 @@ include '../../Controller/api_admin.php';
                         </div>
                     </form>
                 </div>
+                </div>
             </div>
-            <div class="col-8">
+            <div class="col-6">
                 <div class="card">
-                    <h3 class="card-header">Reservation Request</h3>
+                    <h3 class="card-header text-center text-white"  style=" background-color: #144c94;">Reservation Request</h3>
                     <div class="card-body">
                         <div class="mt-3" style="overflow-y: auto; max-height: 390px;">
                             <?php foreach (retrieve_reservation() as $row) :
                             ?>
-                                <p><strong><?php echo $row['id_number'] ?> | <?php echo $row['reservation_date'] ?> | Time: <?php echo $row['reservation_time'] ?></strong></p>
-                                <p>Request to Sit in Lab <?php echo $row['lab'] ?> | PC <?php echo $row['pc_number'] ?> | Purpose: <?php echo $row['purpose'] ?></p>
+                                <p><strong>ID Number: </strong><?php echo $row['id_number'] ?> </p>
+                                <p><strong>Reservation Date: </strong><?php echo $row['reservation_date'] ?> </p>
+                                <p><strong>Reservation Time: </strong><?php echo $row['reservation_time'] ?></p>
+                                <p><strong>Laboratory: </strong><?php echo $row['lab'] ?></p>
+                                <p><strong>Computer Number: </strong><?php echo $row['pc_number'] ?></p>
+                                <p><strong>Purpose: </strong><?php echo $row['purpose'] ?></p>
+                             
                                 <div class="d-flex flex-row gap-3">
                                     <form action="Reservation.php" method="POST">
                                         <input name="reservation_id" value="<?php echo $row['reservation_id'] ?>" type="hidden">
+                                        <input name="pc_number" value="<?php echo $row['pc_number'] ?>" type="hidden">
+                                        <input name="lab" value="<?php echo "lab_".$row['lab'] ?>" type="hidden">
 
                                         <button type="submit" name="accept_reservation" class="btn btn-success">Accept</button>
                                         <button type="submit" name="deny_reservation" class="btn btn-danger">Deny</button>
                                     </form>
                                 </div>
+                                <hr>
+                            <?php endforeach;
+                            ?>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 ">
+                <div class="card">
+                <h3 class="card-header text-center text-white"  style=" background-color: #144c94;">Logs</h3>
+                    <div class="card-body">
+                    <div class="mt-3" style="overflow-y: auto; max-height: 390px;">
+                            <?php foreach (retrieve_reservation_logs() as $row) :
+                            ?>
+                                <p><strong>ID Number: </strong><?php echo $row['id_number'] ?> </p>
+                                <p><strong>Reservation Date: </strong><?php echo $row['reservation_date'] ?> </p>
+                                <p><strong>Reservation Time: </strong><?php echo $row['reservation_time'] ?></p>
+                                <p><strong>Laboratory: </strong><?php echo $row['lab'] ?></p>
+                                <p><strong>Computer Number: </strong><?php echo $row['pc_number'] ?></p>
+                                <p><strong>Purpose: </strong><?php echo $row['purpose'] ?></p>
+                                <p style="<?php if($row['status'] == 'Approve') echo 'color:green;'; else if($row['status'] == 'Decline') echo "color:red" ?>"><strong>Status: </strong> <?php echo $row['status'] ?></p>
                                 <hr>
                             <?php endforeach;
                             ?>

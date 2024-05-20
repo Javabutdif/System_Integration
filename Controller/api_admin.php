@@ -463,6 +463,38 @@ if (isset($_POST['submitDecline'])) {
   }
 }
 
+if(isset($_POST['accept_reservation'])){
+  $reservation_id = $_POST['reservation_id'];
+  $pc_number = $_POST['pc_number'];
+  $lab = $_POST['lab'];
+
+  if(approve_reservation($reservation_id, $pc_number,$lab)){
+    echo "<script>Swal.fire({
+      title: 'Notification',
+      text: 'Approve Reservation!',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500
+    });</script>";
+  }
+}
+
+if(isset($_POST['deny_reservation'])){
+  $reservation_id = $_POST['reservation_id'];
+  $pc_number = $_POST['pc_number'];
+  $lab = $_POST['lab'];
+
+  if(decline_reservation($reservation_id, $pc_number,$lab)){
+    echo "<script>Swal.fire({
+      title: 'Notification',
+      text: 'Decline Reservation!',
+      icon: 'success',
+      showConfirmButton: false,
+      timer: 1500
+    });</script>";
+  }
+}
+
 
 
 ?>

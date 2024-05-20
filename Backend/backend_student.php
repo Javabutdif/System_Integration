@@ -1,6 +1,7 @@
 <?php
 include 'database_connection.php';
 
+
 function loginStudent()
 {
 
@@ -109,4 +110,18 @@ function submit_reservation($id_number, $purpose, $lab, $pc_number, $time, $date
         echo "Error: " . $sql . "<br>" . mysqli_error($con);
         return false;
     }
+}
+function retrieve_reservation_logs($id_number){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "SELECT * FROM reservation WHERE id_number = '$id_number'  ORDER BY reservation_id desc ";
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $listPerson = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $listPerson[] = $row;
+        }
+    }
+    return $listPerson;
 }

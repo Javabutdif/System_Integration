@@ -3,6 +3,7 @@ require_once '../asset/navbar_student.html';
 include '../../Controller/api_student.php';
 
 
+
 $listPerson = retrieve_student_history($_SESSION['id_number']);
 
 

@@ -621,7 +621,7 @@ function retrieve_reservation(){
     $db = Database::getInstance();
     $con = $db->getConnection();
 
-    $sql = "SELECT * FROM reservation ORDER BY reservation_id desc";
+    $sql = "SELECT * FROM reservation WHERE `status` = 'Pending' ORDER BY reservation_id desc ";
     $result = mysqli_query($con, $sql);
     if (mysqli_num_rows($result) > 0) {
         $listPerson = [];
@@ -631,7 +631,40 @@ function retrieve_reservation(){
     }
     return $listPerson;
 }
+function retrieve_reservation_logs(){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
 
+    $sql = "SELECT * FROM reservation  ORDER BY reservation_id desc ";
+    $result = mysqli_query($con, $sql);
+    if (mysqli_num_rows($result) > 0) {
+        $listPerson = [];
+        while ($row = mysqli_fetch_array($result)) {
+            $listPerson[] = $row;
+        }
+    }
+    return $listPerson;
+}
+function approve_reservation($reservation_id, $pc_number,$lab){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "UPDATE `reservation` SET `status` = 'Approve' WHERE reservation_id = '$reservation_id'";
+    $sql_pc = "UPDATE `student_pc` SET `$lab` = '0' WHERE pc_id = '$pc_number' ";
+
+    if(mysqli_query($con,$sql) && mysqli_query($con,$sql_pc)){return true;}
+    else{return false;}
+}
+function decline_reservation($reservation_id, $pc_number,$lab){
+    $db = Database::getInstance();
+    $con = $db->getConnection();
+
+    $sql = "UPDATE `reservation` SET `status` = 'Decline' WHERE reservation_id = '$reservation_id'";
+ 
+
+    if(mysqli_query($con,$sql) ){return true;}
+    else{return false;}
+}
 
 
 
