@@ -621,7 +621,7 @@ function retrieve_reservation(){
     $db = Database::getInstance();
     $con = $db->getConnection();
 
-    $sql = "SELECT * FROM reservation";
+    $sql = "SELECT * FROM reservation ORDER BY reservation_id desc";
     $result = mysqli_query($con, $sql);
     if (mysqli_num_rows($result) > 0) {
         $listPerson = [];
