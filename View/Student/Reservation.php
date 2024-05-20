@@ -1,6 +1,24 @@
 <?php
 require_once '../asset/navbar_student.html';
 include '../../Controller/api_student.php';
+
+ // Establish database connection
+ $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
+ if ($con === false) {
+     die("Error: Could not connect to the database. " . mysqli_connect_error());
+ }
+
+ if (isset($_POST["submitReserve"])) {
+     $programming = $_POST["purpose"];
+     $selected_lab = $_POST["lab"];
+     // Sanitize and escape user input
+     $lab = mysqli_real_escape_string($con, $selected_lab);
+     // Construct the SQL query safely
+     $sentence = "lab_" . $lab;
+     $sqlTable = "SELECT pc_id FROM student_pc WHERE `$sentence` = '1'";
+     // Execute the query
+     $result = mysqli_query($con, $sqlTable);
+ }
 ?>
 
 <!DOCTYPE html>
@@ -45,11 +63,11 @@ include '../../Controller/api_student.php';
                     <label for="purposes" class="col-sm-4 col-form-label">Purpose:</label>
                     <div class="col-sm-8">
                         <select name="purpose" id="purposes" class="form-control" required>
-                            <option value="C Programming">C Programming</option>
-                            <option value="Java Programming">Java Programming</option>
-                            <option value="C# Programming">C# Programming</option>
-                            <option value="Php Programming">Php Programming</option>
-                            <option value="ASP.Net Programming">ASP.Net Programming</option>
+                            <option value="C Programming" <?php if($programming == "C Programming") echo 'selected'; ?>>C Programming</option>
+                            <option value="Java Programming" <?php if($programming == "Java Programming") echo 'selected'; ?>>Java Programming</option>
+                            <option value="C# Programming" <?php if($programming == "C# Programming") echo 'selected'; ?>>C# Programming</option>
+                            <option value="Php Programming" <?php if($programming == "Php Programming") echo 'selected'; ?>>Php Programming</option>
+                            <option value="ASP.Net Programming" <?php if($programming == "ASP.Net Programming") echo 'selected'; ?>>ASP.Net Programming</option>
                         </select>
                     </div>
                 </div>
@@ -57,60 +75,42 @@ include '../../Controller/api_student.php';
                     <div class="form-group row">
                         <label for="lab" class="col-sm-4 col-form-label">Lab:</label>
                         <div class="col-sm-8">
-                            <select name="lab" id="lab" value="<?php echo $selected_lab ?>" class="form-control" required>
-                                <option value="524">524</option>
-                                <option value="526">526</option>
-                                <option value="528">528</option>
-                                <option value="530">530</option>
-                                <option value="542">542</option>
-                                <option value="Mac">Mac Laboratory</option>
+                            <select name="lab" id="lab"  class="form-control" required>
+                                <option value="524" <?php if($selected_lab == "524") echo 'selected'; ?>>524</option>
+                                <option value="526" <?php if($selected_lab == "526") echo 'selected'; ?>>526</option>
+                                <option value="528" <?php if($selected_lab == "528") echo 'selected'; ?>>528</option>
+                                <option value="530" <?php if($selected_lab == "530") echo 'selected'; ?>>530</option>
+                                <option value="542" <?php if($selected_lab == "542") echo 'selected'; ?>>542</option>
+                                <option value="Mac" <?php if($selected_lab == "Mac") echo 'selected'; ?>>Mac Laboratory</option>
                             </select>
                             <button class="btn btn-primary mt-2" type="submit" name="submitReserve">Submit</button>
                         </div>
                     </div>
                 </form>
-                <input type="hidden" value="" id="lab2" name="lab2">
-
+             
 
                 <?php
-                // Establish database connection
-                $con = mysqli_connect('localhost', 'root', '', 'ccs_system');
-                if ($con === false) {
-                    die("Error: Could not connect to the database. " . mysqli_connect_error());
-                }
-
-                if (isset($_POST["submitReserve"])) {
-                    // Retrieve the selected lab value
-                    $selected_lab = $_POST["lab"];
-                    // Sanitize and escape user input
-                    $lab = mysqli_real_escape_string($con, $selected_lab);
-                    // Construct the SQL query safely
-                    $sentence = "lab_" . $lab;
-                    $sqlTable = "SELECT pc_id FROM student_pc WHERE `$sentence` = '1'";
-                    // Execute the query
-                    $result = mysqli_query($con, $sqlTable);
+               
 
                     if ($result) {
-                        echo "<form action='Reservation.php' method='POST'>";
-                        echo "<div class='form-group row'>";
-                        echo "<label for='mySelect' class='col-sm-4 col-form-label'>Available PC:</label>";
-                        echo "<div class='col-sm-8'>";
-                        echo "<select name='pc' class='form-control'>";
-                        while ($row = mysqli_fetch_array($result)) {
-                            echo "<option value='" . $row['pc_id'] . "'>" . $row['pc_id'] . "</option>";
-                        }
-                        echo "</select>";
-                        echo "</div>";
-                        echo "</div>";
+                        ?>
+                        <form action='Reservation.php' method='POST'>
+                        <div class='form-group row'>
+                        <label for='pc_number' class='col-sm-4 col-form-label'>Available PC:</label>
+                        <div class='col-sm-8'>
+                        <select name="pc_number" id="pc_number" class='form-control'>
+                        <?php foreach($result as $row): 
+                            ?>
+                            <option value="<?php echo $row['pc_id'] ?>"><?php echo $row['pc_id'] ?></option>
+                        <?php 
+                        endforeach; ?>
+                        </select>
+                        </div>
+                        </div>
 
-                        echo "</form>";
-                    } else {
-                        echo "Error: " . mysqli_error($con);
-                    }
-                }
-
-                // Close the database connection
-                mysqli_close($con);
+                   </form>
+                   <?php
+                    } 
                 ?>
 
 

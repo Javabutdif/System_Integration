@@ -2,7 +2,7 @@
 
 
 session_start();
-
+error_reporting(0);
 class Database {
     private static $instance;
     private $con;

@@ -18,6 +18,7 @@ $listPerson = retrieve_sit_in();
 
     <h1 class="text-center">Current Sit in</h1>
 
+    
 
     <div class="container">
         <table id="example" class="table table-striped display compact" style="width:100%">

@@ -69,8 +69,8 @@ if(isset($_POST['submit_feedback'])){
 if(isset($_POST['reserve_user'])){
     $id_number = $_POST['id_number'];
     $purpose = $_POST['purpose'];
-    $lab = $_POST['lab2'];
-    $pc_number = $_POST['pc'];
+    $lab = $_POST['lab'];
+    $pc_number = $_POST['pc_number'];
     $time = $_POST['time'];
     $date = $_POST['date'];
 
