@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 27, 2024 at 02:53 AM
+-- Generation Time: Feb 13, 2025 at 08:18 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -39,7 +39,8 @@ CREATE TABLE `announce` (
 --
 
 INSERT INTO `announce` (`announce_id`, `admin_name`, `date`, `message`) VALUES
-(7, 'CCS Admin', '2024-May-08', 'Important Announcement  We are excited to announce the launch of our new website! 🎉 Explore our latest products and services now!');
+(7, 'CCS Admin', '2024-May-08', 'Important Announcement  We are excited to announce the launch of our new website! 🎉 Explore our latest products and services now!'),
+(9, 'CCS Admin', '2025-Feb-10', 'Hiiii');
 
 -- --------------------------------------------------------
 
@@ -166,7 +167,6 @@ CREATE TABLE `students` (
 
 INSERT INTO `students` (`id_number`, `lastName`, `firstName`, `middleName`, `yearLevel`, `password`, `course`, `email`, `address`, `status`) VALUES
 (1, 'Alcarmen', 'Brandon', 'B.', 3, '123', 'BSIT', 'brandon@gmail.com', 'Lorega', 'FALSE'),
-(123, 'Nengasca', 'Kimmy', 'K', 3, '123', 'BSIT', 'kim@gmail.com', 'Dumlog', 'TRUE'),
 (2000, 'Sandalo', 'Jude Jefferson', 'L', 4, '123', 'BSIT', 'jude@gmail.com', 'Lorega', 'TRUE'),
 (123123, 'Aguilar', 'Jermaine', 'J', 3, '123', 'BSIT', 'jermaine0@gmail.com', 'San Isidro Talisay', 'TRUE'),
 (19835644, 'Genabio', 'Anton James', 'J', 3, '123', 'BSIT', 'jamesgenabio@yahoo.com', 'San Isidro Talisay', 'TRUE'),
@@ -196,7 +196,7 @@ CREATE TABLE `student_pc` (
 INSERT INTO `student_pc` (`pc_id`, `lab_524`, `lab_526`, `lab_528`, `lab_530`, `lab_542`, `lab_Mac`) VALUES
 (1, 1, 1, 1, 1, 0, 1),
 (2, 0, 1, 1, 1, 1, 1),
-(3, 1, 1, 1, 1, 1, 1),
+(3, 0, 1, 1, 1, 1, 1),
 (4, 1, 1, 1, 1, 1, 1),
 (5, 1, 1, 1, 1, 1, 0),
 (6, 1, 1, 1, 1, 1, 1),
@@ -262,12 +262,11 @@ CREATE TABLE `student_session` (
 
 INSERT INTO `student_session` (`id_number`, `session`) VALUES
 (1, 30),
-(123, 29),
-(2000, 29),
+(2000, 30),
 (123123, 30),
-(19835644, 27),
+(19835644, 30),
 (19835645, 30),
-(123131231, 28);
+(123131231, 30);
 
 -- --------------------------------------------------------
 
@@ -302,7 +301,8 @@ INSERT INTO `student_sit_in` (`sit_id`, `id_number`, `sit_purpose`, `sit_lab`, `
 (15, 2000, 'C-Programming', '524', '10:38:40am', '10:39:05am', '2024-05-20', 'Finished'),
 (16, 123131231, 'Java Programming', '542', '02:38:24pm', '02:38:39pm', '2024-05-20', 'Finished'),
 (17, 123131231, 'Java Programming', '526', '02:51:30pm', '02:51:47pm', '2024-05-20', 'Finished'),
-(18, 123, 'Java Programming', '542', '11:23:27am', '11:23:32am', '2024-05-21', 'Finished');
+(18, 123, 'Java Programming', '542', '11:23:27am', '11:23:32am', '2024-05-21', 'Finished'),
+(19, 19835644, 'ASP.Net Programming', '526', '06:59:43pm', '06:59:55pm', '2025-02-10', 'Finished');
 
 --
 -- Indexes for dumped tables
@@ -365,7 +365,7 @@ ALTER TABLE `student_sit_in`
 -- AUTO_INCREMENT for table `announce`
 --
 ALTER TABLE `announce`
-  MODIFY `announce_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `announce_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -389,7 +389,7 @@ ALTER TABLE `reservation`
 -- AUTO_INCREMENT for table `student_sit_in`
 --
 ALTER TABLE `student_sit_in`
-  MODIFY `sit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `sit_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- Constraints for dumped tables
